@@ -8,6 +8,7 @@
     <script src="../jquery/jquery-2.1.3.min.js"></script>
     <script src="../js/script.js"></script>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/register.css">
 
 </head>
 
@@ -56,53 +57,96 @@
     </header>
 
     <section>
-        <form id="registerForm" action="" method="POST">
+    	<div class="content">
 
-            <label for="nameInput">Nome Completo</label>
-            <input id="nameInput" type="text" placeholder="Nome Sobrenome" name="nome" required>
+    	<h1>Novo Cliente</h1>
 
-            <label for="cpfInput">CPF</label>
-            <input id="cpfInput" type="text" placeholder="XXX.XXX.XXX-XX" name="cpf" required>
+	        <form id="registerForm" action="" method="POST">
 
-            <label for="birthdayInput">Data de Nascimento</label>
-            <input id="birthdayInput" type="text" placeholder="dd/mm/aaaa" name="dataNascimento" required>
 
-            <label for="birthdayInput">Sexo</label>
-            <input type="radio" name="sexo" value="male" checked>Masculino
-            <input type="radio" name="sexo" value="female">Feminino
+	        <div class="input_column">
 
-            <label for="civilStateInput">Sexo</label>
-            <select id="civilStateInput" name="estadoCivil" required>
-                <option value="casado">Casado</option>
-                <option value="solteiro">Solteiro</option>
-                <option value="outros">Outros</option>
-            </select>
+		        <div class="input_line">
+		            <input id="nameInput" type="text" placeholder="Nome Completo" name="nome" required>
+				</div>
 
-            <label for="cityInput">Cidade</label>
-            <input id="cityInput" type="text" placeholder="Nome Sobrenome" name="cidade" required>
+		        <div class="input_line">
+		            <input id="cpfInput" type="text" placeholder="CPF (XXX.XXX.XXX-XX)" name="cpf" required>
+				</div>
 
-            <label for="stateInput">Estado</label>
-            <input id="stateInput" type="text" placeholder="XXX.XXX.XXX-XX" name="estado" required>
+		        <div class="input_line">
+		            <input id="birthdayInput" type="text" placeholder="Data de Nascimento (dd/mm/aaaa)" name="dataNascimento" required>
+				</div>
 
-            <label for="cepInput">CEP</label>
-            <input id="cepInput" type="text" placeholder="XXXXX-XXX" name="cep" required>
+		        <div class="input_line seg">
 
-            <label for="emailInput">E-mail</label>
-            <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" required>
+		            <h2>Sexo</h2>
 
-            <label for="passwordInput">Senha</label>
-            <input id="passwordInput" type="password" placeholder="********" name="senha" required>
-            <br/>
-            <p id="pwdStrenght"></p>
-            <br/>
-            <label for="confirmPasswordInput">Confirmar Senha</label>
-            <input id="confirmPasswordInput" type="password" placeholder="********" name="confirmarSenha" required>
+					<nav class="segmented-button">
+	                  <input type="radio" name="sexo" value="male" id="sexo_m" checked="">
+	                  <label for="sexo_m" class="first">Masculino</label>
+	                  <input type="radio" name="sexo" value="female" id="sexo_f">
+	                  <label for="sexo_f" class="last">Feminino</label>
+	                </nav>
 
-            <input class="submit" type="submit" value="Sign up">
-        </form>
+				</div>
 
+
+
+				<div class="input_line">
+		        	<h2>Estado Civil</h2>
+
+		        	<div class="select_div">
+
+		            <select id="civilStateInput" name="estadoCivil" required>
+		                <option value="" disabled=" selected="" ">Estado Civil...</option>
+		                <option value="casado">Casado</option>
+		                <option value="solteiro">Solteiro</option>
+		                <option value="outros">Outros</option>
+		            </select>
+				</div>
+				</div>
+
+			</div>
+			<div class="input_column">
+		        <div class="input_line">
+		            <input id="cityInput" type="text" placeholder="Cidade" name="cidade" required>
+				</div>
+
+		        <div class="input_line">
+		            <input id="stateInput" type="text" placeholder="Estado" name="estado" required>
+				</div>
+
+		        <div class="input_line">
+		            <input id="cepInput" type="text" placeholder="CEP (XXXXX-XXX)" name="cep" required>
+				</div>
+
+		        <div class="input_line">
+		            <input id="emailInput" type="email" placeholder="Email (someone@somewhere.com)" name="email" required>
+				</div>
+
+		        <div class="input_line">
+		            <input id="passwordInput" type="password" placeholder="Senha" name="senha" required>
+		            <br/>
+		            <p id="pwdStrenght"></p>
+		            <br/>
+		            <input id="confirmPasswordInput" type="password" placeholder="Confirmar Senha" name="confirmarSenha" required>
+				</div>
+
+            </div>
+
+	      	<div class="submit">
+		        <input class="submit" type="submit" value="Registrar">
+	      	</div>
+
+	        </form>
+        </div>
     </section>
 
+
+    <footer class="footer">
+        <p class="text-center">Desenvolvido por Paulo Moreno e Vinicius Lovato</p>
+    </footer>
 
 </body>
 

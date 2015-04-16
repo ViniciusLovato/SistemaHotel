@@ -6,6 +6,14 @@ body {
     height: 100%;
 }
 
+body{
+    background-color: rgb(227, 234, 237);
+}
+
+header{
+	background-color: white;
+}
+
 .cover {    
     overflow: hidden;
 }
@@ -81,6 +89,7 @@ body {
 
 .footer {
     height: 30px;
+    line-height: 30px;
     background-color: rgba(255, 255, 255, 0.95);
 }
 
