@@ -114,8 +114,11 @@ nav input[type="email"], nav input[type="password"]{
 	line-height: 18px;
 }
 
-nav input[type="submit"], nav input[type="button"]{
+nav input[type="submit"], .aReg{
 	height: 23px;
+	line-height: 18px;
+
+	text-decoration: none;
 
 	margin-top: 13px;
 
@@ -142,11 +145,14 @@ nav input[type="submit"], nav input[type="button"]{
 	border-radius: 2px;
 }
 
-nav input[type="submit"]:hover, nav input[type="button"]:hover{
-	border: solid 1px rgb(0, 168, 162);
-	color: rgb(0, 168, 162);
+.aReg{
+	height: 18px;
+	margin-top: 10px;
+	padding-top: 5px;
+	padding-bottom: 3px;
 }
 
-
-.nav_btn_r{
+nav input[type="submit"]:hover, .aReg:hover{
+	border: solid 1px rgb(0, 168, 162);
+	color: rgb(0, 168, 162);
 }
