@@ -6,7 +6,8 @@ window.onload = function () {
 
         var emailInput = $("#emailLoginInput").val();
         var passwordInput = $("#passwordLoginInput").val();
-
+        
+        console.log(validateEmail(emailInput));
         if (!validateEmail(emailInput)) {
             valid = false;
             event.preventDefault();
@@ -63,7 +64,7 @@ window.onload = function () {
 
 function validateEmail(email) {
     // Email Regex used to test input
-    var regex = /^[a-z]([a-z0-9.])+@([a-z])+\.([a-z]{2,4})(\.[a-z]{2,4}){0,1}$/;
+    var regex = /^[a-z]{1}(([.]){0,}[a-z0-9]){0,}@([a-z])+\.([a-z]{2,4})(\.[a-z]{2,4}){0,1}$/;
     return regex.test(email);
 }
 
