@@ -6,7 +6,7 @@ window.onload = function () {
 
         var emailInput = $("#emailLoginInput").val();
         var passwordInput = $("#passwordLoginInput").val();
-        
+
         console.log(validateEmail(emailInput));
         if (!validateEmail(emailInput)) {
             valid = false;
@@ -20,17 +20,25 @@ window.onload = function () {
 
         var nameInput = $("#nameInput").val();
         var passwordInput = $("#passwordInput").val();
+        var dateOfBirth = $("#birthdayInput").val();
 
-        console.log(nameInput);
+        console.log("Nome" + nameInput);
         console.log("password: " + passwordInput);
+        console.log("Data: " + dateOfBirth);
+
 
         if (!validateName(nameInput)) {
             valid = false;
+        }
+        if (!validatePassword(passwordInput)) {
+            valid = false;
+        }
+        if (!validateDateOfBirth(dateOfBirth)) {
+            valid = false;
+        }
+        if (valid === false) {
             event.preventDefault();
         }
-
-        var passStrenght = passwordStrength(passwordInput);
-        console.log("Strengh:" + passStrenght);
 
     });
 
@@ -38,26 +46,36 @@ window.onload = function () {
         var p = $("#pwdStrenght");
         var str = passwordStrength($(this).val());
         var msg = "";
+        var pClass = "";
 
         switch (str) {
         case "weak":
             msg = "Senha: Fraca";
+            pClass = 'pwdWeak';
             break;
         case "medium":
             msg = "Senha: Média";
+            pClass = 'pwdMedium';
+
             break;
         case "strong":
             msg = "Senha: Forte";
+            pClass = 'pwdStrong';
+
             break;
         case "invalid":
             msg = "Senha: Inválida (deve possuir entre 6 e 12 caracteres)";
+            pClass = 'pwdInvalid';
+
             break;
         default:
             break;
 
         };
         console.log(msg);
-        p.text($(this).val() + " : " + msg);
+        p.text(msg);
+        p.removeClass();
+        p.addClass(pClass);
     });
 
 };
@@ -71,6 +89,47 @@ function validateEmail(email) {
 function validateName(name) {
     var regex = /^[a-zA-Z]{3}[a-zA-Z]*(\s[a-zA-Z]{3}[a-zA-Z]*){1,}$/;
     return regex.test(name);
+}
+
+function validatePassword(password) {
+    var valid = false;
+    if (password.length >= 6 && password.length <= 12) {
+        valid = true;
+    }
+    return valid;
+}
+
+function validateCEP(CEP, state) {
+    var valid = false;
+
+
+}
+
+
+
+function validateDateOfBirth(dateOfBirth) {
+    var valid = false;
+    var dateRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+
+    if (dateRegex.test(dateOfBirth)) {
+        var date = new Date(dateOfBirth.substr(6, 4), dateOfBirth.substr(3, 2) - 1, dateOfBirth.substr(0, 2));
+        var currentDate = new Date();
+
+        // check inferior limit
+        if (date.getFullYear() >= 1900 && date.getFullYear() <= currentDate.getFullYear()) {
+            // check superior limit
+            if (currentDate.getYear() === date.getYear()) {
+                if (currentDate.getMonth() >= date.getMonth()) {
+                    if (currentDate.getDate() >= date.getDate()) {
+                        valid = true;
+                    }
+                }
+            } else {
+                valid = true;
+            }
+        }
+    }
+    return valid;
 }
 
 function regexInString(string, regex) {
@@ -140,7 +199,6 @@ function confirmPassword(password, confirmPassword) {
     if (password === confirmPassword) {
         valid = true;
     }
-
     return valid;
 
 }
