@@ -47,13 +47,14 @@ form#registerForm{
 	text-align: left;
 }
 
-#registerForm.submit{
-	margin-top: 55px;
-	margin-bottom: 25px;
+.regSubmit{
+	padding-top: 55px;
+	width: 100%;
+	padding-bottom: 25px;
 	clear: both;
 }
 
-.submit input[type="submit"]{
+.regSubmit input[type="submit"]{
 	height: 34px;
 	width: 150px;
 
