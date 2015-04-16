@@ -92,12 +92,20 @@ header{
     margin-top: 20px;
     margin-left: 15%;
     margin-right: 15%;
+
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.05);
+	-moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.05);
+	box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.05);
 }
 
 .footer {
     height: 30px;
     line-height: 30px;
     background-color: rgba(255, 255, 255, 0.95);
+
+	-webkit-box-shadow: 0px -7px 5px 0px rgba(50, 50, 50, 0.05);
+	-moz-box-shadow:    0px -7px 5px 0px rgba(50, 50, 50, 0.05);
+	box-shadow:         0px -7px 5px 0px rgba(50, 50, 50, 0.05);
 }
 
 .footer .text-center {
