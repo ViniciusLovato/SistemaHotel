@@ -96,7 +96,7 @@ form#registerForm{
 }
 
 
-.submit input[type="submit"]:hover{
+.regSubmit input[type="submit"]:hover{
 	border: solid 1px rgb(0, 168, 162);
 	color: rgb(0, 168, 162);
 }
