@@ -11,7 +11,7 @@ window.onload = function () {
         console.log(passwordInput);
         
         // Email Regex used to test input
-        var regex = /[a-z][a-z0-9]+@[a-z]+.[a-z]{2,4}/;
+        var regex = /^[a-z]([a-z0-9.])+@([a-z])+\.([a-z]{2,4})(\.[a-z]{2,4}){0,1}$/;
 
         // Email validation
         if (regex.test(emailInput) === false) {
@@ -33,3 +33,6 @@ window.onload = function () {
 
 
 };
+
+
+

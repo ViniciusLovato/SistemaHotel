@@ -5,69 +5,102 @@
     <meta charset="UTF-8">
     <title>Novo Cliente</title>
 
-    <script src="jquery/jquery-2.1.3.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../jquery/jquery-2.1.3.min.js"></script>
+    <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
     <header>
+        <section class="cover">
+            <img src="../static/cover.jpg" alt="">
+        </section>
+
         <nav>
-            <ul>
-                <li>Home</li>
-                <li>O Hotel</li>
-                <li>Suítes</li>
-                <li>Apartamentos</li>
-                <li>Eventos</li>
-                <li>Local</li>
+            <ul class="menu">
+                <li><a href="../index.html">Home</a>
+                </li>
+                <li><a href="">O Hotel</a>
+
+                </li>
+                <li><a href="">Suítes</a>
+
+                </li>
+                <li><a href="">Eventos</a>
+
+                </li>
+                <li><a href="../contato/index.html">Contato</a>
+                </li>
+
+                <div id="formDiv">
+                    <form id="registerForm" action="" method="POST">
+                        <label for="emailInput"></label>
+                        <input id="emailInput" type="email" placeholder="someone@somewhere.com">
+
+                        <label for="passwordInput"></label>
+                        <input id="passwordInput" type="password" placeholder="********">
+
+                        <input class="submit" type="submit" value="Sign in">
+                    </form>
+
+                    <form action="index.html">
+                        <input type="submit" value="Sign up">
+                    </form>
+                </div>
+
             </ul>
-
-            <form id="registerForm" action="" method="POST">
-
-                <label for="nameInput">Nome Completo</label>
-                <input id="nameInput" type="text" placeholder="Nome Sobrenome" name="nome" required>
-
-                <label for="cpfInput">CPF</label>
-                <input id="cpfInput" type="text" placeholder="XXX.XXX.XXX-XX" name="cpf" required>
-
-                <label for="birthdayInput">Data de Nascimento</label>
-                <input id="birthdayInput" type="text" placeholder="dd/mm/aaaa" name="dataNascimento" required>
-                
-                <label for="birthdayInput">Sexo</label>
-                <input type="radio" name="sexo" value="male" checked>Masculino
-                <input type="radio" name="sexo" value="female">Feminino
-
-                <label for="civilStateInput">Sexo</label>
-                <select id="civilStateInput" name="estadoCivil" required>
-                  <option value="casado">Casado</option>
-                  <option value="solteiro">Solteiro</option>
-                  <option value="outros">Outros</option>
-                </select>
-
-                <label for="cityInput">Cidade</label>
-                <input id="cityInput" type="text" placeholder="Nome Sobrenome" name="cidade" required>
-
-                <label for="stateInput">Estado</label>
-                <input id="stateInput" type="text" placeholder="XXX.XXX.XXX-XX" name="estado" required>
-
-                <label for="cepInput">CEP</label>
-                <input id="cepInput" type="text" placeholder="XXXXX-XXX" name="cep" required>
-
-                <label for="emailInput">E-mail</label>
-                <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" required>  
-
-                <label for="passwordInput">Senha</label>
-                <input id="passwordInput" type="password" placeholder="********" name="senha" required>
-
-                <label for="confirmPasswordInput">Confirmar Senha</label>
-                <input id="confirmPasswordInput" type="password" placeholder="********" name="confirmarSenha" required>
-
-                <input class="submit" type="submit" value="Sign up">
-            </form>
         </nav>
 
 
     </header>
+
+    <section>
+        <form id="registerForm" action="" method="POST">
+
+            <label for="nameInput">Nome Completo</label>
+            <input id="nameInput" type="text" placeholder="Nome Sobrenome" name="nome" required>
+
+            <label for="cpfInput">CPF</label>
+            <input id="cpfInput" type="text" placeholder="XXX.XXX.XXX-XX" name="cpf" required>
+
+            <label for="birthdayInput">Data de Nascimento</label>
+            <input id="birthdayInput" type="text" placeholder="dd/mm/aaaa" name="dataNascimento" required>
+
+            <label for="birthdayInput">Sexo</label>
+            <input type="radio" name="sexo" value="male" checked>Masculino
+            <input type="radio" name="sexo" value="female">Feminino
+
+            <label for="civilStateInput">Sexo</label>
+            <select id="civilStateInput" name="estadoCivil" required>
+                <option value="casado">Casado</option>
+                <option value="solteiro">Solteiro</option>
+                <option value="outros">Outros</option>
+            </select>
+
+            <label for="cityInput">Cidade</label>
+            <input id="cityInput" type="text" placeholder="Nome Sobrenome" name="cidade" required>
+
+            <label for="stateInput">Estado</label>
+            <input id="stateInput" type="text" placeholder="XXX.XXX.XXX-XX" name="estado" required>
+
+            <label for="cepInput">CEP</label>
+            <input id="cepInput" type="text" placeholder="XXXXX-XXX" name="cep" required>
+
+            <label for="emailInput">E-mail</label>
+            <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" required>
+
+            <label for="passwordInput">Senha</label>
+            <input id="passwordInput" type="password" placeholder="********" name="senha" required>
+
+            <label for="confirmPasswordInput">Confirmar Senha</label>
+            <input id="confirmPasswordInput" type="password" placeholder="********" name="confirmarSenha" required>
+
+            <input class="submit" type="submit" value="Sign up">
+        </form>
+
+    </section>
+
 
 </body>
 

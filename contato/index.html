@@ -5,53 +5,84 @@
     <meta charset="UTF-8">
     <title>Contato</title>
 
-    <script src="jquery/jquery-2.1.3.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="../jquery/jquery-2.1.3.min.js"></script>
+    <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
     <header>
+        <section class="cover">
+            <img src="../static/cover.jpg" alt="">
+        </section>
+
         <nav>
-            <ul>
-                <li>Home</li>
-                <li>O Hotel</li>
-                <li>Suítes</li>
-                <li>Apartamentos</li>
-                <li>Eventos</li>
-                <li>Local</li>
+            <ul class="menu">
+                <li><a href="../index.html">Home</a>
+                </li>
+                <li><a href="">O Hotel</a>
+
+                </li>
+                <li><a href="">Suítes</a>
+
+                </li>
+                <li><a href="">Eventos</a>
+
+                </li>
+                <li><a href="contato/index.html">Contato</a>
+                </li>
+
+                <div id="formDiv">
+                    <form id="registerForm" action="" method="POST">
+                        <label for="emailInput"></label>
+                        <input id="emailInput" type="email" placeholder="someone@somewhere.com">
+
+                        <label for="passwordInput"></label>
+                        <input id="passwordInput" type="password" placeholder="********">
+
+                        <input class="submit" type="submit" value="Sign in">
+                    </form>
+                    <form action="../cadastro/index.html">
+                        <input type="submit" value="Sign up">
+                    </form>
+                </div>
+
             </ul>
-
-            <form id="contactForm" action="" method="POST">
-
-
-                <label for="nameInput">Nome</label>
-                <input id="nameInput" type="text" placeholder="someone@somewhere.com" name="nome" required>
-
-                <label for="emailInput">E-mail</label>
-                <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" required>
-
-                <label for="phoneInput">Celular</label>
-                <input id="phoneInput" type="text" placeholder="(XX) X XXXX-XXXX" name="celular">
-
-                <label for="birthdayInput">Como Conheceu o Hotel?</label>
-                <input type="checkbox" name="sexo" value="jornais">Jornais
-                <input type="checkbox" name="sexo" value="indicacao">Indicação
-                <input type="checkbox" name="sexo" value="redesSociais">Redes Sociais
-                <input type="checkbox" name="sexo" value="google">Google
-                <input type="checkbox" name="sexo" value="revistas">Revistas
-                <input type="checkbox" name="sexo" value="outros">Outros
-
-                <label for="messageInput">Mensagem</label>
-                <textarea id="messageInput" name="mensagem" required></textarea>
-
-
-                <input class="submit" type="submit" value="Sign up">
-            </form>
         </nav>
 
 
     </header>
+
+    <section>
+        <form id="contactForm" action="" method="POST">
+
+
+            <label for="nameInput">Nome</label>
+            <input id="nameInput" type="text" placeholder="someone@somewhere.com" name="nome" required>
+
+            <label for="emailInput">E-mail</label>
+            <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" required>
+
+            <label for="phoneInput">Celular</label>
+            <input id="phoneInput" type="text" placeholder="(XX) X XXXX-XXXX" name="celular">
+
+            <label for="birthdayInput">Como Conheceu o Hotel?</label>
+            <input type="checkbox" name="sexo" value="jornais">Jornais
+            <input type="checkbox" name="sexo" value="indicacao">Indicação
+            <input type="checkbox" name="sexo" value="redesSociais">Redes Sociais
+            <input type="checkbox" name="sexo" value="google">Google
+            <input type="checkbox" name="sexo" value="revistas">Revistas
+            <input type="checkbox" name="sexo" value="outros">Outros
+
+            <label for="messageInput">Mensagem</label>
+            <textarea id="messageInput" name="mensagem" required></textarea>
+
+
+            <input class="submit" type="submit" value="Sign up">
+        </form>
+    </section>
+
 
 </body>
 
