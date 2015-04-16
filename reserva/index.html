@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva</title>
+
+    <script src="jquery/jquery-2.1.3.min.js"></script>
+    <script src="js/script.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>O Hotel</li>
+                <li>Suítes</li>
+                <li>Apartamentos</li>
+                <li>Eventos</li>
+                <li>Local</li>
+            </ul>
+
+            <form id="reservationForm" action="" method="POST">
+
+                <label for="dataEntradaInput">Data de Check-In</label>
+                <input id="dataEntradaInput" type="text" placeholder="dd/mm/aaaa" name="dataEntrada" required>
+
+                <label for="dataSaidaInput">Data de Check-out</label>
+                <input id="dataSaidaInput" type="text" placeholder="dd/mm/aaaa" name="dataSaida" required>
+
+                <label for="adultsInput">Quantidade de Adultos</label>
+                <select id="adultsInput" name="adultos" required>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+
+                <label for="criancasAte3Input">Quantidade de Crianças de até 3 anos</label>
+                <select id="criancasAte3Input" name="criancasAte3" required>
+                  <option value="1">0</option>
+                  <option value="2">1</option>
+                  <option value="3">2</option>
+                  <option value="4">3</option>
+                </select>
+
+                <label for="criancasAte12Input">Quantidade de Criança de 4 a 12 anos</label>
+                <select id="criancasAte12Input" name="criancasAte12" required>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+
+                <input class="submit" type="submit" value="Confirmar Reserva">
+            </form>
+        </nav>
+
+
+    </header>
+
+</body>
+
+</html>
