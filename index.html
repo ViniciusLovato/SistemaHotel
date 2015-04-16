@@ -8,33 +8,61 @@
     <script src="jquery/jquery-2.1.3.min.js"></script>
     <script src="js/script.js"></script>
 
+    <link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body>
     <header>
+
+        <section class="cover">
+            <img src="static/cover.jpg" alt="">
+        </section>
+
         <nav>
-            <ul>
-                <li>Home</li>
-                <li>O Hotel</li>
-                <li>Suítes</li>
-                <li>Apartamentos</li>
-                <li>Eventos</li>
-                <li>Local</li>
+            <ul class="menu">
+                <li><a href="#profile">Home</a>
+                </li>
+                <li><a href="">O Hotel</a>
+
+                </li>
+                <li><a href="">Suítes</a>
+
+                </li>
+                <li><a href="">Apartamentos</a>
+
+                </li>
+                <li><a href="">Eventos</a>
+                </li>
+
+                <div id="formDiv">
+                    <form id="registerForm" action="" method="POST">
+                        <label for="emailInput"></label>
+                        <input id="emailInput" type="email" placeholder="someone@somewhere.com">
+
+                        <label for="passwordInput"></label>
+                        <input id="passwordInput" type="password" placeholder="********">
+
+                        <input class="submit" type="submit" value="Sign in">
+                    </form>
+                    <button>Sign up</button>
+                </div>
+
             </ul>
-
-            <form id="registerForm" action="" method="POST">
-                <label for="emailInput">E-mail</label>
-                <input id="emailInput" type="email" placeholder="someone@somewhere.com">
-
-                <label for="passwordInput">Password</label>
-                <input id="passwordInput" type="password" placeholder="********">
-
-                <input class="submit" type="submit" value="Sign up">
-            </form>
         </nav>
-
-
     </header>
+
+    <section class="intro">
+        <div class="content">
+
+        </div>
+
+
+    </section>
+
+    <footer class="footer">
+        <p class="text-center">Desenvolvido por Paulo Moreno e Vinicius Lovato</p>
+    </footer>
 
 </body>
 
