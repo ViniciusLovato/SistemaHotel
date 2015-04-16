@@ -23,6 +23,7 @@ header{
 }
 
 .menu {
+	min-width: 1065px;
 	display: block;
 	list-style: none;
 
@@ -70,6 +71,12 @@ header{
 	color: rgb(243, 240, 223);
 }
 
+#formDiv{
+	width: 40%;
+	float: left;
+	min-width: 426px;
+}
+
 .intro {
     background-color: rgb(227, 234, 237);
     display: table;
@@ -99,3 +106,47 @@ header{
     text-align: center;
 }
 
+nav input[type="email"], nav input[type="password"]{
+	float: left;
+	margin-top: 13px;
+	width: 120px;
+	height: 18px;
+	line-height: 18px;
+}
+
+nav input[type="submit"], nav input[type="button"]{
+	height: 23px;
+
+	margin-top: 13px;
+
+	padding-left: 10px;
+	padding-right: 10px;
+
+	font-size: 8pt;
+	font-weight: 600;
+	cursor: pointer;
+
+	text-transform: uppercase;
+
+	background-color: white;
+
+	border: solid 1px black;
+
+	color: black;
+
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-o-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-khtml-border-radius: 2px;
+	border-radius: 2px;
+}
+
+nav input[type="submit"]:hover, nav input[type="button"]:hover{
+	border: solid 1px rgb(0, 168, 162);
+	color: rgb(0, 168, 162);
+}
+
+
+.nav_btn_r{
+}
