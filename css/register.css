@@ -54,6 +54,23 @@ form#registerForm{
 	clear: both;
 }
 
+.pwdInvalid{
+	color: #f25880;
+}
+
+.pwdWeak{
+	color: #f27558;
+}
+
+.pwdMedium{
+	color: #c7bb57;
+}
+
+.pwdStrong{
+	color: #73c443;
+}
+
+
 .regSubmit input[type="submit"]{
 	height: 34px;
 	width: 150px;
