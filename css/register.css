@@ -47,7 +47,7 @@ form#registerForm{
 	text-align: left;
 }
 
-.submit{
+#registerForm.submit{
 	margin-top: 55px;
 	margin-bottom: 25px;
 	clear: both;
