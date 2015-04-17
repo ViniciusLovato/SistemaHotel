@@ -7,7 +7,7 @@ window.onload = function () {
         var emailInput = $("#emailLoginInput").val();
         var passwordInput = $("#passwordLoginInput").val();
 
-        console.log(validateEmail(emailInput));
+        // console.log(validateEmail(emailInput));
         if (!validateEmail(emailInput)) {
             valid = false;
             event.preventDefault();
@@ -24,92 +24,75 @@ window.onload = function () {
         var dateOfBirth = $("#birthdayInput").val();
         var cpf = $("#cpfInput").val().replace("-", "");
         var cep = $("#cepInput").val().replace("-", "");
+        var state = $("#stateInput option:selected").val();
         var email = $("#emailInput").val();
         var cidade = $("#cityInput").val();
 
 
         // Name
         if (!validateName(nameInput)) {
-            $("#nameInput").removeClass("input-correct");
-            $("#nameInput").addClass("input-error");
-
+            errorOn("#nameInput", "Nome Invalido");
             valid = false;
         } else {
-
-            $("#nameInput").removeClass("input-error");
-            $("#nameInput").addClass("input-correct");
+            errorOff("#nameInput");
         }
 
         // Password
         if (!validatePassword(passwordInput)) {
-            $("#passwordInput").removeClass("input-correct");
-            $("#passwordInput").addClass("input-error");
-
+            errorOn("#passwordInput", "");
             valid = false;
         } else {
-            $("#passwordInput").removeClass("input-error");
-            $("#passwordInput").addClass("input-correct");
+            errorOff("#passwordInput");
         }
 
         // Birthday
         if (!validateDateOfBirth(dateOfBirth)) {
-            $("#birthdayInput").removeClass("input-correct");
-            $("#birthdayInput").addClass("input-error");
+            errorOn("#birthdayInput", "Nascimento Invalido");
             valid = false;
         } else {
-            $("#birthdayInput").removeClass("input-error");
-            $("#birthdayInput").addClass("input-correct");
+            errorOff("#birthdayInput");
         }
 
         // CPF
         if (!validateCPF(cpf)) {
-            $("#cpfInput").removeClass("input-correct");
-            $("#cpfInput").addClass("input-error");
+            errorOn("#cpfInput", "CPF Invalido");
             valid = false;
         } else {
-            $("#cpfInput").removeClass("input-error");
-            $("#cpfInput").addClass("input-correct");
+            errorOff("#cpfInput");
         }
-        
+
         // CEP
-        if (!validateCEP(cep)) {
-            $("#cepInput").removeClass("input-correct");
-            $("#cepInput").addClass("input-error");
+        if (!validateCEP(cep, state)) {
+            errorOn("#cepInput", "CEP Invalido");
             valid = false;
         } else {
-            $("#cepInput").removeClass("input-error");
-            $("#cepInput").addClass("input-correct");
+            errorOff("#cepInput");
         }
 
         // Email
         if (!validateEmail(email)) {
-            $("#emailInput").removeClass("input-correct");
-            $("#emailInput").addClass("input-error");
+            errorOn("#emailInput", "Email Invalido");
             valid = false;
         } else {
-            $("#emailInput").removeClass("input-error");
-            $("#emailInput").addClass("input-correct");
+            errorOff("#emailInput");
         }
 
         // Password check
         if (!confirmPassword(passwordInput, confirmPasswordInput)) {
-            $("#confirmPasswordInput").removeClass("input-correct");
-            $("#confirmPasswordInput").addClass("input-error");
+            errorOn("#confirmPasswordInput", "Senhas não conferem");
             valid = false;
         } else {
-            $("#confirmPasswordInput").removeClass("input-error");
-            $("#confirmPasswordInput").addClass("input-correct");
+            errorOff("#confirmPasswordInput");
         }
 
         // check if is empty just to change the class input-error/correct
         if (cidade === "") {
-            $("#cityInput").removeClass("input-correct");
-            $("#cityInput").addClass("input-error");
-        } else {
-            $("#cityInput").removeClass("input-error");
-            $("#cityInput").addClass("input-correct");
-        }
+            errorOn("#cityInput", "Cidade Invalida");
+            valid = false;
 
+        } else {
+            errorOff("#cityInput");
+        }
 
         // If any error has ocurred then prevent submit
         if (valid === false) {
@@ -148,13 +131,25 @@ window.onload = function () {
             break;
 
         };
-        console.log(msg);
+        // console.log(msg);
         p.text(msg);
         p.removeClass();
         p.addClass(pClass);
     });
 
 };
+
+function errorOn(field, text) {
+    $(field).removeClass("input-correct");
+    $(field).addClass("input-error");
+    $(field + "Error").text(text);
+}
+
+function errorOff(field) {
+    $(field).removeClass("input-error");
+    $(field).addClass("input-correct");
+    $(field + "Error").text("");
+}
 
 function validateEmail(email) {
     // Email Regex used to test input
@@ -175,8 +170,62 @@ function validatePassword(password) {
     return valid;
 }
 
+
+
 function validateCEP(CEP, state) {
+
     var valid = false;
+    console.log("CEP: " + CEP);
+    console.log("State: " + state);
+
+
+    if (!(state === "") && !(CEP === "")) {
+        // table of ceps for each state
+        var tableOfCEP = {
+            SP: '010-199',
+            RJ: '200-289',
+            ES: '290-299',
+            MG: '300-399',
+            BA: '400-489',
+            SE: '490-499',
+            PE: '500-569',
+            AL: '570-579',
+            PB: '580-589',
+            RN: '590-599',
+            CE: '600-639',
+            PI: '640-649',
+            MA: '650-659',
+            PA: '660-688',
+            AP: '689-689',
+            AM: '690-698',
+            RR: '693-693',
+            AC: '699-699',
+            DF: '700-736',
+            GO: '728-767',
+            TO: '770-779',
+            MT: '780-788',
+            RO: '789-789',
+            MS: '790-799',
+            PR: '800-879',
+            SC: '880-899',
+            RS: '900-999'
+        };
+
+
+        // get the min and max value CEP of the entered state
+        var minValue = tableOfCEP[state].substr(0, 3);
+        var maxValue = tableOfCEP[state].substr(4, 3);
+
+        // get the first 3 digits of the CEP entered
+        var CEPinit = CEP.substr(0, 3);
+
+        // if the entered CEP is in the range then the CEP is valid
+        if (CEPinit > minValue && CEPinit < maxValue) {
+            valid = true;
+        }
+    }
+
+    return valid;
 }
 
 function validateCPF(CPF) {
@@ -230,13 +279,6 @@ function validateCPF(CPF) {
 
     return valid;
 }
-
-function validateCEP(cep){
-    var valid = false;
-    
-    return valid;
-}
-
 
 function validateDateOfBirth(dateOfBirth) {
     var valid = false;

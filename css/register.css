@@ -139,6 +139,10 @@ form.mainForm input[type="text"], form.mainForm input[type="email"], form.mainFo
     border: solid 1px lightgreen;
 }
 
+.error {
+    color: red;
+    font-size: 10pt;
+}
 
 .select_div{
    width: 202px;

@@ -35,7 +35,7 @@
 
                 <div id="formDiv">
                     <form id="loginForm" action="" method="POST">
-                         <label for="emailLoginInput"></label>
+                        <label for="emailLoginInput"></label>
                         <input id="emailLoginInput" type="email" placeholder="someone@somewhere.com">
 
                         <label for="passwordLoginInput"></label>
@@ -55,119 +55,123 @@
     </header>
 
     <section>
-    	<div class="content">
+        <div class="content">
 
-    	<h1>Novo Cliente</h1>
+            <h1>Novo Cliente</h1>
+            <form id="registerForm" class="mainForm" action="" method="POST">
+                <div class="input_column">
 
-	        <form id="registerForm" class="mainForm" action="" method="POST">
-
-
-	        <div class="input_column">
-
-		        <div class="input_line">
-                    <h2>Nome Completo</h2>
-		            <input id="nameInput" type="text" placeholder="Nome Completo" name="nome" required>
-				</div>
-
-				<div class="input_line">
-                    <h2>Email</h2>
-		            <input id="emailInput" type="email" placeholder="Email (someone@somewhere.com)" name="email" required>
-				</div>
-
-		        <div class="input_line">
-                    <h2>CPF</h2>
-		            <input id="cpfInput" type="text" placeholder="CPF (XXX.XXX.XXX-XX)" name="cpf" required>
-				</div>
-
-		        <div class="input_line">
-                    <h2>Data de Nascimento</h2>
-		            <input id="birthdayInput" type="text" placeholder="Data de Nascimento (dd/mm/aaaa)" name="dataNascimento" required>
-				</div>
-
-		        <div class="input_line seg">
-		            <h2>Sexo</h2>
-					<nav class="segmented-button">
-	                  <input type="radio" name="sexo" value="male" id="sexo_m" checked="">
-	                  <label for="sexo_m" class="first">Masculino</label>
-	                  <input type="radio" name="sexo" value="female" id="sexo_f">
-	                  <label for="sexo_f" class="last">Feminino</label>
-	                </nav>
-				</div>
-
-				<div class="input_line">
-		        	<h2>Estado Civil</h2>
-		        	<div class="select_div">
-			            <select id="civilStateInput" name="estadoCivil" required>
-			                <option value="" disabled=" selected="" ">Estado Civil...</option>
-			                <option value="casado">Casado</option>
-			                <option value="solteiro">Solteiro</option>
-			                <option value="outros">Outros</option>
-			            </select>
-					</div>
-				</div>
-
-			</div>
-			<div class="input_column">
-		        <div class="input_line">
-                    <h2>Cidade</h2>
-		            <input id="cityInput" type="text" placeholder="Cidade" name="cidade" required>
-				</div>
-
-		        <div class="input_line">
-                    <h2>Estado</h2>
-                    <div class="select_div">
-                        <select id="stateInput" name="estado" required>
-							<option value="AC">Acre</option>
-							<option value="AL">Alagoas</option>
-							<option value="AP">Amapá</option>
-							<option value="AM">Amazonas</option>
-							<option value="BA">Bahia</option>
-							<option value="CE">Ceará</option>
-							<option value="DF">Distrito Federal</option>
-							<option value="ES">Espirito Santo</option>
-							<option value="GO">Goiás</option>
-							<option value="MA">Maranhão</option>
-							<option value="MS">Mato Grosso do Sul</option>
-							<option value="MT">Mato Grosso</option>
-							<option value="MG">Minas Gerais</option>
-							<option value="PA">Pará</option>
-							<option value="PB">Paraía</option>
-							<option value="PR">Paraná</option>
-							<option value="PE">Pernambuco</option>
-							<option value="PI">Piauí</option>
-							<option value="RJ">Rio de Janeiro</option>
-							<option value="RN">Rio Grande do Norte</option>
-							<option value="RS">Rio Grande do Sul</option>
-							<option value="RO">Rondônia</option>
-							<option value="RR">Roraima</option>
-							<option value="SC">Santa Catarina</option>
-							<option value="SP">São Paulo</option>
-							<option value="SE">Sergipe</option>
-							<option value="TO">Tocantins</option>
-                        </select>
+                    <div class="input_line">
+                        <h2>Nome Completo</h2>
+                        <input id="nameInput" type="text" placeholder="Nome Completo" name="nome" required>
+                        <span class="error" id="nameInputError"></span>
                     </div>
-				</div>
 
-		        <div class="input_line">
-                    <h2>CEP</h2>
-		            <input id="cepInput" type="text" placeholder="CEP (XXXXX-XXX)" name="cep" required>
-				</div>
+                    <div class="input_line">
+                        <h2>Email</h2>
+                        <input id="emailInput" type="email" placeholder="Email (someone@somewhere.com)" name="email" required>
+                        <span  class="error" id="emailInputError"></span>
+                    </div>
 
-		        <div class="input_line">
-		            <h2>Senha</h2>
-		            <input id="passwordInput" type="password" placeholder="Senha" name="senha" required>
-		            <p id="pwdStrenght"></p>
-		            <h2>Confirmar Senha</h2>
-		            <input id="confirmPasswordInput" type="password" placeholder="Confirmar Senha" name="confirmarSenha" required>
-				</div>
+                    <div class="input_line">
+                        <h2>CPF</h2>
+                        <input id="cpfInput" type="text" placeholder="CPF (XXX.XXX.XXX-XX)" name="cpf" required>
+                        <span  class="error" id="cpfInputError"></span>
+                    </div>
 
-            </div>
+                    <div class="input_line">
+                        <h2>Data de Nascimento</h2>
+                        <input id="birthdayInput" type="text" placeholder="Data de Nascimento (dd/mm/aaaa)" name="dataNascimento" required>
+                        <span  class="error" id="birthdayInputError"></span>
+                    </div>
 
-	      	<div class="regSubmit">
-		        <input class="submit" type="submit" value="Registrar">
-	      	</div>
+                    <div class="input_line seg">
+                        <h2>Sexo</h2>
+                        <nav class="segmented-button">
+                            <input type="radio" name="sexo" value="male" id="sexo_m" checked="">
+                            <label for="sexo_m" class="first">Masculino</label>
+                            <input type="radio" name="sexo" value="female" id="sexo_f">
+                            <label for="sexo_f" class="last">Feminino</label>
+                        </nav>
+                    </div>
 
-	        </form>
+                    <div class="input_line">
+                        <h2>Estado Civil</h2>
+                        <div class="select_div">
+                            <select id="civilStateInput" name="estadoCivil" required>
+                                <option value="casado">Casado</option>
+                                <option value="solteiro">Solteiro</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="input_column">
+                    <div class="input_line">
+                        <h2>Cidade</h2>
+                        <input id="cityInput" type="text" placeholder="Cidade" name="cidade" required>
+                        <span class="error" id="cityInputError"></span>
+                    </div>
+
+                    <div class="input_line">
+                        <h2>Estado</h2>
+                        <div class="select_div">
+                            <select id="stateInput" name="estado" required>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espirito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraía</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input_line">
+                        <h2>CEP</h2>
+                        <input id="cepInput" type="text" placeholder="CEP (XXXXX-XXX)" name="cep" required>
+                        <span  class="error" id="cepInputError"></span>
+                    </div>
+
+                    <div class="input_line">
+                        <h2>Senha</h2>
+                        <input id="passwordInput" type="password" placeholder="Senha" name="senha" required>
+                        <p id="pwdStrenght"></p>
+
+                        <h2>Confirmar Senha</h2>
+                        <input id="confirmPasswordInput" type="password" placeholder="Confirmar Senha" name="confirmarSenha" required>
+                        <span class="error" id="confirmPasswordInputError"></span>
+                    </div>
+
+                </div>
+
+                <div class="regSubmit">
+                    <input class="submit" type="submit" value="Registrar">
+                </div>
+
+            </form>
         </div>
     </section>
 
