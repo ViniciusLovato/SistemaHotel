@@ -148,6 +148,34 @@ window.onload = function () {
     });
 
 
+    $("#mainLoginForm").submit(function (event) {
+
+        var valid = false;
+
+        var email = $("#emailInput").val();
+        var senha = $("#passwordInput").val();
+        
+        // email validation
+        if (!validateEmail(email)) {
+            errorOn("#emailInput", "Email Inválido");
+            valid = false;
+        } else {
+            errorOff("#emailInput");
+        }
+                
+        if (senha === "") {
+            errorOn("#passwordInput", "Senha é obrigatória!");
+            valid = false;
+        } else {
+            errorOff("#passwordInput");
+        }
+        
+        if (!valid) {
+            console.log(valid);
+            event.preventDefault();
+        }
+    });
+
 
     // Function to check password Strength in real time
 
