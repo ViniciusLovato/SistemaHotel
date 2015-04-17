@@ -20,22 +20,98 @@ window.onload = function () {
 
         var nameInput = $("#nameInput").val();
         var passwordInput = $("#passwordInput").val();
+        var confirmPasswordInput = $("#confirmPasswordInput").val();
         var dateOfBirth = $("#birthdayInput").val();
+        var cpf = $("#cpfInput").val().replace("-", "");
+        var cep = $("#cepInput").val().replace("-", "");
+        var email = $("#emailInput").val();
+        var cidade = $("#cityInput").val();
 
-        console.log("Nome" + nameInput);
-        console.log("password: " + passwordInput);
-        console.log("Data: " + dateOfBirth);
 
-
+        // Name
         if (!validateName(nameInput)) {
+            $("#nameInput").removeClass("input-correct");
+            $("#nameInput").addClass("input-error");
+
             valid = false;
+        } else {
+
+            $("#nameInput").removeClass("input-error");
+            $("#nameInput").addClass("input-correct");
         }
+
+        // Password
         if (!validatePassword(passwordInput)) {
+            $("#passwordInput").removeClass("input-correct");
+            $("#passwordInput").addClass("input-error");
+
             valid = false;
+        } else {
+            $("#passwordInput").removeClass("input-error");
+            $("#passwordInput").addClass("input-correct");
         }
+
+        // Birthday
         if (!validateDateOfBirth(dateOfBirth)) {
+            $("#birthdayInput").removeClass("input-correct");
+            $("#birthdayInput").addClass("input-error");
             valid = false;
+        } else {
+            $("#birthdayInput").removeClass("input-error");
+            $("#birthdayInput").addClass("input-correct");
         }
+
+        // CPF
+        if (!validateCPF(cpf)) {
+            $("#cpfInput").removeClass("input-correct");
+            $("#cpfInput").addClass("input-error");
+            valid = false;
+        } else {
+            $("#cpfInput").removeClass("input-error");
+            $("#cpfInput").addClass("input-correct");
+        }
+        
+        // CEP
+        if (!validateCEP(cep)) {
+            $("#cepInput").removeClass("input-correct");
+            $("#cepInput").addClass("input-error");
+            valid = false;
+        } else {
+            $("#cepInput").removeClass("input-error");
+            $("#cepInput").addClass("input-correct");
+        }
+
+        // Email
+        if (!validateEmail(email)) {
+            $("#emailInput").removeClass("input-correct");
+            $("#emailInput").addClass("input-error");
+            valid = false;
+        } else {
+            $("#emailInput").removeClass("input-error");
+            $("#emailInput").addClass("input-correct");
+        }
+
+        // Password check
+        if (!confirmPassword(passwordInput, confirmPasswordInput)) {
+            $("#confirmPasswordInput").removeClass("input-correct");
+            $("#confirmPasswordInput").addClass("input-error");
+            valid = false;
+        } else {
+            $("#confirmPasswordInput").removeClass("input-error");
+            $("#confirmPasswordInput").addClass("input-correct");
+        }
+
+        // check if is empty just to change the class input-error/correct
+        if (cidade === "") {
+            $("#cityInput").removeClass("input-correct");
+            $("#cityInput").addClass("input-error");
+        } else {
+            $("#cityInput").removeClass("input-error");
+            $("#cityInput").addClass("input-correct");
+        }
+
+
+        // If any error has ocurred then prevent submit
         if (valid === false) {
             event.preventDefault();
         }
@@ -50,21 +126,21 @@ window.onload = function () {
 
         switch (str) {
         case "weak":
-            msg = "Senha: Fraca";
+            msg = "Senha Fraca";
             pClass = 'pwdWeak';
             break;
         case "medium":
-            msg = "Senha: Média";
+            msg = "Senha Média";
             pClass = 'pwdMedium';
 
             break;
         case "strong":
-            msg = "Senha: Forte";
+            msg = "Senha Forte";
             pClass = 'pwdStrong';
 
             break;
         case "invalid":
-            msg = "Senha: Inválida (deve possuir entre 6 e 12 caracteres)";
+            msg = "Senha Inválida (deve possuir entre 6 e 12 caracteres)";
             pClass = 'pwdInvalid';
 
             break;
@@ -101,10 +177,65 @@ function validatePassword(password) {
 
 function validateCEP(CEP, state) {
     var valid = false;
-
-
 }
 
+function validateCPF(CPF) {
+
+    var valid = false;
+    CPF = CPF.toString();
+    var validCPF = CPF.substr(0, 9);
+    var sum = 0;
+
+    // 1 5 3 2 5 1 5 3 1 - 12
+    // *10 *9 .. *2
+    if (CPF.length === 11) {
+
+        // First validation Digit
+        for (var i = 0; i < 9; i++) {
+            sum = sum + CPF[i] * (10 - i);
+        }
+
+        sum = sum % 11;
+
+        if (sum < 2) {
+            sum = 0;
+        } else {
+            sum = 11 - sum;
+        }
+        validCPF = validCPF + sum;
+        sum = 0;
+
+
+        // Second validation digit
+        for (var i = 0; i < 10; i++) {
+            sum = sum + CPF[i] * (11 - i);
+        }
+
+        sum = sum % 11;
+
+        if (sum < 2) {
+            sum = 0;
+        } else {
+            sum = 11 - sum;
+        }
+
+        validCPF = validCPF + sum;
+
+        // Check if the generated CPF is the same one entered in the input field
+        if (validCPF === CPF) {
+            valid = true;
+        }
+    }
+
+
+    return valid;
+}
+
+function validateCEP(cep){
+    var valid = false;
+    
+    return valid;
+}
 
 
 function validateDateOfBirth(dateOfBirth) {
@@ -196,9 +327,10 @@ function passwordStrength(password) {
 function confirmPassword(password, confirmPassword) {
     var valid = false;
 
-    if (password === confirmPassword) {
-        valid = true;
+    if (!(confirmPassword === "")) {
+        if (password === confirmPassword) {
+            valid = true;
+        }
     }
     return valid;
-
 }

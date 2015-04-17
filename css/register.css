@@ -130,6 +130,16 @@ form.mainForm input[type="text"], form.mainForm input[type="email"], form.mainFo
 	border-width: 1px;
 }
 
+
+.input-error {
+    border: solid 1px red;
+}
+
+.input-correct {
+    border: solid 1px lightgreen;
+}
+
+
 .select_div{
    width: 202px;
    height: 24px;
