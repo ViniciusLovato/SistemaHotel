@@ -22,7 +22,7 @@ window.onload = function () {
         var passwordInput = $("#passwordInput").val();
         var confirmPasswordInput = $("#confirmPasswordInput").val();
         var dateOfBirth = $("#birthdayInput").val();
-        var cpf = $("#cpfInput").val().replace("-", "");
+        var cpf = $("#cpfInput").val().replace("-", "").replace(".", "").replace(".", "");
         var cep = $("#cepInput").val().replace("-", "");
         var state = $("#stateInput option:selected").val();
         var email = $("#emailInput").val();
@@ -31,7 +31,7 @@ window.onload = function () {
 
         // Name
         if (!validateName(nameInput)) {
-            errorOn("#nameInput", "Nome Invalido");
+            errorOn("#nameInput", "Nome Inválido");
             valid = false;
         } else {
             errorOff("#nameInput");
@@ -47,7 +47,7 @@ window.onload = function () {
 
         // Birthday
         if (!validateDateOfBirth(dateOfBirth)) {
-            errorOn("#birthdayInput", "Nascimento Invalido");
+            errorOn("#birthdayInput", "Nascimento Inválido");
             valid = false;
         } else {
             errorOff("#birthdayInput");
@@ -55,7 +55,7 @@ window.onload = function () {
 
         // CPF
         if (!validateCPF(cpf)) {
-            errorOn("#cpfInput", "CPF Invalido");
+            errorOn("#cpfInput", "CPF Inválido");
             valid = false;
         } else {
             errorOff("#cpfInput");
@@ -63,7 +63,7 @@ window.onload = function () {
 
         // CEP
         if (!validateCEP(cep, state)) {
-            errorOn("#cepInput", "CEP Invalido");
+            errorOn("#cepInput", "CEP Inválido");
             valid = false;
         } else {
             errorOff("#cepInput");
@@ -71,7 +71,7 @@ window.onload = function () {
 
         // Email
         if (!validateEmail(email)) {
-            errorOn("#emailInput", "Email Invalido");
+            errorOn("#emailInput", "Email Inválido");
             valid = false;
         } else {
             errorOff("#emailInput");
@@ -87,7 +87,7 @@ window.onload = function () {
 
         // check if is empty just to change the class input-error/correct
         if (cidade === "") {
-            errorOn("#cityInput", "Cidade Invalida");
+            errorOn("#cityInput", "Cidade Inválida");
             valid = false;
 
         } else {
@@ -327,8 +327,8 @@ function validatePassword(password) {
 function validateCEP(CEP, state) {
 
     var valid = false;
-    console.log("CEP: " + CEP);
-    console.log("State: " + state);
+    //console.log("CEP: " + CEP);
+    //console.log("State: " + state);
 
 
     if (!(state === "") && !(CEP === "")) {
