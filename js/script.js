@@ -101,7 +101,6 @@ window.onload = function () {
 
     });
 
-<<<<<<< HEAD
     $("#contactForm").submit(function (event) {
 
         var valid = false;
