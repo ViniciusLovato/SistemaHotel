@@ -55,31 +55,31 @@
                 <div class="input_column">
 
                     <div class="input_line">
-                        <h2>Nome Completo</h2>
+                        <h2>Nome Completo <em>*</em></h2>
                         <input id="nameInput" type="text" placeholder="Ex: João Silva" name="nome" >
                         <span class="error" id="nameInputError"></span>
                     </div>
 
                     <div class="input_line">
-                        <h2>Email</h2>
+                        <h2>Email <em>*</em></h2>
                         <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" >
                         <span  class="error" id="emailInputError"></span>
                     </div>
 
                     <div class="input_line">
-                        <h2>CPF</h2>
+                        <h2>CPF <em>*</em></h2>
                         <input id="cpfInput" type="text" placeholder="XXX.XXX.XXX-XX" name="cpf" >
                         <span  class="error" id="cpfInputError"></span>
                     </div>
 
                     <div class="input_line">
-                        <h2>Data de Nascimento</h2>
+                        <h2>Data de Nascimento <em>*</em></h2>
                         <input id="birthdayInput" type="text" placeholder="DD/MM/AAAA" name="dataNascimento" >
                         <span  class="error" id="birthdayInputError"></span>
                     </div>
 
                     <div class="input_line seg">
-                        <h2>Sexo</h2>
+                        <h2>Sexo <em>*</em></h2>
                         <nav class="segmented-button">
                             <input type="radio" name="sexo" value="male" id="sexo_m" checked="">
                             <label for="sexo_m" class="first">Masculino</label>
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="input_line">
-                        <h2>Estado Civil</h2>
+                        <h2>Estado Civil <em>*</em></h2>
                         <div class="select_div">
                             <select id="civilStateInput" name="estadoCivil" >
                                 <option value="casado">Casado</option>
@@ -102,13 +102,13 @@
                 </div>
                 <div class="input_column">
                     <div class="input_line">
-                        <h2>Cidade</h2>
+                        <h2>Cidade <em>*</em></h2>
                         <input id="cityInput" type="text" placeholder="Ex: São Paulo" name="cidade" >
                         <span class="error" id="cityInputError"></span>
                     </div>
 
                     <div class="input_line">
-                        <h2>Estado</h2>
+                        <h2>Estado <em>*</em></h2>
                         <div class="select_div">
                             <select id="stateInput" name="estado" >
                                 <option value="AC">Acre</option>
@@ -143,17 +143,17 @@
                     </div>
 
                     <div class="input_line">
-                        <h2>CEP</h2>
+                        <h2>CEP <em>*</em></h2>
                         <input id="cepInput" type="text" placeholder="XXXXX-XXX" name="cep" >
                         <span  class="error" id="cepInputError"></span>
                     </div>
 
                     <div class="input_line">
-                        <h2>Senha</h2>
+                        <h2>Senha <em>*</em></h2>
                         <input id="passwordInput" type="password" placeholder name="senha" >
                         <p id="pwdStrenght"></p>
 
-                        <h2>Confirmar Senha</h2>
+                        <h2>Confirmar Senha <em>*</em></h2>
                         <input id="confirmPasswordInput" type="password" placeholder="" name="confirmarSenha" >
                         <span class="error" id="confirmPasswordInputError"></span>
                     </div>
@@ -165,6 +165,7 @@
                 </div>
 
             </form>
+            <p class="nota"><em>*</em> Campos Obrigatórios</p>
         </div>
     </section>
 

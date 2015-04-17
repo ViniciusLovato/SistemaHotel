@@ -124,6 +124,16 @@ nav.mainNav{
 	border-bottom: solid 1px rgb(0, 168, 162);
 }
 
+.nota{
+	padding-bottom: 20px;
+	margin: 20px;
+
+	font-size: 10pt;
+	font-weight: 400;
+	color: rgb(0, 168, 162);
+
+}
+
 .footer {
 	font-size: 8pt;
     height: 50px;
