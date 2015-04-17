@@ -101,6 +101,55 @@ window.onload = function () {
 
     });
 
+    $("#contactForm").submit(function (event) {
+
+        var valid = false;
+
+        var name = $("#nameInput").val();
+        var email = $("#emailInput").val();
+        var phone = $("#phoneInput").val();
+        var message = $("#messageInput").val();
+                
+        // name validation
+        if (!validateName(name)) {
+            errorOn("#nameInput", "Nome Inválido");
+            valid = false;
+        } else {
+            errorOff("#nameInput");
+        }
+        
+        // email validation
+        if (!validateEmail(email)) {
+            errorOn("#emailInput", "Email Inválido");
+            valid = false;
+        } else {
+            errorOff("#emailInput");
+        }
+        
+        // check if the text is too short
+        if (message.length < 15) {
+            errorOn("#messageInput", "Texto muito curto");
+            valid = false;
+        } else {
+            errorOff("#messageInput");
+        }
+        
+        if (phone.length === 0) {
+            errorOn("#phoneInput", "Número inválido");
+            valid = false;
+        } else {
+            errorOff("#phoneInput");
+        }
+        
+        if (!valid) {
+            console.log(valid);
+            event.preventDefault();
+        }
+    });
+
+
+
+    // Function to check password Strength in real time
     $("#passwordInput").keyup(function () {
         var p = $("#pwdStrenght");
         var str = passwordStrength($(this).val());
