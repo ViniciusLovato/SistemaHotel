@@ -1,5 +1,5 @@
 window.onload = function () {
-
+    
     // Login function validation
     $("#loginForm").submit(function (event) {
         var valid = true;
