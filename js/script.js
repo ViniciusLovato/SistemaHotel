@@ -293,6 +293,7 @@ window.onload = function () {
 function errorOn(field, text) {
     $(field).removeClass("input-correct");
     $(field).addClass("input-error");
+    
     $(field + "Error").hide();
     $(field + "Error").text(text);
     $(field + "Error").fadeIn("slow");
