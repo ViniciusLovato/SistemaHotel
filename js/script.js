@@ -1,5 +1,5 @@
 window.onload = function () {
-    
+
     // Login function validation
     $("#loginForm").submit(function (event) {
         var valid = true;
@@ -109,7 +109,9 @@ window.onload = function () {
         var email = $("#emailInput").val();
         var phone = $("#phoneInput").val();
         var message = $("#messageInput").val();
-                
+
+
+
         // name validation
         if (!validateName(name)) {
             errorOn("#nameInput", "Nome Inválido");
@@ -117,7 +119,7 @@ window.onload = function () {
         } else {
             errorOff("#nameInput");
         }
-        
+
         // email validation
         if (!validateEmail(email)) {
             errorOn("#emailInput", "Email Inválido");
@@ -125,7 +127,7 @@ window.onload = function () {
         } else {
             errorOff("#emailInput");
         }
-        
+
         // check if the text is too short
         if (message.length < 15) {
             errorOn("#messageInput", "Texto muito curto");
@@ -133,16 +135,23 @@ window.onload = function () {
         } else {
             errorOff("#messageInput");
         }
-        
+
         if (phone.length > 0 && !validatePhone(phone)) {
             errorOn("#phoneInput", "Número inválido");
             valid = false;
         } else {
             errorOff("#phoneInput");
         }
-        
+
+        // email validation
+        if (!validateIndication()) {
+            errorOn("#howKnowInput", "Selecione ao menos uma opção");
+            valid = false;
+        } else {
+            errorOff("#howKnowInput");
+        }
+
         if (!valid) {
-            console.log(valid);
             event.preventDefault();
         }
     });
@@ -154,7 +163,7 @@ window.onload = function () {
 
         var email = $("#emailInput").val();
         var senha = $("#passwordInput").val();
-        
+
         // email validation
         if (!validateEmail(email)) {
             errorOn("#emailInput", "Email Inválido");
@@ -162,14 +171,14 @@ window.onload = function () {
         } else {
             errorOff("#emailInput");
         }
-                
+
         if (senha === "") {
             errorOn("#passwordInput", "Senha é obrigatória!");
             valid = false;
         } else {
             errorOff("#passwordInput");
         }
-        
+
         if (!valid) {
             console.log(valid);
             event.preventDefault();
@@ -206,7 +215,7 @@ window.onload = function () {
         }
 
         // Check-out date - validates if date is more than 2 days from check-in date
-        if (!validateCheckOutDate(dataEntrada,dataSaida)) {
+        if (!validateCheckOutDate(dataEntrada, dataSaida)) {
             errorOn("#dataSaidaInput", "Data Inválida - A reserva deve ter pelo menos 2 dias");
             valid = false;
         } else {
@@ -214,7 +223,7 @@ window.onload = function () {
         }
 
         // Adults
-        if (!validateQtd(adultos,1,4)) {
+        if (!validateQtd(adultos, 1, 4)) {
             errorOn("#adultsInput", "O número de adultos deve ser entre 1 e 4");
             valid = false;
         } else {
@@ -222,7 +231,7 @@ window.onload = function () {
         }
 
         // Kids max 3
-        if (!validateQtd(adultos,1,4)) {
+        if (!validateQtd(adultos, 1, 4)) {
             errorOn("#criancasAte3Input", "O número de crianças até 3 anos deve ser entre 0 e 3");
             valid = false;
         } else {
@@ -230,12 +239,13 @@ window.onload = function () {
         }
 
         // Kids max 12
-        if (!validateQtd(adultos,1,4)) {
+        if (!validateQtd(adultos, 1, 4)) {
             errorOn("#criancasAte12Input", "O número de crianças até 12 anos deve ser entre 0 e 4");
             valid = false;
         } else {
             errorOff("#criancasAte12Input");
         }
+
 
         // If any error has ocurred then prevent submit
         if (valid === false) {
@@ -283,17 +293,27 @@ window.onload = function () {
 
 
     // Avoid pasting into password field
-    $('#confirmPasswordInput').on("paste",function(e) {
+    $('#confirmPasswordInput').on("paste", function (e) {
         e.preventDefault();
         errorOn("#confirmPasswordInput", "Você deve digitar a senha novamente.");
     });
 
 };
 
+function validateIndication() {
+    var valid = false;
+    $.each($("input[name='indicacao[]']"), function () {
+        if ($(this).is(":checked")) {
+            valid = true;
+        }
+    });
+    return valid;
+}
+
 function errorOn(field, text) {
     $(field).removeClass("input-correct");
     $(field).addClass("input-error");
-    
+
     $(field + "Error").hide();
     $(field + "Error").text(text);
     $(field + "Error").fadeIn("slow");
@@ -303,16 +323,16 @@ function errorOff(field) {
     $(field).removeClass("input-error");
     $(field).addClass("input-correct");
 
-    $(field + "Error").fadeOut("slow",function(){
-       $(field + "Error").text(""); 
+    $(field + "Error").fadeOut("slow", function () {
+        $(field + "Error").text("");
     });
-    
+
 }
 
-function validateQtd(qtd, minValue, maxValue){
-    if (qtd >= minValue && qtd <= maxValue){
+function validateQtd(qtd, minValue, maxValue) {
+    if (qtd >= minValue && qtd <= maxValue) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -457,17 +477,17 @@ function validateCheckInOutDate(checkInOutDate) {
         //minDate = minDate.setDate(new Date().getTime() + 48 * 60 * 60 * 1000);
 
         //If the date's year is higher, true
-        if (date && date.getFullYear() > minDate.getFullYear()){
+        if (date && date.getFullYear() > minDate.getFullYear()) {
             valid = true;
-        //If it's the same year, check month and day
-        }else if(date.getFullYear() === minDate.getFullYear()){
+            //If it's the same year, check month and day
+        } else if (date.getFullYear() === minDate.getFullYear()) {
             //If the date's month is higher, true
-            if (date.getMonth() > minDate.getMonth()){
+            if (date.getMonth() > minDate.getMonth()) {
                 valid = true;
-            //If it's the same month, check day
-            }else if(date.getMonth() === minDate.getMonth()){
+                //If it's the same month, check day
+            } else if (date.getMonth() === minDate.getMonth()) {
                 //If the date's day is higher or the same, true
-                if (date.getDate() >= minDate.getDate()){
+                if (date.getDate() >= minDate.getDate()) {
                     valid = true;
                 }
             }
@@ -477,7 +497,7 @@ function validateCheckInOutDate(checkInOutDate) {
     return valid;
 }
 
-function validateCheckOutDate(checkInDate,checkOutDate) {
+function validateCheckOutDate(checkInDate, checkOutDate) {
 
     var valid = false;
     var dateRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
@@ -486,21 +506,21 @@ function validateCheckOutDate(checkInDate,checkOutDate) {
 
         var date = new Date(checkOutDate.substr(6, 4), checkOutDate.substr(3, 2) - 1, checkOutDate.substr(0, 2));
         var minDate = new Date(checkInDate.substr(6, 4), checkInDate.substr(3, 2) - 1, checkInDate.substr(0, 2));
-        
+
         minDate.setDate(minDate.getDate() + 2);
 
         //If the date's year is higher, true
-        if (date.getFullYear() > minDate.getFullYear()){
+        if (date.getFullYear() > minDate.getFullYear()) {
             valid = true;
-        //If it's the same year, check month and day
-        }else if(date.getFullYear() === minDate.getFullYear()){
+            //If it's the same year, check month and day
+        } else if (date.getFullYear() === minDate.getFullYear()) {
             //If the date's month is higher, true
-            if (date.getMonth() > minDate.getMonth()){
+            if (date.getMonth() > minDate.getMonth()) {
                 valid = true;
-            //If it's the same month, check day
-            }else if(date.getMonth() === minDate.getMonth()){
+                //If it's the same month, check day
+            } else if (date.getMonth() === minDate.getMonth()) {
                 //If the date's day is higher or the same, true
-                if (date.getDay() >= minDate.getDay()){
+                if (date.getDay() >= minDate.getDay()) {
                     valid = true;
                 }
             }
@@ -607,7 +627,7 @@ function confirmPassword(password, confirmPassword) {
     return valid;
 }
 
-function validatePhone(phone){
+function validatePhone(phone) {
     // Email Regex used to test input
     var regex = /^\([0-9]{2}\)[0-9]{5}-[0-9]{2}-[0-9]{2}$/;
     return regex.test(phone);

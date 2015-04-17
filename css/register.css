@@ -188,7 +188,7 @@ select{
   -moz-box-orient: vertical;
   display: inline-block;
   vertical-align: middle;
-  *vertical-align: auto;
+  vertical-align: auto;
 
   background-color: white;
   border: 1px solid rgb(0, 168, 162);
@@ -210,7 +210,7 @@ select{
   margin-right: -5px;
 }
 .segmented-button label {
-  *display: inline;
+  display: inline;
 }
 .segmented-button label:hover {
   -moz-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
