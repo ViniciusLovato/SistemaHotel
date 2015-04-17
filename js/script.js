@@ -101,6 +101,73 @@ window.onload = function () {
 
     });
 
+
+    // Register function validation
+    $("#reservationForm").submit(function (event) {
+        var valid = true;
+
+        var dataEntrada = $("#dataEntradaInput").val();
+        var dataSaida = $("#dataSaidaInput").val();
+        var adultos = $("#adultsInput").val();
+        var criancasAte3 = $("#criancasAte3Input").val();
+        var criancasAte12 = $("#criancasAte12Input").val();
+
+        // Check-In date - validates if date is more than 2 days from now
+        if (!validateCheckInOutDate(dataEntrada)) {
+            errorOn("#dataEntradaInput", "Data Inválida - a data mínima é 2 dias após hoje");
+            valid = false;
+        } else {
+            errorOff("#dataEntradaInput");
+        }
+
+        // Check-out date - validates if date is more than 2 days from now
+        if (!validateCheckInOutDate(dataSaida)) {
+            errorOn("#dataSaidaInput", "Data Inválida - a data mínima é 2 dias após hoje");
+            valid = false;
+        } else {
+            errorOff("#dataSaidaInput");
+        }
+
+        // Check-out date - validates if date is more than 2 days from check-in date
+        if (!validateCheckOutDate(dataEntrada,dataSaida)) {
+            errorOn("#dataSaidaInput", "Data Inválida - A reserva deve ter pelo menos 2 dias");
+            valid = false;
+        } else {
+            errorOff("#dataSaidaInput");
+        }
+
+        // Adults
+        if (!validateQtd(adultos,1,4)) {
+            errorOn("#adultsInput", "O número de adultos deve ser entre 1 e 4");
+            valid = false;
+        } else {
+            errorOff("#adultsInput");
+        }
+
+        // Kids max 3
+        if (!validateQtd(adultos,1,4)) {
+            errorOn("#criancasAte3Input", "O número de crianças até 3 anos deve ser entre 0 e 3");
+            valid = false;
+        } else {
+            errorOff("#criancasAte3Input");
+        }
+
+        // Kids max 12
+        if (!validateQtd(adultos,1,4)) {
+            errorOn("#criancasAte12Input", "O número de crianças até 12 anos deve ser entre 0 e 4");
+            valid = false;
+        } else {
+            errorOff("#criancasAte12Input");
+        }
+
+        // If any error has ocurred then prevent submit
+        if (valid === false) {
+            event.preventDefault();
+        }
+
+    });
+
+
     $("#passwordInput").keyup(function () {
         var p = $("#pwdStrenght");
         var str = passwordStrength($(this).val());
@@ -149,6 +216,14 @@ function errorOff(field) {
     $(field).removeClass("input-error");
     $(field).addClass("input-correct");
     $(field + "Error").text("");
+}
+
+function validateQtd(qtd, minValue, maxValue){
+    if (qtd >= minValue && qtd <= maxValue){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function validateEmail(email) {
@@ -277,6 +352,70 @@ function validateCPF(CPF) {
     }
 
 
+    return valid;
+}
+
+function validateCheckInOutDate(checkInOutDate) {
+    var valid = false;
+    var dateRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+
+    if (dateRegex.test(checkInOutDate)) {
+        var date = new Date(checkInOutDate.substr(6, 4), checkInOutDate.substr(3, 2) - 1, checkInOutDate.substr(0, 2));
+
+        var minDate = new Date(+new Date() + (48 * 60 * 60 * 1000));
+        //minDate = minDate.setDate(new Date().getTime() + 48 * 60 * 60 * 1000);
+
+        //If the date's year is higher, true
+        if (date && date.getFullYear() > minDate.getFullYear()){
+            valid = true;
+        //If it's the same year, check month and day
+        }else if(date.getFullYear() === minDate.getFullYear()){
+            //If the date's month is higher, true
+            if (date.getMonth() > minDate.getMonth()){
+                valid = true;
+            //If it's the same month, check day
+            }else if(date.getMonth() === minDate.getMonth()){
+                //If the date's day is higher or the same, true
+                if (date.getDate() >= minDate.getDate()){
+                    valid = true;
+                }
+            }
+        }
+
+    }
+    return valid;
+}
+
+function validateCheckOutDate(checkInDate,checkOutDate) {
+
+    var valid = false;
+    var dateRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+
+    if (dateRegex.test(checkInDate) && dateRegex.test(checkOutDate)) {
+
+        var date = new Date(checkOutDate.substr(6, 4), checkOutDate.substr(3, 2) - 1, checkOutDate.substr(0, 2));
+        var minDate = new Date(checkInDate.substr(6, 4), checkInDate.substr(3, 2) - 1, checkInDate.substr(0, 2));
+        
+        minDate.setDate(minDate.getDate() + 2);
+
+        //If the date's year is higher, true
+        if (date.getFullYear() > minDate.getFullYear()){
+            valid = true;
+        //If it's the same year, check month and day
+        }else if(date.getFullYear() === minDate.getFullYear()){
+            //If the date's month is higher, true
+            if (date.getMonth() > minDate.getMonth()){
+                valid = true;
+            //If it's the same month, check day
+            }else if(date.getMonth() === minDate.getMonth()){
+                //If the date's day is higher or the same, true
+                if (date.getDay() >= minDate.getDay()){
+                    valid = true;
+                }
+            }
+        }
+
+    }
     return valid;
 }
 
