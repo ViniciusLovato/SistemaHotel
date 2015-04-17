@@ -11,17 +11,6 @@ form#registerForm{
 	margin-top: 30px;
 }
 
-.content h1{
-	padding-top: 20px;
-	margin: 20px;
-
-	font-size: 22pt;
-	font-weight: 400;
-	color: rgb(0, 168, 162);
-
-	border-bottom: solid 1px rgb(0, 168, 162);
-}
-
 .input_line{
 	width: 80%;
 	margin-left: 10%;
