@@ -134,7 +134,7 @@ window.onload = function () {
             errorOff("#messageInput");
         }
         
-        if (phone.length === 0) {
+        if (phone.length > 0 && !validatePhone(phone)) {
             errorOn("#phoneInput", "Número inválido");
             valid = false;
         } else {
@@ -281,18 +281,31 @@ window.onload = function () {
         p.addClass(pClass);
     });
 
+
+    // Avoid pasting into password field
+    $('#confirmPasswordInput').on("paste",function(e) {
+        e.preventDefault();
+        errorOn("#confirmPasswordInput", "Você deve digitar a senha novamente.");
+    });
+
 };
 
 function errorOn(field, text) {
     $(field).removeClass("input-correct");
     $(field).addClass("input-error");
+    $(field + "Error").hide();
     $(field + "Error").text(text);
+    $(field + "Error").fadeIn("slow");
 }
 
 function errorOff(field) {
     $(field).removeClass("input-error");
     $(field).addClass("input-correct");
-    $(field + "Error").text("");
+
+    $(field + "Error").fadeOut("slow",function(){
+       $(field + "Error").text(""); 
+    });
+    
 }
 
 function validateQtd(qtd, minValue, maxValue){
@@ -591,4 +604,10 @@ function confirmPassword(password, confirmPassword) {
         }
     }
     return valid;
+}
+
+function validatePhone(phone){
+    // Email Regex used to test input
+    var regex = /^\([0-9]{2}\)[0-9]{5}-[0-9]{2}-[0-9]{2}$/;
+    return regex.test(phone);
 }
