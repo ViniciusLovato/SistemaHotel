@@ -28,7 +28,6 @@ window.onload = function () {
         var email = $("#emailInput").val();
         var cidade = $("#cityInput").val();
 
-
         // Name
         if (!validateName(nameInput)) {
             errorOn("#nameInput", "Nome Inválido");
@@ -97,20 +96,33 @@ window.onload = function () {
         // If any error has ocurred then prevent submit
         if (valid === false) {
             event.preventDefault();
-        }
+        } else {
 
+            var userJSON = {
+                "usuario": {
+                    "name": nameInput,
+                    "pwd": passwordInput,
+                    "dob": dateOfBirth,
+                    "cpf": cpf,
+                    "cep": cep,
+                    "state": state,
+                    "email": email,
+                    "cidade": cidade
+                }
+            }
+
+            localStorage.setItem(cpf, JSON.stringify(userJSON));
+        }
     });
 
     $("#contactForm").submit(function (event) {
 
-        var valid = false;
+        var valid = true;
 
         var name = $("#nameInput").val();
         var email = $("#emailInput").val();
         var phone = $("#phoneInput").val();
         var message = $("#messageInput").val();
-
-
 
         // name validation
         if (!validateName(name)) {
@@ -153,9 +165,19 @@ window.onload = function () {
 
         if (!valid) {
             event.preventDefault();
+        } else {
+            var contactJSON = {
+                "contact": {
+                    "name" : name,
+                    "email" : email,
+                    "phone" : phone,
+                    "message" : message
+                }
+            }
+            
+            localStorage.setItem(name, JSON.stringify(contactJSON));
         }
     });
-
 
     $("#mainLoginForm").submit(function (event) {
 
@@ -250,6 +272,18 @@ window.onload = function () {
         // If any error has ocurred then prevent submit
         if (valid === false) {
             event.preventDefault();
+        } else {
+
+            var reservationJSON = {
+                "reserva": {
+                    "dataEntrada": dataEntrada,
+                    "dataSaida": dataSaida,
+                    "adultos": adultos,
+                    "criancasAte3": criancasAte3,
+                    "criancasAte12": criancasAte12
+                }
+            }
+            localStorage.setItem("reservationForm", JSON.stringify(reservationJSON));
         }
 
     });
