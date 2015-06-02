@@ -11,18 +11,56 @@ import static java.util.concurrent.TimeUnit.*;
 
 public class Login extends HttpServlet {
 
+	public void doGet (HttpServletRequest request, HttpServletResponse response){
+
+		try{
+
+			/* se nao existe lista de usuarios na sessao, entao criar uma */				
+			HttpSession session = request.getSession();
+			if(session.getAttribute("usuarios")==null){ 
+
+				ArrayList usuarios = new ArrayList();
+				session.setAttribute("usuarios",new ArrayList());
+
+				Usuario u = new Usuario();
+				u.setEmail("admin");
+				u.setSenha("admin");
+
+				usuarios.add(u);
+			}
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.html");
+			dispatcher.forward(request, response);
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+	}
+
 	public void doPost (HttpServletRequest request, HttpServletResponse response){
 	
 		try{
 			String url;
 			boolean erro = false, autenticacaoOk = false, usuarioBloqueado = false;
 
+			ArrayList usuarios;
+
 			/* se nao existe lista de usuarios na sessao, entao criar uma */				
 			HttpSession session = request.getSession();
-			if(session.getAttribute("usuarios")==null) session.setAttribute("usuarios",new ArrayList());
-				
-			/* recuperar a lista de usuarios da sessao */
-			ArrayList usuarios = (ArrayList) session.getAttribute("usuarios");
+			if(session.getAttribute("usuarios")==null){ 
+				usuarios = new ArrayList();
+				session.setAttribute("usuarios",new ArrayList());
+
+				Usuario u = new Usuario();
+				u.setEmail("admin");
+				u.setSenha("admin");
+
+				usuarios.add(u);
+			}else{
+				/* recuperar a lista de usuarios da sessao */
+				usuarios = (ArrayList) session.getAttribute("usuarios");
+			}
 
 			/* Verifica se os dados foram recebidos corretamente */
 			if ((request.getParameter("email") === null) || (request.getParameter("senha") === null)){
@@ -118,10 +156,12 @@ public class Login extends HttpServlet {
 				if(!autenticacaoOk){
 					erro = true;
 					if(usuarioBloqueado){
-						url = "login/login_bloqueado.html";
+						session.setAttribute("erro","Usuário Bloqueado!");
 					}else{
-						url = "login/login_invalido.html";
+						session.setAttribute("erro","Email e/ou senha inválidos!");
 					}
+					url = "erro.jsp";
+
 				}else{
 					/* Autentica o usuário */
 					session.setAttribute("usuarioLogado",true);
