@@ -18,6 +18,21 @@ public class Usuario {
 
 	private String senha;
 
+    /* Array de datas, onde cada elemento representa uma data/hora em que 
+        uma tentativa falha de acesso ao sistema, através deste usuário, 
+        foi realizada.
+    */
+    private ArrayList<Date> tentativasAcesso;
+
+
+    public ArrayList<Date> getTentativasAcesso(){
+        return self.tentativasAcesso;
+    }
+
+    public void setTentativasAcesso(ArrayList<Date> tentativas){
+        self.tentativasAcesso = tentativas;
+    }
+
 
 	public Usuario(){
 	}
