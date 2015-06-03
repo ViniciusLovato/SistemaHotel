@@ -1,5 +1,7 @@
 package hotel;
 
+import java.util.*; 
+
 public class Usuario {
    
 	private int id;
@@ -26,11 +28,11 @@ public class Usuario {
 
 
     public ArrayList<Date> getTentativasAcesso(){
-        return self.tentativasAcesso;
+        return this.tentativasAcesso;
     }
 
     public void setTentativasAcesso(ArrayList<Date> tentativas){
-        self.tentativasAcesso = tentativas;
+        this.tentativasAcesso = tentativas;
     }
 
 

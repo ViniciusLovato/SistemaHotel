@@ -1,5 +1,7 @@
 package hotel;
 
+import java.util.*; 
+
 public class Mensagem implements java.io.Serializable{
    
 	private int id;

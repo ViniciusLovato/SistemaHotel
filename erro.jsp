@@ -1,4 +1,6 @@
 <%@page language="java" contentType="text/html;charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,6 +11,8 @@
 	<h1>Erro!</h1>
 
 	<h3><c:out value="${sessionScope.erro}" /></h3>
+	<h3>Log: <c:out value="${sessionScope.debug}" /></h3>
+
 
 </body>
 </html>

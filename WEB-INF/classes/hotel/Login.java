@@ -1,4 +1,4 @@
-package aula;
+package hotel;
 
 import java.io.*;  
 import javax.servlet.*;  
@@ -20,11 +20,12 @@ public class Login extends HttpServlet {
 			if(session.getAttribute("usuarios")==null){ 
 
 				ArrayList usuarios = new ArrayList();
-				session.setAttribute("usuarios",new ArrayList());
+				session.setAttribute("usuarios",usuarios);
 
 				Usuario u = new Usuario();
-				u.setEmail("admin");
+				u.setEmail("admin@admin.com");
 				u.setSenha("admin");
+				u.setTentativasAcesso(new ArrayList<Date>());
 
 				usuarios.add(u);
 			}
@@ -41,7 +42,7 @@ public class Login extends HttpServlet {
 	public void doPost (HttpServletRequest request, HttpServletResponse response){
 	
 		try{
-			String url;
+			String url, log ="LOG:\n\n";
 			boolean erro = false, autenticacaoOk = false, usuarioBloqueado = false;
 
 			ArrayList usuarios;
@@ -50,11 +51,12 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			if(session.getAttribute("usuarios")==null){ 
 				usuarios = new ArrayList();
-				session.setAttribute("usuarios",new ArrayList());
+				session.setAttribute("usuarios",usuarios);
 
 				Usuario u = new Usuario();
-				u.setEmail("admin");
+				u.setEmail("admin@admin.com");
 				u.setSenha("admin");
+				u.setTentativasAcesso(new ArrayList<Date>());
 
 				usuarios.add(u);
 			}else{
@@ -63,7 +65,7 @@ public class Login extends HttpServlet {
 			}
 
 			/* Verifica se os dados foram recebidos corretamente */
-			if ((request.getParameter("email") === null) || (request.getParameter("senha") === null)){
+			if ((request.getParameter("email") == null) || (request.getParameter("senha") == null)){
 				erro = true;
 				url = "erro.jsp";
 				session.setAttribute("erro","400: Requisição Inválida!");
@@ -76,8 +78,17 @@ public class Login extends HttpServlet {
 
 				Usuario usuario = null, usuario_aux;
 
+				log += "LOGIN: \n";
+				log += "email: "+email+"\n";
+				log += "senha: "+senha+"\n";
+
+				log += "usuarios size: "+usuarios.size()+"\n";
+
+
 				/* Busca o usuário com o dado email */
 				for (int i = 0; i < usuarios.size(); i++) {
+
+					log += "usuario " + i + "\n"; 
 					usuario_aux = (Usuario) usuarios.get(i);
 
 					/* Caso o usuário foi encontrado, verificamos:
@@ -92,9 +103,12 @@ public class Login extends HttpServlet {
 
 						ArrayList<Date> tentativas = usuario.getTentativasAcesso();
 
+						log += "a \n"; 
+
 
 						/* Verifica por senha correta */
 						if (!usuario.getSenha().equals(senha)){
+							log += "b \n"; 
 
 							/* Insere tentativa de acesso */
 							tentativas.add(new Date());
@@ -102,14 +116,16 @@ public class Login extends HttpServlet {
 
 						/* Senha correta */
 						}else{
+							log += "c \n"; 
 
 							/* Verifica se usuário está bloqueado */
-							if(tentativas.size >= 3){
+							if(tentativas.size() >= 3){
+								log += "d \n"; 
 
 								/* Obtem as 3 tentivas mais recentes, (apenas a primeira e ultima) */
 								Collections.sort(tentativas);
-								Date t1 = tentativas.get(tentativas.size()-1)
-								Date t3 = tentativas.get(tentativas.size()-3)
+								Date t1 = tentativas.get(tentativas.size()-1);
+								Date t3 = tentativas.get(tentativas.size()-3);
 
 								/* Variaveis contento o tempos de comparação para utilização nas compareções */
 								long BLOCK_15MIN = MILLISECONDS.convert(15, MINUTES);
@@ -120,6 +136,7 @@ public class Login extends HttpServlet {
 
 								/* Se elas possuem diferença menor que 15min */
 								if (duracao <= BLOCK_15MIN){
+									log += "e \n"; 
 
 									/* Tempo desde a última tentativa falha de login */
 									Date agora = new Date();
@@ -127,6 +144,7 @@ public class Login extends HttpServlet {
 
 									/* Verifica se já passou uma hora desde a última tentativa */
 									if (duracao_agora <= BLOCK_1HORA){
+										log += "f \n"; 
 								
 										/* Se não passou, o usuário está bloqueado */
 										usuarioBloqueado = true;
@@ -160,6 +178,8 @@ public class Login extends HttpServlet {
 					}else{
 						session.setAttribute("erro","Email e/ou senha inválidos!");
 					}
+					session.setAttribute("debug",log);
+
 					url = "erro.jsp";
 
 				}else{
@@ -168,11 +188,11 @@ public class Login extends HttpServlet {
 					session.setAttribute("usuario",usuario);
 
 					/* Se existe parametro 'next', redireciona o usuario para la*/
-					if(request.getParameter("next") === null){
+					if(request.getParameter("next") != null){
 						url = request.getParameter("next");
 					/* Senão, vai para o index */
 					}else{
-						url = "/index.html"
+						url = "/index.html";
 					}
 				}
 			}

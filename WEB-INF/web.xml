@@ -30,7 +30,7 @@
 
   <servlet>
     <servlet-name>Login</servlet-name>
-    <servlet-class>aula.Login</servlet-class>
+    <servlet-class>hotel.Login</servlet-class>
   </servlet>
   
   <servlet-mapping>
