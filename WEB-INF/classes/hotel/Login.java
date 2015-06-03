@@ -192,7 +192,7 @@ public class Login extends HttpServlet {
 						url = request.getParameter("next");
 					/* Senão, vai para o index */
 					}else{
-						url = "/index.html";
+						url = "index.html";
 					}
 				}
 			}
