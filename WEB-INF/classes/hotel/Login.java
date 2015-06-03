@@ -15,23 +15,37 @@ public class Login extends HttpServlet {
 
 		try{
 
-			/* se nao existe lista de usuarios na sessao, entao criar uma */				
-			HttpSession session = request.getSession();
-			if(session.getAttribute("usuarios")==null){ 
+			// Login out
+			if(request.getParameter("exit").equals("true")){
+				request.getSession().invalidate();
 
-				ArrayList usuarios = new ArrayList();
-				session.setAttribute("usuarios",usuarios);
 
-				Usuario u = new Usuario();
-				u.setEmail("admin@admin.com");
-				u.setSenha("admin");
-				u.setTentativasAcesso(new ArrayList<Date>());
-
-				usuarios.add(u);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+				dispatcher.forward(request, response);
 			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.html");
-			dispatcher.forward(request, response);
+			// Login in
+			else {
+
+				/* se nao existe lista de usuarios na sessao, entao criar uma */				
+				HttpSession session = request.getSession();
+				if(session.getAttribute("usuarios")==null){ 
+
+					ArrayList usuarios = new ArrayList();
+					session.setAttribute("usuarios",usuarios);
+
+					Usuario u = new Usuario();
+					u.setEmail("admin@admin.com");
+					u.setSenha("admin");
+					u.setNome("Mr. Admin");
+					u.setTentativasAcesso(new ArrayList<Date>());
+
+					usuarios.add(u);
+				}
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.html");
+				dispatcher.forward(request, response);
+			}
 
 		}catch(Exception e){
 			e.printStackTrace();
@@ -56,6 +70,8 @@ public class Login extends HttpServlet {
 				Usuario u = new Usuario();
 				u.setEmail("admin@admin.com");
 				u.setSenha("admin");
+				u.setNome("Mr. Admin");
+
 				u.setTentativasAcesso(new ArrayList<Date>());
 
 				usuarios.add(u);
@@ -192,7 +208,7 @@ public class Login extends HttpServlet {
 						url = request.getParameter("next");
 					/* Senão, vai para o index */
 					}else{
-						url = "index.html";
+						url = "index.jsp";
 					}
 				}
 			}
