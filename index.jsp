@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Hotel</title>
 
     <script src="jquery/jquery-2.1.3.min.js"></script>
@@ -16,7 +16,7 @@
 <body>
 
     <jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
-
+    <jsp:useBean id="mensagens" class="java.util.ArrayList" scope="session"/>
 
     <header>
 
@@ -26,21 +26,23 @@
 
         <nav class="mainNav">
             <ul class="menu">
-                Ola ${usuario.nome}
                 <li>
-                    <a href="index.html">O Hotel</a>
+                    <a href="index.jsp">O Hotel</a>
                 </li>
                 <li>
                     <a href="suites/index.html">Suítes</a>
                 </li>
                 <li>    
-                    <a href="reserva/index.html">Reservas</a>                           
+                    <c:choose>
+                        <c:when test="${not empty usuario.nome}">
+                                <a href="reserva/index.html">Reservas</a>                               
+                        </c:when>
+                    </c:choose>               
                 </li>
                 <li>
                     <a href="contato/index.html">Contato</a>
                 </li>
                 <div id="formDiv">
-
                     <c:choose>
                         <c:when test="${empty usuario.nome}">
                             <a class="aReg" href="/SistemaHotel/login?exit=false">Entrar</a>
@@ -51,11 +53,23 @@
                     </c:choose>
 
                     <a class="aReg" href="cadastro/index.html">Registrar</a>
-
                 </div>
             </ul>
         </nav>
     </header>
+
+    <section>
+            Ola ${usuario.nome} <br/>
+
+            Mensagens escritas:  <br/>
+
+            <c:forEach items="${mensagens}" var="mensagem">
+                ${mensagem.nome}
+                ${mensagem.email} 
+                ${mensagem.mensagem}  
+                <br/>
+             </c:forEach>
+    </section>
 
     <section class="intro">
         <div class="content">

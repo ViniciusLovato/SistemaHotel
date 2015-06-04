@@ -21,7 +21,7 @@
          <nav class="mainNav">
             <ul class="menu">
 
-                <li><a href="../index.html">O Hotel</a>
+                <li><a href="../index.jsp">O Hotel</a>
 
                 </li>
                 <li><a href="../suites/index.html">Suítes</a>
@@ -50,43 +50,43 @@
    <section>
         <div class="content">
             <h1>Contato</h1>
-            <form id="contactForm" class="mainForm" action="" method="POST">
+            <form id="contactForm" class="mainForm" action="/SistemaHotel/contato" method="POST">
 
 
-            <div class="input_line">
-                <h2>Nome <em>*</em></h2>
-                <input id="nameInput" type="text" placeholder="Ex: Luiza Gonçalves" name="nome" >
-                <span  class="error" id="nameInputError"></span>
-            </div>
-            <div class="input_line">
-                <h2>E-mail <em>*</em></h2>
-                <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" >
-                <span  class="error" id="emailInputError"></span>
-            </div>
-            <div class="input_line">
-                <h2>Celular</h2>
-                <input id="phoneInput" type="text" placeholder="(XX)XXXXX-XX-XX" name="celular">
-                <span  class="error" id="phoneInputError"></span>
-            </div>
-            <div class="input_line">
-                <h2>Como Conheceu o Hotel? <em>*</em></h2>
-                <input type="checkbox" name="indicacao[]" value="jornais">Jornais<br/>
-                <input type="checkbox" name="indicacao[]" value="indicacao">Indicação<br/>
-                <input type="checkbox" name="indicacao[]" value="redesSociais">Redes Sociais<br/>
-                <input type="checkbox" name="indicacao[]" value="google">Google<br/>
-                <input type="checkbox" name="indicacao[]" value="revistas">Revistas<br/>
-                <input type="checkbox" name="indicacao[]" value="outros">Outros<br/>
-                <span  class="error" id="howKnowInputError"></span>
-            </div>
-            <div class="input_line">
-                <h2>Mensagem <em>*</em></h2>
-                <textarea id="messageInput" class="txtMsg" name="mensagem" placeholder="Fale conosco"></textarea>
-                <span  class="error" id="messageInputError"></span>
-            </div>
+                <div class="input_line">
+                    <h2>Nome <em>*</em></h2>
+                    <input id="nameInput" type="text" placeholder="Ex: Luiza Gonçalves" name="nome" >
+                    <span  class="error" id="nameInputError"></span>
+                </div>
+                <div class="input_line">
+                    <h2>E-mail <em>*</em></h2>
+                    <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" >
+                    <span  class="error" id="emailInputError"></span>
+                </div>
+                <div class="input_line">
+                    <h2>Celular</h2>
+                    <input id="phoneInput" type="text" placeholder="(XX)XXXXX-XX-XX" name="celular">
+                    <span  class="error" id="phoneInputError"></span>
+                </div>
+                <div class="input_line">
+                    <h2>Como Conheceu o Hotel? <em>*</em></h2>
+                    <input type="checkbox" name="indicacao[]" value="jornais">Jornais<br/>
+                    <input type="checkbox" name="indicacao[]" value="indicacao">Indicação<br/>
+                    <input type="checkbox" name="indicacao[]" value="redesSociais">Redes Sociais<br/>
+                    <input type="checkbox" name="indicacao[]" value="google">Google<br/>
+                    <input type="checkbox" name="indicacao[]" value="revistas">Revistas<br/>
+                    <input type="checkbox" name="indicacao[]" value="outros">Outros<br/>
+                    <span  class="error" id="howKnowInputError"></span>
+                </div>
+                <div class="input_line">
+                    <h2>Mensagem <em>*</em></h2>
+                    <textarea id="messageInput" class="txtMsg" name="mensagem" placeholder="Fale conosco"></textarea>
+                    <span  class="error" id="messageInputError"></span>
+                </div>
 
-            <div class="regSubmit resSubmit">
-                <input class="submit" type="submit" value="Enviar Mensagem">
-            </div>
+                <div class="regSubmit resSubmit">
+                    <input class="submit" type="submit" value="Enviar Mensagem">
+                </div>
 
             </form>
         <p class="nota"><em>*</em> Campos Obrigatórios</p>
