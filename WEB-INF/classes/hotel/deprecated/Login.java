@@ -9,14 +9,14 @@ import static java.util.concurrent.TimeUnit.*;
 
 
 
-public class LoginServlet extends HttpServlet {
+public class Login extends HttpServlet {
 
 	public void doGet (HttpServletRequest request, HttpServletResponse response){
 
 		try{
 
 			// Login out
-			if(request.getParameter("exit") != null && request.getParameter("exit").equals("true")){
+			if(request.getParameter("exit").equals("true")){
 				request.getSession().invalidate();
 
 
@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 
 				/* se nao existe lista de usuarios na sessao, entao criar uma */				
 				HttpSession session = request.getSession();
-				if(session.getAttribute("usuarios")==null){
+				if(session.getAttribute("usuarios")==null){ 
 
 					session.setAttribute("usuarios",Dados.iniciaUsuarios());
 
@@ -51,13 +51,13 @@ public class LoginServlet extends HttpServlet {
 			String url, log ="LOG:\n\n";
 			boolean erro = false, autenticacaoOk = false, usuarioBloqueado = false;
 
-			ArrayList usuarios;
-
 			System.out.println("\n\n\nALOOOU\n\n\n");
+
+			ArrayList usuarios;
 
 			/* se nao existe lista de usuarios na sessao, entao criar uma */				
 			HttpSession session = request.getSession();
-			if(session.getAttribute("usuarios")==null){ 
+			if(session.getAttribute("usuarios")==null){
 
 				usuarios = Dados.iniciaUsuarios();
 				session.setAttribute("usuarios",usuarios);
@@ -191,8 +191,8 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("usuario",usuario);
 
 					/* Se existe parametro 'next', redireciona o usuario para la*/
-					if(request.getParameter("email").equals("admin@admin.com")){
-						url = "admin/index.jsp";
+					if(request.getParameter("next") != null){
+						url = request.getParameter("next");
 					/* Senão, vai para o index */
 					}else{
 						url = "index.jsp";

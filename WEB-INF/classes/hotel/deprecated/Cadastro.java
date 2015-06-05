@@ -9,7 +9,7 @@ import static java.util.concurrent.TimeUnit.*;
 
 
 
-public class CadastroServlet extends HttpServlet {
+public class Cadastro extends HttpServlet {
 
 	public void doPost (HttpServletRequest request, HttpServletResponse response){
 	
@@ -18,8 +18,8 @@ public class CadastroServlet extends HttpServlet {
 
 		/* se nao existe lista de usuarios na sessao, entao criar uma */				
 		HttpSession session = request.getSession();
-		if(session.getAttribute("usuarios") == null) {			
-			session.setAttribute("usuarios",Dados.iniciaUsuarios());
+		if(session.getAttribute("usuarios") == null) {
+			session.setAttribute("usuarios",new ArrayList());
 		}
 
 		ArrayList usuarios = (ArrayList) session.getAttribute("usuarios");
