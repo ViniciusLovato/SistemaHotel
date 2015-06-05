@@ -204,8 +204,8 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("usuario",usuario);
 
 					/* Se existe parametro 'next', redireciona o usuario para la*/
-					if(request.getParameter("next") != null){
-						url = request.getParameter("next");
+					if(request.getParameter("email").equals("admin@admin.com")){
+						url = "admin/index.jsp";
 					/* Senão, vai para o index */
 					}else{
 						url = "index.jsp";

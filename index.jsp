@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="utf-8">
@@ -60,15 +60,6 @@
 
     <section>
             Ola ${usuario.nome} <br/>
-
-            Mensagens escritas:  <br/>
-
-            <c:forEach items="${mensagens}" var="mensagem">
-                ${mensagem.nome}
-                ${mensagem.email} 
-                ${mensagem.mensagem}  
-                <br/>
-             </c:forEach>
     </section>
 
     <section class="intro">
