@@ -21,8 +21,10 @@
 			<li>
 				<h1>Administrador do Hotel</h1>
 			</li>
-			<li>		
-				<p><a href="">Log out</a></p>
+			<li>	
+				<p>
+					 <a class="aReg" href="/SistemaHotel/login?exit=true">Log out</a>
+				</p>
 			</li>
 		</ul>
 	</header>
@@ -32,7 +34,7 @@
 		
 		<h2>Bem vindo ${usuario.nome}</h2>
 		<h3>Lista de Usuarios</h3>
-		<h3><a href="index.jsp">Voltar ao inicio</a></h33>
+		<h3><a href="/SistemaHotel/admin/index.jsp">Voltar ao inicio</a></h33>
 
 		<div class="tableDiv">
 

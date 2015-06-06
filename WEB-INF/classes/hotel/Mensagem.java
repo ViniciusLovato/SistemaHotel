@@ -13,6 +13,8 @@ public class Mensagem implements java.io.Serializable{
 
 	private ArrayList conheceu;
 
+    private boolean lida;
+
 	public Mensagem(){
 	}
 
@@ -40,6 +42,10 @@ public class Mensagem implements java.io.Serializable{
         return conheceu;
     }
 
+    public boolean isLida(){
+        return lida;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -63,6 +69,10 @@ public class Mensagem implements java.io.Serializable{
 
     public void setConheceu(ArrayList conheceu) {
         this.conheceu = conheceu;
+    }
+
+    public void setLida(boolean lida){
+        this.lida = lida;
     }
 
 }

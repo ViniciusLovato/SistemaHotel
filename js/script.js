@@ -8,10 +8,10 @@ window.onload = function () {
         var passwordInput = $("#passwordLoginInput").val();
 
         // console.log(validateEmail(emailInput));
-        if (!validateEmail(emailInput)) {
+        /*if (!validateEmail(emailInput)) {
             valid = false;
             event.preventDefault();
-        }
+        }*/
     });
 
     // Register function validation
@@ -181,13 +181,14 @@ window.onload = function () {
 
     $("#mainLoginForm").submit(function (event) {
 
-        var valid = false;
+        var valid = true;
 
         var email = $("#emailInput").val();
         var senha = $("#passwordInput").val();
 
         // email validation
         if (!validateEmail(email)) {
+            console.log("email invalido");
             errorOn("#emailInput", "Email Inválido");
             valid = false;
         } else {

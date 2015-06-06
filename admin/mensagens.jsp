@@ -20,7 +20,9 @@
 				<h1>Administrador do Hotel</h1>
 			</li>
 			<li>		
-				<p><a href="">Log out</a></p>
+				<p>
+					 <a class="aReg" href="/SistemaHotel/login?exit=true">Log out</a>
+				</p>
 			</li>
 		</ul>
 	</header>
@@ -28,7 +30,7 @@
 
 	<section>
 		<h2>Bem vindo ${usuario.nome}</h2>
-		<h3><a href="index.jsp">Voltar ao inicio</a></h3>
+		<h3><a href="/SistemaHotel/admin/index.jsp">Voltar ao inicio</a></h3>
 
 		<div class="mensagensDiv">
 			<h3>Mensagens no Sistema</h3>

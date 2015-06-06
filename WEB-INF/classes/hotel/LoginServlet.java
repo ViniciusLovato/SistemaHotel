@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 
 			ArrayList usuarios;
 
-			System.out.println("\n\n\nALOOOU\n\n\n");
+			System.out.println("\n\n\nALOU\n\n\n");
 
 			/* se nao existe lista de usuarios na sessao, entao criar uma */				
 			HttpSession session = request.getSession();
@@ -192,6 +192,7 @@ public class LoginServlet extends HttpServlet {
 
 					/* Se existe parametro 'next', redireciona o usuario para la*/
 					if(request.getParameter("email").equals("admin@admin.com")){
+						session.setAttribute("adminLogado", true);
 						url = "admin/index.jsp";
 					/* Senão, vai para o index */
 					}else{

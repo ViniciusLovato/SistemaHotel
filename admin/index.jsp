@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 
-	<link rel="stylesheet" href="../css/admin.css">
+	<link rel="stylesheet" href="/SistemaHotel/css/admin.css">
 </head>
 <body>
 
@@ -20,7 +20,13 @@
 				<h1>Administrador do Hotel</h1>
 			</li>
 			<li>		
-				<p><a href="">Log out</a></p>
+				<p>
+					
+					 <a class="aReg" href="/SistemaHotel/login?exit=true">Log out</a>
+				</p>
+
+                           
+
 			</li>
 		</ul>
 	</header>
@@ -49,19 +55,19 @@
 				<tr>
 				    <td>Usuarios</td>
 				    <td><a href="">Add</a></td>
-				    <td><a href="usuarios.jsp">Listar</a></td>
+				    <td><a href="/SistemaHotel/admin/usuarios.jsp">Listar</a></td>
 				</tr>
 				
 				<tr>
 				    <td>Reservas</td>
 				    <td><a href="">Add</a></td>
-				    <td><a href="reservas.jsp">Listar</a></td>
+				    <td><a href="/SistemaHotel/admin/reservas.jsp">Listar</a></td>
 				</tr>
 
 				<tr>
 				    <td>Mensagens</td>
 				    <td><a href="">Add</a></td>
-				    <td><a href="mensagens.jsp">Listar</a></td>
+				    <td><a href="/SistemaHotel/admin/mensagens.jsp">Listar</a></td>
 				</tr>
 			</table>		
 		</div>
