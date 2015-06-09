@@ -6,15 +6,11 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 
-	<link rel="stylesheet" href="../css/admin.css">
+	<link rel="stylesheet" href="/SistemaHotel/css/admin.css">
 </head>
 <body>
 
-    <jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
     <jsp:useBean id="usuarios" class="java.util.ArrayList" scope="session"/>
-
-    <jsp:useBean id="mensagens" class="java.util.ArrayList" scope="session"/>
-
 	
 	<header>
 		<ul>
@@ -36,28 +32,37 @@
 		<h3>Lista de Usuarios</h3>
 		<h3><a href="/SistemaHotel/admin/index.jsp">Voltar ao inicio</a></h33>
 
-		<div class="tableDiv">
+		<form action=""></form>
 
-			<table>
-				<tr>
-				    <th>Username</th>
-				    <th>Email</th>
-				    <th>Editar</th>
-				    <th>Remover</th>
-				</tr>
 
-				
-	            <c:forEach items="${usuarios}" var="user">
-	            	<tr>
-		            	<td>${user.nome}</td>
-		                <td>${user.email} </td> 
-				    	<td><a href="">Editar</a></td>
-				    	<td><a href="">Remover</a></td>
-	            	</tr>
+		<form action="/SistemaHotel/cadastro" method="GET">
+			<div class="tableDiv">
 
-           		</c:forEach>
-			</table>		
-		</div>
+				<table>
+					<tr>
+						<th>Data de Cadastro</th>
+					    <th>Username</th>
+					    <th>Email</th>
+					    <th>Detalhes</th>
+					    <th>Remover</th>
+					</tr>
+
+		            <c:forEach items="${usuarios}" var="user" varStatus="status">
+		            	<tr>
+		            		<td>${user.dataCadastro}</td>
+			            	<td>${user.nome}</td>
+			                <td>${user.email} </td> 
+					    	<td><a href="/SistemaHotel/cadastro?detalhe=${status.index}">Detalhes</a></td>
+		            		<td><input type="checkbox" name="checkbox${status.index}"></td>
+		            	</tr>
+	           		</c:forEach>
+				</table>		
+			</div>
+	   		
+	   		<input type="submit" value="Remover selecionados">			
+		</form>
+
+
 	</section>
 
 	<aside></aside>

@@ -21,12 +21,8 @@
 			</li>
 			<li>		
 				<p>
-					
 					 <a class="aReg" href="/SistemaHotel/login?exit=true">Log out</a>
 				</p>
-
-                           
-
 			</li>
 		</ul>
 	</header>

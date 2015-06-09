@@ -81,8 +81,15 @@ section {
 }
 
 .tableDiv{
-	width: 50%;
+	width: 70%;
 	border: solid 1px black;
+}
+
+.pMensagem {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 200px;
 }
 
 .mensagensDiv{
@@ -91,6 +98,15 @@ section {
 
 }
 
+.notlida td{
+	font-weight: 700;
+}
+
 .mensagensDiv p, .usuariosDiv p{
 	margin: 1px;
+}
+
+.detalhes p {
+	margin: 1px;
+	font-size: 16px;
 }

@@ -32,23 +32,30 @@
 		<h2>Bem vindo ${usuario.nome}</h2>
 		<h3><a href="/SistemaHotel/admin/index.jsp">Voltar ao inicio</a></h3>
 
-		<div class="mensagensDiv">
-			<h3>Mensagens no Sistema</h3>
-			<hr/>
-            
-            <div class="mensagem">
-	            <c:forEach items="${mensagens}" var="mensagem">
-	            	<p>Enviado por: ${mensagem.nome}</p> <br/>
-	                <p>Email : ${mensagem.email} </p> <br/>
-	                <p>Telefone : ${mensagem.celular} </p> <br/>
-	                <p>Mensagem: ${mensagem.mensagem} </p> <br/>
-	                <hr/>
+		<div class="tableDiv">
+			<table>
+				<tr>
+					<th>Data de Envio</th>
+				    <th>Enviado por</th>
+				    <th>Email</th>
+				    <th>Mensagem</th>
+				    <th>Detalhes</th>
+				    <th>Remover</th>
+				</tr>
+					
+	            <c:forEach items="${mensagens}" var="mensagem" varStatus="status">
+	            	<tr  <c:if test="${not mensagem.lida}">class="notLida"</c:if>     >
+	            		<td>${mensagem.dataEnvio}</td>
+	            		<td>${mensagem.nome}</td>
+		            	<td>${mensagem.email}</td>
+						<td> <p class="pMensagem">${mensagem.mensagem}</p></td>		
+					    <td><a href="/SistemaHotel/contato?detalhe=${status.index}">Ler</a></td>
+	            		<td><input type="checkbox" name="checkbox${status.index}"></td>
+	            	</tr>
            		</c:forEach>
-            </div>
-
-
-
+			</table>		
 		</div>
+	   	
 
 
 	</section>

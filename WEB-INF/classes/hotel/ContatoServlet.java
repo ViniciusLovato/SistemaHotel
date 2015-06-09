@@ -38,6 +38,9 @@ public class ContatoServlet extends HttpServlet {
 		System.out.println("Email: " + mensagem.getEmail() );
 		System.out.println("mensagem: " + mensagem.getMensagem() );
 
+		mensagem.setDataEnvio(new Date());
+		mensagem.setLida(false);
+
 		mensagens.add(mensagem);
 
 		// coloca o arraylist de mensagens com a nova mensagem na sessao
@@ -54,6 +57,45 @@ public class ContatoServlet extends HttpServlet {
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response){
+
+		/* se nao existe lista de mensagens na sessao, entao criar uma */				
+		HttpSession session = request.getSession();
+		if(session.getAttribute("mensagens") == null) {
+			session.setAttribute("mensagens", new ArrayList());
+		}
+
+		ArrayList mensagens = (ArrayList) session.getAttribute("mensagens");
+		Mensagem mensagem;
+
+		String detalhe = (String) request.getParameter("detalhe");
+
+		String url;
+
+		if(detalhe != null){
+
+			url = "admin/mensagemDetalhe.jsp";
+			int mId = Integer.parseInt(detalhe);
+
+			mensagem = (Mensagem) mensagens.get(mId);
+			mensagem.setLida(true);
+
+			session.setAttribute("mensagens", mensagens);
+			session.setAttribute("mensagem", mensagem);
+
+
+		}
+		else{
+			url = "admin/mensagens.jsp";
+		}
+
+		try{
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+			dispatcher.forward(request, response);
+
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 
 	}
 }

@@ -73,14 +73,4 @@
   </welcome-file-list>
 
 
-   <filter>  
-       <filter-name>TesteFilter</filter-name>  
-       <filter-class>hotel.TesteFilter</filter-class>  
-   </filter>  
-  
-   <filter-mapping>  
-       <filter-name>TesteFilter</filter-name>  
-       <url-pattern>/admin/*</url-pattern>  
-   </filter-mapping> 
-
 </web-app>

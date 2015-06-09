@@ -11,6 +11,8 @@ public class Mensagem implements java.io.Serializable{
     private String celular;
     private String mensagem;
 
+    private Date dataEnvio;
+
 	private ArrayList conheceu;
 
     private boolean lida;
@@ -20,6 +22,10 @@ public class Mensagem implements java.io.Serializable{
 
     public int getId() {
         return id;
+    }
+
+    public Date getDataEnvio(){
+        return this.dataEnvio;
     }
 
     public String getNome() {
@@ -73,6 +79,10 @@ public class Mensagem implements java.io.Serializable{
 
     public void setLida(boolean lida){
         this.lida = lida;
+    }
+
+    public void setDataEnvio(Date dataEnvio){
+        this.dataEnvio = dataEnvio;
     }
 
 }

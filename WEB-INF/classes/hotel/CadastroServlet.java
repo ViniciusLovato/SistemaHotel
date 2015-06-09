@@ -37,8 +37,12 @@ public class CadastroServlet extends HttpServlet {
 		usuario.setEstado(request.getParameter("estado"));
 		usuario.setCep(request.getParameter("cep"));
 		usuario.setSenha(request.getParameter("senha"));
+		usuario.setDataCadastro(new Date());
 
 		usuarios.add(usuario);
+
+		session.setAttribute("usuarios", usuarios);
+		
 
 		try{
 
@@ -48,7 +52,60 @@ public class CadastroServlet extends HttpServlet {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
 
+	public void doGet (HttpServletRequest request, HttpServletResponse response){
+		
+		/* se nao existe lista de usuarios na sessao, entao criar uma */				
+		HttpSession session = request.getSession();
+		if(session.getAttribute("usuarios") == null) {			
+			session.setAttribute("usuarios",Dados.iniciaUsuarios());
+		}
+
+		ArrayList usuarios = (ArrayList) session.getAttribute("usuarios");
+
+
+		String detalhe = (String) request.getParameter("detalhe");
+		if(detalhe != null){
+			System.out.println("User not null");
+			
+			int indice = (int) Integer.parseInt(detalhe);
+			Usuario usuarioDetalhado = (Usuario) usuarios.get(indice);
+
+			session.setAttribute("usuarioDetalhado", usuarioDetalhado);
+
+			try{
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/usuarioDetalhe.jsp");
+				dispatcher.forward(request, response);
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}		
+
+		}
+		else {
+
+			/* */
+			for(int i = usuarios.size() - 1; i >= 0; i--){
+				String selected = (String) request.getParameter("checkbox" + i);
+				System.out.println(i + " " +  selected + " -> selected\n");
+
+				if(selected !=null && selected.equals("on")){
+					usuarios.remove(i);
+				}
+				session.setAttribute("usuarios", usuarios);
+			}
+
+			try{
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/usuarios.jsp");
+				dispatcher.forward(request, response);
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}	
+		}
 
 	}
 }

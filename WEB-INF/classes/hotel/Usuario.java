@@ -20,6 +20,8 @@ public class Usuario {
 
 	private String senha;
 
+    private Date dataCadastro;
+
     /* Array de datas, onde cada elemento representa uma data/hora em que 
         uma tentativa falha de acesso ao sistema, através deste usuário, 
         foi realizada.
@@ -31,6 +33,7 @@ public class Usuario {
         return this.tentativasAcesso;
     }
 
+
     public void setTentativasAcesso(ArrayList<Date> tentativas){
         this.tentativasAcesso = tentativas;
     }
@@ -39,6 +42,10 @@ public class Usuario {
 	public Usuario(){
 	}
 
+    public Date getDataCadastro(){
+        return this.dataCadastro;
+
+    }
     public int getId() {
         return id;
     }
@@ -135,5 +142,8 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public void setDataCadastro(Date dataCadastro){
+        this.dataCadastro = dataCadastro;
+    }
 
 }
