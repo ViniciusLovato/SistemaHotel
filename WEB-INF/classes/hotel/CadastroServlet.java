@@ -38,6 +38,7 @@ public class CadastroServlet extends HttpServlet {
 		usuario.setCep(request.getParameter("cep"));
 		usuario.setSenha(request.getParameter("senha"));
 		usuario.setDataCadastro(new Date());
+		usuario.setTentativasAcesso(new ArrayList<Date>());
 
 		usuarios.add(usuario);
 

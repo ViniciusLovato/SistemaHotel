@@ -17,6 +17,10 @@ public class LoginServlet extends HttpServlet {
 			// Login out
 			if(request.getParameter("exit") != null && request.getParameter("exit").equals("true")){
 				// request.getSession().invalidate();
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("usuarioLogado",false);
+				session.removeAttribute("usuario");
 
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
