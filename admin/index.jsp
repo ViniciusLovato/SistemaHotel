@@ -51,7 +51,7 @@
 				<tr>
 				    <td>Usuarios</td>
 				    <td><a href="">Add</a></td>
-				    <td><a href="/SistemaHotel/admin/usuarios.jsp">Listar</a></td>
+				    <td><a href="/SistemaHotel/cadastro?nameFilter=">Listar</a></td>
 				</tr>
 				
 				<tr>

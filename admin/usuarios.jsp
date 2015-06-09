@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <jsp:useBean id="usuarios" class="java.util.ArrayList" scope="session"/>
+    <jsp:useBean id="usuariosFiltrados" class="java.util.ArrayList" scope="session"/>
 	
 	<header>
 		<ul>
@@ -30,11 +30,18 @@
 		
 		<h2>Bem vindo ${usuario.nome}</h2>
 		<h3>Lista de Usuarios</h3>
-		<h3><a href="/SistemaHotel/admin/index.jsp">Voltar ao inicio</a></h33>
+		<h3><a href="/SistemaHotel/admin/index.jsp">Voltar ao inicio</a></h3>
 
-		<form action=""></form>
+		<form action="/SistemaHotel/cadastro" method="GET">
+			
+			<label for="name">Nome:</label>
+			<input type="text" name="nameFilter">
 
+			<input type="submit" value="Filtrar">	
+			<button onclick="location.href = '/SistemaHotel/cadastro?nameFilter=all'">Resetar Filtro</button>
+		</form>
 
+		<p>Filtrando por nome: ${filtro}</p>
 		<form action="/SistemaHotel/cadastro" method="GET">
 			<div class="tableDiv">
 
@@ -47,11 +54,11 @@
 					    <th>Remover</th>
 					</tr>
 
-		            <c:forEach items="${usuarios}" var="user" varStatus="status">
+		            <c:forEach items="${usuariosFiltrados}" var="userF" varStatus="status">
 		            	<tr>
-		            		<td>${user.dataCadastro}</td>
-			            	<td>${user.nome}</td>
-			                <td>${user.email} </td> 
+		            		<td>${userF.dataCadastro}</td>
+			            	<td>${userF.nome}</td>
+			                <td>${userF.email} </td> 
 					    	<td><a href="/SistemaHotel/cadastro?detalhe=${status.index}">Detalhes</a></td>
 		            		<td><input type="checkbox" name="checkbox${status.index}"></td>
 		            	</tr>

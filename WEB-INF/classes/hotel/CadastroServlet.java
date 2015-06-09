@@ -5,6 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*; 
 import java.util.*; 
 import java.lang.Integer;
+import java.lang.String.*;
 import static java.util.concurrent.TimeUnit.*;
 
 
@@ -13,7 +14,6 @@ public class CadastroServlet extends HttpServlet {
 
 	public void doPost (HttpServletRequest request, HttpServletResponse response){
 	
-		
 		String url = "login/index.html";
 
 		/* se nao existe lista de usuarios na sessao, entao criar uma */				
@@ -62,10 +62,12 @@ public class CadastroServlet extends HttpServlet {
 			session.setAttribute("usuarios",Dados.iniciaUsuarios());
 		}
 
-		ArrayList usuarios = (ArrayList) session.getAttribute("usuarios");
-
+		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) session.getAttribute("usuarios");
 
 		String detalhe = (String) request.getParameter("detalhe");
+		String filtro = (String) request.getParameter("nameFilter");
+
+		// See the selected user details
 		if(detalhe != null){
 			System.out.println("User not null");
 			
@@ -84,6 +86,50 @@ public class CadastroServlet extends HttpServlet {
 			}		
 
 		}
+
+		// If the admin wants to see users using some filter
+		else if(filtro != null){
+
+			// Filtered array list that contains the required users
+			ArrayList<Usuario> usuariosFiltrados = new ArrayList<Usuario>();
+
+			// If no filter is requried
+			if(filtro.equals("")){
+
+				
+				for(int i = 0; i < usuarios.size(); i++){
+					usuariosFiltrados.add(usuarios.get(i));
+				}
+				session.setAttribute("usuariosFiltrados", usuariosFiltrados);
+			}
+
+			// If we are using a name as a filter
+			else {
+
+				System.out.println(filtro);
+
+				for(int i = 0; i < usuarios.size(); i++){
+					if(usuarios.get(i).getNome().contains(filtro)){
+						usuariosFiltrados.add(usuarios.get(i));
+						System.out.println(usuarios.get(i).getNome());
+					}
+				}
+
+				session.setAttribute("filtro", filtro);
+				session.setAttribute("usuariosFiltrados", usuariosFiltrados);
+			}
+
+			try{
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/usuarios.jsp");
+				dispatcher.forward(request, response);
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}	
+		}
+
+		// Removing selected users
 		else {
 
 			/* */

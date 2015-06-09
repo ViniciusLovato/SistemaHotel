@@ -10,7 +10,6 @@
 </head>
 <body>
 
-    <jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
     <jsp:useBean id="mensagens" class="java.util.ArrayList" scope="session"/>
 
 	

@@ -8,7 +8,6 @@ import java.lang.Integer;
 import static java.util.concurrent.TimeUnit.*;
 
 
-
 public class LoginServlet extends HttpServlet {
 
 	public void doGet (HttpServletRequest request, HttpServletResponse response){

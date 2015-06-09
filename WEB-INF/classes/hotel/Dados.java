@@ -10,7 +10,7 @@ public class Dados {
 
 	public static ArrayList iniciaUsuarios(){
 
-		ArrayList usuarios = new ArrayList();
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
 		Usuario u = new Usuario();
 		u.setEmail("admin@admin.com");

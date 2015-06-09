@@ -20,7 +20,7 @@ public class Usuario {
 
 	private String senha;
 
-    private Date dataCadastro;
+    private Date data_cadastro;
 
     /* Array de datas, onde cada elemento representa uma data/hora em que 
         uma tentativa falha de acesso ao sistema, através deste usuário, 
@@ -43,7 +43,7 @@ public class Usuario {
 	}
 
     public Date getDataCadastro(){
-        return this.dataCadastro;
+        return this.data_cadastro;
 
     }
     public int getId() {
@@ -142,8 +142,8 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public void setDataCadastro(Date dataCadastro){
-        this.dataCadastro = dataCadastro;
+    public void setDataCadastro(Date data_cadastro){
+        this.data_cadastro = data_cadastro;
     }
 
 }
