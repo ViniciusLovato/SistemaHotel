@@ -38,31 +38,26 @@
 			<table>
 				<tr>
 				    <th>Dados</th>
-				    <th>Adicionar</th>
 				    <th>Editar</th>
 				</tr>
 
 				<tr>
 				    <td>Admin</td>
-				    <td></td>
 				    <td><a href="">Editar</a></td>
 				</tr>
 
 				<tr>
 				    <td>Usuarios</td>
-				    <td><a href="">Add</a></td>
 				    <td><a href="/SistemaHotel/cadastro?nameFilter=">Listar</a></td>
 				</tr>
 				
 				<tr>
 				    <td>Reservas</td>
-				    <td><a href="">Add</a></td>
 				    <td><a href="/SistemaHotel/admin/reservas.jsp">Listar</a></td>
 				</tr>
 
 				<tr>
 				    <td>Mensagens</td>
-				    <td><a href="">Add</a></td>
 				    <td><a href="/SistemaHotel/admin/mensagens.jsp">Listar</a></td>
 				</tr>
 			</table>		
