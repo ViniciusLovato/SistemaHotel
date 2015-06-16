@@ -9,6 +9,7 @@
 
     <script src="jquery/jquery-2.1.3.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/expire.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -48,6 +49,7 @@
                             <a class="aReg" href="/SistemaHotel/login?exit=false">Entrar</a>
                         </c:when>
                         <c:otherwise>
+                            <input type="hidden" value="true" id="autenticado"/>
                             <a class="aReg" href="/SistemaHotel/login?exit=true">Sair</a>
                         </c:otherwise>
                     </c:choose>
@@ -60,6 +62,8 @@
 
     <section>
             Ola ${usuario.nome} <br/>
+            Tempo: <span id="timer"></span> <br/>
+
     </section>
 
     <section class="intro">
