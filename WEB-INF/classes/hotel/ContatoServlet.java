@@ -44,6 +44,7 @@ public class ContatoServlet extends HttpServlet {
 		mensagens.add(mensagem);
 
 		// coloca o arraylist de mensagens com a nova mensagem na sessao
+		Collections.sort(mensagens);
 		session.setAttribute("mensagens", mensagens);
 
 		try{
@@ -84,8 +85,22 @@ public class ContatoServlet extends HttpServlet {
 
 
 		}
-		else{
-			url = "admin/mensagens.jsp";
+
+		else {
+
+			/* */
+			for(int i = mensagens.size() - 1; i >= 0; i--){
+				String selected = (String) request.getParameter("checkbox" + i);
+				System.out.println(i + " " +  selected + " -> selected\n");
+
+				if(selected !=null && selected.equals("on")){
+					mensagens.remove(i);
+				}
+			}
+
+			session.setAttribute("mensagens", mensagens);
+			url = "/admin/mensagens.jsp";
+
 		}
 
 		try{

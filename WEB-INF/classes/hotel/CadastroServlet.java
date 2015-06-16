@@ -64,6 +64,8 @@ public class CadastroServlet extends HttpServlet {
 		}
 
 		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) session.getAttribute("usuarios");
+		ArrayList<Usuario> usuariosFiltrados = (ArrayList<Usuario>) session.getAttribute("usuariosFiltrados");
+
 
 		String detalhe = (String) request.getParameter("detalhe");
 		String filtro = (String) request.getParameter("nameFilter");
@@ -71,9 +73,11 @@ public class CadastroServlet extends HttpServlet {
 		// See the selected user details
 		if(detalhe != null){
 			System.out.println("User not null");
-			
+
 			int indice = (int) Integer.parseInt(detalhe);
-			Usuario usuarioDetalhado = (Usuario) usuarios.get(indice);
+			System.out.println("Nome usuario detalhes filtrado " + usuariosFiltrados.get(indice));
+
+			Usuario usuarioDetalhado = (Usuario) usuariosFiltrados.get(indice);
 
 			session.setAttribute("usuarioDetalhado", usuarioDetalhado);
 
@@ -92,7 +96,7 @@ public class CadastroServlet extends HttpServlet {
 		else if(filtro != null){
 
 			// Filtered array list that contains the required users
-			ArrayList<Usuario> usuariosFiltrados = new ArrayList<Usuario>();
+			usuariosFiltrados = new ArrayList<Usuario>();
 
 			// If no filter is requried
 			if(filtro.equals("")){
