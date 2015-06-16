@@ -6,7 +6,7 @@ public class Hotel {
    
     private int numeroQuartos;
 
-    public Reserva(){
+    public Hotel(){
     }
 
     public void setNumeroQuartos(int numeroQuartos){
