@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import java.util.*; 
 import java.lang.Integer;
 
-public class ReservaServlet extends HttpServlet {
+public class ConsultaReservaServlet extends HttpServlet {
 
 	private void iniciaDados(HttpSession session){
 		if(session.getAttribute("reservas") == null) {			
@@ -23,8 +23,12 @@ public class ReservaServlet extends HttpServlet {
 		iniciaDados(session);
 
 
-		/* Mostra a pagina de nova reserva com os dias disponvíveis. */
-		reservas = session.getAttribute("reservas")
+		/* Retorna a página com as reservas - com paginação */
+		if(request.getParameter("rid") != null && request.getParameter("json").equals("true") request.getParameter("rid") != null && request.getParameter("json").equals("true")){
+
+
+		}
+		/* De acordo com os parametroes mostra cada página. */
 
 	}
 
