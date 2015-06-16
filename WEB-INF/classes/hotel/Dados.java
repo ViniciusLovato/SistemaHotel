@@ -25,4 +25,15 @@ public class Dados {
 		return usuarios;
 
 	}
-}
+
+	public static Hotel iniciaHotel(){
+		Hotel = new Hotel();
+		hotel.setNumeroQuartos(5);
+	}
+
+	public static ArrayList iniciaReservas(){
+
+		ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+		return reservas;
+
+	}
