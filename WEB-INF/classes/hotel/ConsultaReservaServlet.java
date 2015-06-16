@@ -50,6 +50,7 @@ public class ConsultaReservaServlet extends HttpServlet {
 					reservasFiltradas.add(reservas.get(i));
 				}
 				session.setAttribute("reservasFiltradas", reservasFiltradas);
+				session.setAttribute("filtro_r", "");
 			}
 
 			// If we are using a name as a filter
