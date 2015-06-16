@@ -4,6 +4,7 @@ import java.io.*;
 import javax.servlet.*;  
 import javax.servlet.http.*; 
 import java.util.*; 
+import java.text.*;
 import java.lang.Integer;
 
 public class ReservaServlet extends HttpServlet {
@@ -22,17 +23,18 @@ public class ReservaServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		iniciaDados(session);
 
+		try{
 
 		/* Mostra a pagina de nova reserva com os dias disponvíveis. */
 
-		ArrayList<Reserva>reservas = session.getAttribute("reservas");
-		Hotel hotel = session.getAttribute("hotel");
+		ArrayList<Reserva> reservas = (ArrayList<Reserva>) session.getAttribute("reservas");
+		Hotel hotel = (Hotel) session.getAttribute("hotel");
 
 		ArrayList<String> diasOcupados = new ArrayList<String>(); 
 
-		hoje = new Date();
-		max = obtemUltimaDataReserva(reservas);
-		numQuartos = hotel.getNumeroQuartos();
+		Date hoje = new Date();
+		Date max = obtemUltimaDataReserva(reservas);
+		int numQuartos = hotel.getNumeroQuartos();
 
 
 
@@ -59,7 +61,6 @@ public class ReservaServlet extends HttpServlet {
 	    /* Insere a lista com dias ocupados na sessão*/
 	    session.setAttribute("diasOcupados",diasOcupados);
 
-		try{
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/index.jsp");
 			dispatcher.forward(request, response);
 
@@ -74,7 +75,9 @@ public class ReservaServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		iniciaDados(session);
 
-		ArrayList<Reserva>reservas = session.getAttribute("reservas");
+		try{
+
+		ArrayList<Reserva> reservas = (ArrayList<Reserva>) session.getAttribute("reservas");
 
 		/* Salva uma nova reserva */
 		Reserva reserva = new Reserva();
@@ -87,15 +90,14 @@ public class ReservaServlet extends HttpServlet {
 		reserva.setCheckout(format.parse(request.getParameter("dataSaida")));
 
 		//Obtem os outros parametros da reserva
-		reserva.setNumeroAdultos(request.getParameter("adultos"));
-		reserva.setNumeroBebes(request.getParameter("criancasAte3"));
-		reserva.setNumeroCriancas(request.getParameter("criancasAte12"));
+		reserva.setNumeroAdultos(Integer.parseInt(request.getParameter("adultos")));
+		reserva.setNumeroBebes(Integer.parseInt(request.getParameter("criancasAte3")));
+		reserva.setNumeroCriancas(Integer.parseInt(request.getParameter("criancasAte12")));
 
 		//Savla a reserva
 		reservas.add(reserva);
 
-		try{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/confirma.jsp" + url);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/confirma.jsp");
 			dispatcher.forward(request, response);
 
 		}catch(Exception e){
@@ -111,7 +113,7 @@ public class ReservaServlet extends HttpServlet {
 		Date max = new Date();
 
 		for(Reserva reserva : reservas){
-			if(reserva.getCheckout().compareTo(max)){
+			if(reserva.getCheckout().after(max)){
 				max = reserva.getCheckin();
 			}
 		}
@@ -136,9 +138,9 @@ public class ReservaServlet extends HttpServlet {
 		return numReservas;
 	}
 
-	private String stringFromDate(date dia){
+	private String stringFromDate(Date dia){
 
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-		return df.format(today);
+		return df.format(dia);
 	}
 }
