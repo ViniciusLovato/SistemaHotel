@@ -39,9 +39,7 @@ function timerIncrement() {
             }
         }else if (idleTime === 20) { // 60 minutes - logout
 
-            $.get('/SistemaHotel/login?exit=true');
-
-            window.location.reload();
+            window.location.href = "/SistemaHotel/login?exit=true";
         }
     }
 
