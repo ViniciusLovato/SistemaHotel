@@ -27,8 +27,10 @@ public class Dados {
 	}
 
 	public static Hotel iniciaHotel(){
-		Hotel = new Hotel();
+		Hotel hotel = new Hotel();
 		hotel.setNumeroQuartos(5);
+
+		return hotel;
 	}
 
 	public static ArrayList iniciaReservas(){
@@ -37,3 +39,4 @@ public class Dados {
 		return reservas;
 
 	}
+}

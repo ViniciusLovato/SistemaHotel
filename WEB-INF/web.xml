@@ -60,6 +60,17 @@
   </servlet-mapping>
 
 
+   <servlet>
+    <servlet-name>ConsultaReservaServlet</servlet-name>
+    <servlet-class>hotel.ConsultaReservaServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ConsultaReservaServlet</servlet-name>
+    <url-pattern>/consulta</url-pattern>
+  </servlet-mapping>
+
+
   <jsp-config>
     <jsp-property-group>
         <url-pattern>*.jsp</url-pattern>

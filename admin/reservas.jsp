@@ -6,16 +6,12 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 
-	<link rel="stylesheet" href="../css/admin.css">
+	<link rel="stylesheet" href="/SistemaHotel/css/admin.css">
 </head>
 <body>
 
-    <jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
     <jsp:useBean id="reservas" class="java.util.ArrayList" scope="session"/>
 
-    <jsp:useBean id="mensagens" class="java.util.ArrayList" scope="session"/>
-
-	
 	<header>
 		<ul>
 			<li>
@@ -36,28 +32,46 @@
 		<h3>Lista de Reservas</h3>
 		<h3><a href="/SistemaHotel/admin/index.jsp">Voltar ao inicio</a></h3>
 
-		<div class="tableDiv">
 
-			<table>
+		<form action="/SistemaHotel/consulta" method="GET">
+			
+			<label for="name">Nome:</label>
+			<input type="text" name="nameFilter">
+
+			<input type="submit" value="Filtrar">	
+			<button onclick="location.href = '/SistemaHotel/consulta?nameFilter=all'">Resetar Filtro</button>
+		</form>
+
+		<p>Filtrando por nome: ${filtro}</p>
+		<form action="/SistemaHotel/consulta" method="GET">
+			<div class="tableDiv">
+
+				<table>
 				<tr>
+					<th>Autor da Reserva</th>
 				    <th>Data de Checkin</th>
 				    <th>Data de Checkout</th>
-				    <th>Editar</th>
+				    <th>Detalhes</th>
 				    <th>Remover</th>
 				</tr>
 
-				
 	            <c:forEach items="${reservas}" var="reserva">
 	            	<tr>
+	            		<td></td>
 		            	<td>${reserva.checkin}</td>
 		                <td>${reserva.checkout} </td> 
-				    	<td><a href="">Editar</a></td>
+				    	<td><a href="">Detalhes</a></td>
 				    	<td><a href="">Remover</a></td>
 	            	</tr>
-
            		</c:forEach>
-			</table>		
-		</div>
+				</table>		
+			</div>
+	   		
+	   		<input type="submit" value="Remover selecionados">			
+		</form>
+
+
+	
 	</section>
 
 	<aside></aside>

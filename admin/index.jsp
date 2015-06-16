@@ -51,7 +51,7 @@
 				
 				<tr>
 				    <td>Reservas</td>
-				    <td><a href="/SistemaHotel/admin/reservas.jsp">Listar</a></td>
+				    <td><a href="/SistemaHotel/consulta?nameFilter=">Listar</a></td>
 				</tr>
 
 				<tr>

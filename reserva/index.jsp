@@ -31,6 +31,9 @@
                 <li><a href="../reserva/index.html">Reservas</a>
 
                 </li>
+                <li><a href="/SistemaHotel/reserva/consulta?rid=1">Reservas</a>
+
+                </li>
                 <li><a href="../contato/index.html">Contato</a>
                 </li>
 

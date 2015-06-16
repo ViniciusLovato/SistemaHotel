@@ -24,7 +24,7 @@ public class ReservaServlet extends HttpServlet {
 
 
 		/* Mostra a pagina de nova reserva com os dias disponvíveis. */
-		reservas = session.getAttribute("reservas")
+		// reservas = session.getAttribute("reservas");
 
 	}
 

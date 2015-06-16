@@ -1,5 +1,6 @@
 window.onload = function () {
 
+
     $("#dataEntradaInput").datepicker();
     $("#dataSaidaInput").datepicker({ changeYear: true});
 
