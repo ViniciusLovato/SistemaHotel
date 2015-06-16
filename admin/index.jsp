@@ -13,7 +13,6 @@
     <jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
     <jsp:useBean id="mensagens" class="java.util.ArrayList" scope="session"/>
 
-	
 	<header>
 		<ul>
 			<li>
@@ -26,7 +25,6 @@
 			</li>
 		</ul>
 	</header>
-
 
 	<section>
 		

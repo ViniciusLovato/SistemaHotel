@@ -1,5 +1,9 @@
 window.onload = function () {
 
+    $("#dataEntradaInput").datepicker();
+    $("#dataSaidaInput").datepicker({ changeYear: true});
+
+
     // Login function validation
     $("#loginForm").submit(function (event) {
         var valid = true;
