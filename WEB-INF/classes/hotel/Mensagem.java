@@ -2,7 +2,7 @@ package hotel;
 
 import java.util.*; 
 
-public class Mensagem implements java.io.Serializable{
+public class Mensagem implements Comparable<Mensagem>{
    
 	private int id;
 
@@ -83,6 +83,10 @@ public class Mensagem implements java.io.Serializable{
 
     public void setDataEnvio(Date dataEnvio){
         this.dataEnvio = dataEnvio;
+    }
+
+    public int compareTo(Mensagem mensagem){
+        return -this.dataEnvio.compareTo(mensagem.dataEnvio);
     }
 
 }
