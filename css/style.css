@@ -18,6 +18,10 @@ nav.mainNav{
 	margin-top: -5px;
 }
 
+.hotel_center{
+	text-align: center !important;
+}
+
 .cover {    
     overflow: hidden;
 }
