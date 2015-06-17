@@ -1,14 +1,4 @@
-window.onload = function () {
-
-
-    $("#dataEntradaInput").datepicker({ 
-        dateFormat: 'dd/mm/yyyy' 
-    });
-    $("#dataSaidaInput").datepicker({ 
-        dateFormat: 'dd/mm/yyyy' ,
-        changeYear: true
-    });
-
+$(document).ready(function () {
 
     // Login function validation
     $("#loginForm").submit(function (event) {
@@ -343,7 +333,7 @@ window.onload = function () {
         errorOn("#confirmPasswordInput", "Você deve digitar a senha novamente.");
     });
 
-};
+});
 
 function validateIndication() {
     var valid = false;

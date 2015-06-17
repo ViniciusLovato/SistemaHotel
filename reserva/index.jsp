@@ -12,10 +12,38 @@
     <script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
     <script src="/SistemaHotel/jquery-ui/jquery-ui.min.js"></script>
 
+    <jsp:useBean id="diasOcupados" class="java.util.ArrayList" scope="session"/>
+
+    <script type="text/javascript">
+    var diasOcupados = [
+    <c:forEach items="${diasOcupados}" var="diaOcupado">
+        "${diaOcupado}",
+    </c:forEach>
+    ];
+    </script>
+
     <script src="/SistemaHotel/js/script.js"></script>
+    <script src="/SistemaHotel/js/reserva.js"></script>
 
     <link rel="stylesheet" href="/SistemaHotel/css/style.css">
     <link rel="stylesheet" href="/SistemaHotel/css/register.css">
+
+    <style type="text/css">
+
+    .dia_invalido{
+        opacity: 1 !important;
+        filter: Alpha(Opacity=100) !important;
+    }
+
+    .dia_invalido span{
+        color: white !important;
+        background-color: red !important;
+    }
+
+    .dia_valido a{
+        color: white !important;
+        background-color: green !important;
+    }    </style>
 
     <link rel="stylesheet" href="/SistemaHotel/jquery-ui/jquery-ui.theme.min.css">
 
@@ -28,7 +56,7 @@
 
 
         <section class="cover">
-            <img src="../static/cover.png" alt="cover">
+            <img src="/SistemaHotel/static/cover.png" alt="cover">
         </section>
 
         <nav class="mainNav">
@@ -72,6 +100,9 @@
         <div class="content">
 
         <h1>Nova Reserva</h1>
+
+        <h4>Log:</h4>
+        <p>${log}</p>
 
         <form id="reservationForm" class="mainForm" action="/SistemaHotel/reserva" method="POST">
 

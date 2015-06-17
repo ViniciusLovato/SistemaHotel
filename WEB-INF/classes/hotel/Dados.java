@@ -28,7 +28,7 @@ public class Dados {
 
 	public static Hotel iniciaHotel(){
 		Hotel hotel = new Hotel();
-		hotel.setNumeroQuartos(5);
+		hotel.setNumeroQuartos(1);
 
 		return hotel;
 	}
