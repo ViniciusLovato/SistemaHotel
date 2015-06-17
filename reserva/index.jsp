@@ -1,3 +1,6 @@
+<%@page language="java" contentType="text/html"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,15 +8,24 @@
     <meta charset="UTF-8">
     <title>Reserva</title>
 
-    <script src="../jquery/jquery-2.1.3.min.js"></script>
-    <script src="../js/script.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/register.css">
+    <link rel="stylesheet" href="/SistemaHotel/jquery-ui/jquery-ui.min.css">
+    <script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
+    <script src="/SistemaHotel/jquery-ui/jquery-ui.min.js"></script>
+
+    <script src="/SistemaHotel/js/script.js"></script>
+
+    <link rel="stylesheet" href="/SistemaHotel/css/style.css">
+    <link rel="stylesheet" href="/SistemaHotel/css/register.css">
+
+    <link rel="stylesheet" href="/SistemaHotel/jquery-ui/jquery-ui.theme.min.css">
 
 </head>
 
 <body>
     <header>
+
+        <jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
+
 
         <section class="cover">
             <img src="../static/cover.png" alt="cover">
@@ -22,28 +34,34 @@
         <nav class="mainNav">
             <ul class="menu">
 
-                <li><a href="../index.jsp">O Hotel</a>
+                <li><a href="/SistemaHotel/index.jsp">O Hotel</a>
 
                 </li>
-                <li><a href="../suites/index.html">Suítes</a>
+                <li><a href="/SistemaHotel/suites/index.jsp">Suítes</a>
 
                 </li>
-                <li><a href="../reserva/index.html">Reservas</a>
-
+                <li>    
+                    <c:choose>
+                        <c:when test="${not empty usuario.nome}">
+                                <a href="reserva/index.jsp">Reservas</a>                               
+                        </c:when>
+                    </c:choose>               
                 </li>
-                <li><a href="/SistemaHotel/reserva/consulta?rid=1">Reservas</a>
-
-                </li>
-                <li><a href="../contato/index.html">Contato</a>
+                <li><a href="/SistemaHotel/contato/index.jsp">Contato</a>
                 </li>
 
                 <div id="formDiv">
-                    <form id="loginForm" action="" method="POST">
+                    <c:choose>
+                        <c:when test="${empty usuario.nome}">
+                            <a class="aReg" href="/SistemaHotel/login?exit=false">Entrar</a>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="hidden" value="true" id="autenticado"/>
+                            <a class="aReg" href="/SistemaHotel/login?exit=true">Sair</a>
+                        </c:otherwise>
+                    </c:choose>
 
-                        <a class="aReg" href="../login/index.html">Entrar</a>
-                        <a class="aReg" href="../cadastro/index.html">Registrar</a>
-
-                    </form>
+                    <a class="aReg" href="/SistemaHotel/cadastro/index.jsp">Registrar</a>
                 </div>
 
             </ul>

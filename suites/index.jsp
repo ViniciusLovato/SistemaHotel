@@ -6,26 +6,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Reserva</title>
+    <title>Hotel</title>
 
-    <link rel="stylesheet" href="/SistemaHotel/jquery-ui/jquery-ui.min.css">
     <script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
-    <script src="/SistemaHotel/jquery-ui/jquery-ui.min.js"></script>
-
-    <script src="/SistemaHotel/js/script.js"></script>
-
-    <link rel="stylesheet" href="/SistemaHotel/css/style.css">
-    <link rel="stylesheet" href="/SistemaHotel/css/register.css">
-
-    <link rel="stylesheet" href="/SistemaHotel/jquery-ui/jquery-ui.theme.min.css">
+    <script src="SistemaHotel/js/script.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
 <body>
     <header>
-
-        <jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
-
 
         <section class="cover">
             <img src="../static/cover.png" alt="cover">
@@ -40,7 +30,7 @@
                 <li><a href="/SistemaHotel/suites/index.jsp">Suítes</a>
 
                 </li>
-                <li>    
+                 <li>    
                     <c:choose>
                         <c:when test="${not empty usuario.nome}">
                                 <a href="reserva/index.jsp">Reservas</a>                               
@@ -68,22 +58,36 @@
         </nav>
     </header>
 
-   <section>
+    <section class="intro">
         <div class="content">
- 
-            <form action="/SistemaHotel/hotel/ConsultaReservaServlet" method="GET">
-                    <input id="dataEntradaInput" type="text" placeholder="DD/MM/AAAA" name="dataEntrada" >
-                    <input id="dataSaidaInput" type="text" placeholder="DD/MM/AAAA" name="dataSaida" >
 
-                    <input type="submit" value="buscar">
-            </form>
-            
+            <h1>Suítes</h1>
+
+            <div class="column">
+                <img src="../static/suite1.jpg" width="400px" alt="">
+                <br>
+                <img src="../static/suite2.jpg" width="400px" alt="">
+                <br>
+                <img src="../static/suite3.jpg" width="400px" alt="">
+            </div>
+
+            <div class="column">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum alias consectetur animi. Ad soluta rerum repellendus alias repellat obcaecati, molestias fuga asperiores ex dolorem corporis dolore non. At similique nihil, magni impedit sed sapiente est accusamus corporis assumenda, incidunt vero.</p>
+                
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio culpa, minima delectus facere eos, deserunt aperiam sapiente iure nobis officia.</p>
+                
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus deserunt iusto aspernatur quibusdam soluta rerum eaque corporis, nihil adipisci! Aperiam praesentium molestias placeat non quisquam similique vel ullam numquam dignissimos?</p>
+                
+                <p>Lorem ipsum dolor sit amet!!.</p>
+            </div>
         </div>
-   </section>
+
+
+    </section>
 
     <footer class="footer">
         <p class="text-center">Desenvolvido por Paulo Moreno e Vinicius Lovato</p>
-        <p class="text-center"> Logo <a href="https://thenounproject.com/term/palm-tree/23337/">Palm-tree</a> created by Paul Stevens under the license <a href="
+        <p class="text-center"> Logo <a href="https://thenounproject.com/term/palm-tree/23337/">Palm-tree</a> created by Paul Stevensunder the license <a href="
 http://creativecommons.org/licenses/by/3.0/legalcode">Creative Common (CC BY 3.0)</a>  and modified by Paulo Moreno </p>
     </footer>
 

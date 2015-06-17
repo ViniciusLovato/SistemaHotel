@@ -31,17 +31,17 @@
                     <a href="index.jsp">O Hotel</a>
                 </li>
                 <li>
-                    <a href="suites/index.html">Suítes</a>
+                    <a href="suites/index.jsp">Suítes</a>
                 </li>
                 <li>    
                     <c:choose>
                         <c:when test="${not empty usuario.nome}">
-                                <a href="reserva/index.html">Reservas</a>                               
+                                <a href="reserva/index.jsp">Reservas</a>                               
                         </c:when>
                     </c:choose>               
                 </li>
                 <li>
-                    <a href="contato/index.html">Contato</a>
+                    <a href="contato/index.jsp">Contato</a>
                 </li>
                 <div id="formDiv">
                     <c:choose>
@@ -54,7 +54,7 @@
                         </c:otherwise>
                     </c:choose>
 
-                    <a class="aReg" href="cadastro/index.html">Registrar</a>
+                    <a class="aReg" href="/SistemaHotel/cadastro/index.jsp">Registrar</a>
                 </div>
             </ul>
         </nav>

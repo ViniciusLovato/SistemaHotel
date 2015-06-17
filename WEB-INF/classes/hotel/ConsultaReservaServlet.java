@@ -31,7 +31,7 @@ public class ConsultaReservaServlet extends HttpServlet {
 
 		/* Retorna a página com as reservas - com paginação */
 		if(request.getParameter("rid") != null){
-			int rid = Integer.parseInt(request.getParameter("rid"));
+			int rid = Integer.parseInt(request.getParameter("rid")); 
 			Reserva reserva = reservas.get(rid);
 
 			session.setAttribute("reserva", reserva);
