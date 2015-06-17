@@ -1,8 +1,13 @@
 window.onload = function () {
 
 
-    $("#dataEntradaInput").datepicker();
-    $("#dataSaidaInput").datepicker({ changeYear: true});
+    $("#dataEntradaInput").datepicker({ 
+        dateFormat: 'dd/mm/yyyy' 
+    });
+    $("#dataSaidaInput").datepicker({ 
+        dateFormat: 'dd/mm/yyyy' ,
+        changeYear: true
+    });
 
 
     // Login function validation
