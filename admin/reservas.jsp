@@ -51,17 +51,15 @@
 					<th>Autor da Reserva</th>
 				    <th>Data de Checkin</th>
 				    <th>Data de Checkout</th>
-				    <th>Detalhes</th>
 				    <th>Remover</th>
 				</tr>
 
-	            <c:forEach items="${reservasFiltradas}" var="reservas">
+	            <c:forEach items="${reservasFiltradas}" var="reserva" varStatus="status">
 	            	<tr>
 	            		<td>${reserva.nome}</td>
 		            	<td>${reserva.checkin}</td>
 		                <td>${reserva.checkout} </td> 
-				    	<td><a href="">Detalhes</a></td>
-				    	<td><a href="">Remover</a></td>
+	            		<td><input type="checkbox" name="checkbox${status.index}"></td>
 	            	</tr>
            		</c:forEach>
 				</table>		
