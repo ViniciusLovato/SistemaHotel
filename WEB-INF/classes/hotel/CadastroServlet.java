@@ -14,7 +14,7 @@ public class CadastroServlet extends HttpServlet {
 
 	public void doPost (HttpServletRequest request, HttpServletResponse response){
 	
-		String url = "login/index.html";
+		String url = "login/index.jsp";
 
 		/* se nao existe lista de usuarios na sessao, entao criar uma */				
 		HttpSession session = request.getSession();

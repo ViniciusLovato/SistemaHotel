@@ -73,7 +73,7 @@
 
         <h1>Nova Reserva</h1>
 
-        <form id="reservationForm" class="mainForm" action="" method="POST">
+        <form id="reservationForm" class="mainForm" action="/SistemaHotel/reserva" method="POST">
 
 
             <div class="input_column">
