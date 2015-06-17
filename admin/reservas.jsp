@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <jsp:useBean id="reservas" class="java.util.ArrayList" scope="session"/>
+    <jsp:useBean id="reservasFiltradas" class="java.util.ArrayList" scope="session"/>
 
 	<header>
 		<ul>
@@ -39,10 +39,10 @@
 			<input type="text" name="nameFilter">
 
 			<input type="submit" value="Filtrar">	
-			<button onclick="location.href = '/SistemaHotel/consulta?nameFilter=all'">Resetar Filtro</button>
+			<button onclick="location.href = '/SistemaHotel/consulta?nameFilter='">Resetar Filtro</button>
 		</form>
 
-		<p>Filtrando por nome: ${filtro}</p>
+		<p>Filtrando por nome: ${filtro_r}</p>
 		<form action="/SistemaHotel/consulta" method="GET">
 			<div class="tableDiv">
 
@@ -51,17 +51,15 @@
 					<th>Autor da Reserva</th>
 				    <th>Data de Checkin</th>
 				    <th>Data de Checkout</th>
-				    <th>Detalhes</th>
 				    <th>Remover</th>
 				</tr>
 
-	            <c:forEach items="${reservas}" var="reserva">
+	            <c:forEach items="${reservasFiltradas}" var="reserva" varStatus="status">
 	            	<tr>
-	            		<td></td>
+	            		<td>${reserva.nome}</td>
 		            	<td>${reserva.checkin}</td>
 		                <td>${reserva.checkout} </td> 
-				    	<td><a href="">Detalhes</a></td>
-				    	<td><a href="">Remover</a></td>
+	            		<td><input type="checkbox" name="checkbox${status.index}"></td>
 	            	</tr>
            		</c:forEach>
 				</table>		

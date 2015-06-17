@@ -46,8 +46,10 @@ public class ConsultaReservaServlet extends HttpServlet {
 			if(filtro.equals("")){
 
 				
+
 				for(int i = 0; i < reservas.size(); i++){
 					reservasFiltradas.add(reservas.get(i));
+					System.out.println(reservasFiltradas.get(i).getNome());
 				}
 				session.setAttribute("reservasFiltradas", reservasFiltradas);
 				session.setAttribute("filtro_r", "");
@@ -66,12 +68,36 @@ public class ConsultaReservaServlet extends HttpServlet {
 				}
 
 				session.setAttribute("filtro_r", filtro);
-				session.setAttribute("reservas", reservasFiltradas);
+				session.setAttribute("reservasFiltradas", reservasFiltradas);
 			}
 
 			try{
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/reservas.jsp");
+				dispatcher.forward(request, response);
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}	
+		}
+
+		// Removing selected users
+		else {
+
+			/* */
+			for(int i = reservas.size() - 1; i >= 0; i--){
+				String selected = (String) request.getParameter("checkbox" + i);
+				System.out.println(i + " " +  selected + " -> selected\n");
+
+				if(selected !=null && selected.equals("on")){
+					reservas.remove(i);
+				}
+				session.setAttribute("reservas", reservas);
+			}
+
+			try{
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
 				dispatcher.forward(request, response);
 
 			}catch(Exception e){

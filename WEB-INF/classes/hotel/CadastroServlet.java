@@ -150,7 +150,7 @@ public class CadastroServlet extends HttpServlet {
 
 			try{
 
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
 				dispatcher.forward(request, response);
 
 			}catch(Exception e){

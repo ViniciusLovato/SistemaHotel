@@ -89,6 +89,10 @@ public class ReservaServlet extends HttpServlet {
 
 		// Obtem as datas de checkin/checkout de acordo com o formato especificado
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
+		Usuario user = (Usuario) session.getAttribute("usuario");
+
+		reserva.setNome(user.getNome());
 		reserva.setCheckin(format.parse(request.getParameter("dataEntrada")));
 		reserva.setCheckout(format.parse(request.getParameter("dataSaida")));
 
