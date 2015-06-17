@@ -101,9 +101,6 @@
 
         <h1>Nova Reserva</h1>
 
-        <h4>Log:</h4>
-        <p>${log}</p>
-
         <form id="reservationForm" class="mainForm" action="/SistemaHotel/reserva" method="POST">
 
 
