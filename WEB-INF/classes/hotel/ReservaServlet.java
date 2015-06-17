@@ -25,8 +25,6 @@ public class ReservaServlet extends HttpServlet {
 
 		try{
 
-			String log = "";
-
 		/* Mostra a pagina de nova reserva com os dias disponvíveis. */
 
 		ArrayList<Reserva> reservas = (ArrayList<Reserva>) session.getAttribute("reservas");
@@ -43,22 +41,16 @@ public class ReservaServlet extends HttpServlet {
 		Calendar calendar = new GregorianCalendar();
 	    calendar.setTime(hoje);
 
-	    log+="Hoje: " + stringFromDate(calendar.getTime()) + "\n";
-	    log+="Max: " + stringFromDate(max) + "\n";
-
 	    // Percorre todos os dias entre hoje e a data máxima
-	    while (calendar.getTime().before(max) || calendar.getTime().equals(max))
+	    while (calendar.getTime().before(max) || stringFromDate(calendar.getTime()).equals(stringFromDate(max)))
 	    {
 	        Date dia = calendar.getTime();
 
-    	    log+="loop: " + stringFromDate(dia) + "\n";
 
 
 	        // Verifica quantidade de reservas nesse dia. Caso seja maior
 	        // que o numero de quartos, este dia é vermelho
 	        if (obtemNumeroReservasNoDia(reservas,dia) >= numQuartos){
-
-	        	log+="IF True: " + obtemNumeroReservasNoDia(reservas,dia) + "\n";
 
 	        	// Insere o dia ocupado no formato dd/mm/aaaa 
 	        	diasOcupados.add(stringFromDate(dia));
@@ -66,11 +58,11 @@ public class ReservaServlet extends HttpServlet {
 
 
 	        calendar.add(Calendar.DATE, 1);
+
 	    }
 
 	    /* Insere a lista com dias ocupados na sessão*/
 	    session.setAttribute("diasOcupados",diasOcupados);
-	    session.setAttribute("log",log);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/index.jsp");
 			dispatcher.forward(request, response);
@@ -129,7 +121,7 @@ public class ReservaServlet extends HttpServlet {
 
 		for(Reserva reserva : reservas){
 			if(reserva.getCheckout().after(max)){
-				max = reserva.getCheckin();
+				max = reserva.getCheckout();
 			}
 		}
 
@@ -142,7 +134,7 @@ public class ReservaServlet extends HttpServlet {
 
 		for(Reserva reserva : reservas){
 
-			if(dia.equals(reserva.getCheckin()) || dia.equals(reserva.getCheckout())){
+			if( stringFromDate(dia).equals(stringFromDate(reserva.getCheckin())) || stringFromDate(dia).equals(stringFromDate(reserva.getCheckout()))){
 				numReservas++;
 			}else if(dia.after(reserva.getCheckin()) && dia.before(reserva.getCheckout())){
 				numReservas++;
