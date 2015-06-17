@@ -45,7 +45,8 @@ public class ConsultaReservaServlet extends HttpServlet {
 			// If no filter is requried
 			if(filtro.equals("")){
 
-				
+				System.out.println("fitrlo de reseva vaio!");
+
 				for(int i = 0; i < reservas.size(); i++){
 					reservasFiltradas.add(reservas.get(i));
 				}
@@ -66,7 +67,7 @@ public class ConsultaReservaServlet extends HttpServlet {
 				}
 
 				session.setAttribute("filtro_r", filtro);
-				session.setAttribute("reservas", reservasFiltradas);
+				session.setAttribute("reservasFiltradas", reservasFiltradas);
 			}
 
 			try{
