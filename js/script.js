@@ -14,6 +14,28 @@ $(document).ready(function () {
         }*/
     });
 
+
+    //Forgot Password validation
+    $('#forgotPasswordForm').submit(function(event){
+       var valid = true;
+
+        var email = $("#emailInput").val();
+
+                // Email
+        if (!validateEmail(email)) {
+            errorOn("#emailInput", "Email Inválido");
+            valid = false;
+        } else {
+            errorOff("#emailInput");
+        }
+
+        // If any error has ocurred then prevent submit
+        if (valid === false) {
+            event.preventDefault();
+        }
+
+    });
+
     // Register function validation
     $("#registerForm").submit(function (event) {
         var valid = true;

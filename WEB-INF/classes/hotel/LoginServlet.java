@@ -186,7 +186,7 @@ public class LoginServlet extends HttpServlet {
 					}
 					session.setAttribute("debug",log);
 
-					url = "erro.jsp";
+					url = "login/erro.jsp";
 
 				}else{
 					/* Autentica o usuário */
