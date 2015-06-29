@@ -56,7 +56,7 @@
 
 				<tr>
 				    <td>Mensagens</td>
-				    <td><a href="/SistemaHotel/admin/mensagens.jsp">Listar</a></td>
+				    <td><a href="/SistemaHotel/contato?list=">Listar</a></td>
 				</tr>
 			</table>		
 		</div>
