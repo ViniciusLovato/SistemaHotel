@@ -56,7 +56,7 @@
 
 		            <c:forEach items="${usuariosFiltrados}" var="userF" varStatus="status">
 		            	<tr>
-		            		<td>${userF.dataCadastro}</td>
+		            		<td>${userF.data_cadastro}</td>
 			            	<td>${userF.nome}</td>
 			                <td>${userF.email} </td> 
 					    	<td><a href="/SistemaHotel/cadastro?detalhe=${status.index}">Detalhes</a></td>

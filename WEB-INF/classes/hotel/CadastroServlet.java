@@ -91,13 +91,31 @@ public class CadastroServlet extends HttpServlet {
 		
 		/* se nao existe lista de usuarios na sessao, entao criar uma */				
 		HttpSession session = request.getSession();
-		if(session.getAttribute("usuarios") == null) {			
+	    ArrayList<Usuario> usuariosFiltrados = null;
+	    ArrayList<Usuario> usuarios = null;
+
+		/* if(session.getAttribute("usuarios") == null) {			
 			session.setAttribute("usuarios",Dados.iniciaUsuarios());
+		}*/
+
+		// Recuperando usuarios do banco de dados pra listar para o admin
+		try{
+
+			Session sessionBD = sessionFactory.openSession();
+			Transaction tx = sessionBD.beginTransaction();
+
+			usuarios = (ArrayList<Usuario>) sessionBD.createQuery("from Usuario").list();
+
+			sessionBD.close();
+
+			// session.setAttribute("usuarios", usuarios);
+
+		// Exception when there is some problem while saving the data
+		}catch(javax.persistence.RollbackException cve){
+			// We have to check if the root cause of this exception
+			// System.out.println("Violacao de chave primaria - Email ja cadastrado!");
+			// Deve redirecionar para uma pagina de erro ou algo do tipo			
 		}
-
-		ArrayList<Usuario> usuarios = (ArrayList<Usuario>) session.getAttribute("usuarios");
-		ArrayList<Usuario> usuariosFiltrados = (ArrayList<Usuario>) session.getAttribute("usuariosFiltrados");
-
 
 		String detalhe = (String) request.getParameter("detalhe");
 		String filtro = (String) request.getParameter("nameFilter");
@@ -107,7 +125,6 @@ public class CadastroServlet extends HttpServlet {
 			System.out.println("User not null");
 
 			int indice = (int) Integer.parseInt(detalhe);
-			System.out.println("Nome usuario detalhes filtrado " + usuariosFiltrados.get(indice));
 
 			Usuario usuarioDetalhado = (Usuario) usuariosFiltrados.get(indice);
 
