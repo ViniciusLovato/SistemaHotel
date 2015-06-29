@@ -7,7 +7,7 @@ var reset = false;
 
 $(document).ready(function () {
     //Increment the idle time counter every minute.
-    var idleInterval = setInterval(timerIncrement, 1000);//60000); // 1 minute
+    var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
 
     //Zero the idle timer on mouse movement.
     $(this).mousemove(function (e) {
@@ -30,14 +30,14 @@ function timerIncrement() {
 
         $('#timer').text(idleTime);
 
-        if (idleTime === 15) { // 55 minutes - show alert!
+        if (idleTime === 55) { // 55 minutes - show alert!
             var resp = confirm("Sua sessão vai expirar. Pressione OK para renová-la.");
             if (resp){
                 idleTime = 0;
             }else{
                 reset = true;
             }
-        }else if (idleTime === 20) { // 60 minutes - logout
+        }else if (idleTime === 60) { // 60 minutes - logout
 
             window.location.href = "/SistemaHotel/login?exit=true";
         }

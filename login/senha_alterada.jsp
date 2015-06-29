@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Erro!</title>
+    <title>Nova Senha</title>
 
     <script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
     <script src="/SistemaHotel/js/script.js"></script>
@@ -73,24 +73,11 @@
 
             <h2 class="hotel_center">${sessionScope.erro}</h2>
 
-            <div class="regSubmit">
-                <a class="aReg" href="/SistemaHotel/login?exit=false">TENTAR NOVAMENTE</a>
-            </div>
+            <h2 class="hotel_center">No entanto, a senha foi alterada com sucesso:</h2>
 
-            <form id="forgotPasswordForm" class="mainForm" action="/SistemaHotel/esqueciSenha" method="POST">
-                <div class="input_column">
-                    <div class="input_line">
-                        <h2>Email <em>*</em></h2>
-                        <input id="emailInput" type="email" placeholder="someone@somewhere.com" name="email" >
-                        <span  class="error" id="emailInputError"></span>
-                    </div>
-                </div>
-                <div class="regSubmit">
-                    <input class="submit" type="submit" value="ESQUECI MINHA SENHA">
-                </div>
-            </form>
+            <h3 class="hotel_center"><b>Email: </b> ${sessionScope.email}</h3>
+            <h3 class="hotel_center"><b>Senha: </b> ${sessionScope.senha}</h3>
 
-        <p class="nota"><em>*</em> Campos Obrigatórios</p>
         </div>
     </section>
 
@@ -101,9 +88,10 @@
 http://creativecommons.org/licenses/by/3.0/legalcode">Creative Common (CC BY 3.0)</a>  and modified by Paulo Moreno </p>
     </footer>
 
-    
+
     <c:set var="erro" value="${}" scope="session" />
-    <c:set var="debug" value="${}" scope="session" />
+    <c:set var="senha" value="${}" scope="session" />
+    <c:set var="email" value="${}" scope="session" />
 
 </body>
 
