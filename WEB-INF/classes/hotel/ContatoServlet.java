@@ -5,20 +5,40 @@ import javax.servlet.*;
 import javax.servlet.http.*; 
 import java.util.*; 
 import java.lang.Integer;
+import org.hibernate.*;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 
 public class ContatoServlet extends HttpServlet {
+
+	private static SessionFactory sessionFactory;
+
+
+	public void init () {
+		sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+
+	}
+
+	public void destroy() {
+		sessionFactory.close();
+	}
+
 
 	public void doPost (HttpServletRequest request, HttpServletResponse response){
 	
 		String url = "index.jsp";
 
 		/* se nao existe lista de mensagens na sessao, entao criar uma */				
-		HttpSession session = request.getSession();
+		/*HttpSession session = request.getSession();
 		if(session.getAttribute("mensagens") == null) {
 			session.setAttribute("mensagens", new ArrayList());
-		}
+		}*/
 
-		ArrayList mensagens = (ArrayList) session.getAttribute("mensagens");
+		// ArrayList mensagens = (ArrayList) session.getAttribute("mensagens");
 
 		// nova mensagem a ser gravada
 		Mensagem mensagem = new Mensagem();
@@ -33,28 +53,46 @@ public class ContatoServlet extends HttpServlet {
 
 		mensagem.setMensagem(request.getParameter("mensagem"));
 
-		// mensagem.setConheceu(request.getParameter("indicacao[]"));
-		System.out.println("Nome: " + mensagem.getNome() );
-		System.out.println("Email: " + mensagem.getEmail() );
-		System.out.println("mensagem: " + mensagem.getMensagem() );
 
 		mensagem.setDataEnvio(new Date());
 		mensagem.setLida(false);
 
-		mensagens.add(mensagem);
-
-		// coloca o arraylist de mensagens com a nova mensagem na sessao
-		Collections.sort(mensagens);
-		session.setAttribute("mensagens", mensagens);
 
 		try{
 
+			Session sessionBD = sessionFactory.openSession();
+			Transaction tx = sessionBD.beginTransaction();
+
+			sessionBD.save(mensagem);
+			tx.commit();
+
+			sessionBD.close();
+
+			// session.setAttribute("usuarios", usuarios);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/" + url);
 			dispatcher.forward(request, response);
 
-		}catch(Exception e){
-			e.printStackTrace();
+		// This exception is throw by the request dispatcher
+		}catch(ServletException se){
+			se.printStackTrace();
 		}
+
+		// This exception is throw by the request dispatcher
+		catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+		// Exception when there is some problem while saving the data
+		catch(javax.persistence.RollbackException cve){
+			// We have to check if the root cause of this exception
+			System.out.println("Violacao de chave primaria - Email ja cadastrado!");
+			// Deve redirecionar para uma pagina de erro ou algo do tipo			
+		}
+
+		// mensagens.add(mensagem);
+
+		// coloca o arraylist de mensagens com a nova mensagem na sessao
+		// Collections.sort(mensagens);
+		// session.setAttribute("mensagens", mensagens);
 	}
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response){

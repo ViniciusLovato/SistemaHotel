@@ -17,8 +17,10 @@ public class ConsultaReservaServlet extends HttpServlet {
 		}
 	}
 
+	
 	public void doGet (HttpServletRequest request, HttpServletResponse response){
 
+		/*
 		HttpSession session = request.getSession();
 		iniciaDados(session);
 
@@ -29,7 +31,7 @@ public class ConsultaReservaServlet extends HttpServlet {
 		String detalhe = (String) request.getParameter("detalhe");
 		String filtro = (String) request.getParameter("nameFilter");
 
-		/* Retorna a página com as reservas - com paginação */
+		// Retorna a página com as reservas - com paginação 
 		if(request.getParameter("rid") != null){
 			int rid = Integer.parseInt(request.getParameter("rid")); 
 			Reserva reserva = reservas.get(rid);
@@ -84,7 +86,7 @@ public class ConsultaReservaServlet extends HttpServlet {
 		// Removing selected users
 		else {
 
-			/* */
+			
 			for(int i = reservas.size() - 1; i >= 0; i--){
 				String selected = (String) request.getParameter("checkbox" + i);
 				System.out.println(i + " " +  selected + " -> selected\n");
@@ -104,7 +106,9 @@ public class ConsultaReservaServlet extends HttpServlet {
 				e.printStackTrace();
 			}	
 		}
-		/* De acordo com os parametroes mostra cada página. */
+
+		// De acordo com os parametroes mostra cada página.
+		*/
 	}
 
 	public void doPost (HttpServletRequest request, HttpServletResponse response){

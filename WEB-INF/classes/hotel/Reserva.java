@@ -5,7 +5,7 @@ import java.util.*;
 public class Reserva {
    
 	private int id;
-    private String nome;
+    private String email;
 
     private Date checkin;
     private Date checkout;
@@ -22,8 +22,8 @@ public class Reserva {
     public Reserva(){
     }
 
-    public void setNome(String nome){
-        this.nome = nome;
+    public void setEmail(String email){
+        this.email = email;
     }
 
     public void setId(int id){
@@ -50,6 +50,10 @@ public class Reserva {
         this.numeroBebes = numeroBebes;
     }
 
+    public int getId(){
+        return this.id;
+    }
+    
     public Date getCheckin(){
         return this.checkin;
     }
@@ -70,7 +74,7 @@ public class Reserva {
         return this.numeroBebes;
     }
 
-    public String getNome(){
-        return this.nome;
+    public String getEmail(){
+        return this.email;
     }
 }

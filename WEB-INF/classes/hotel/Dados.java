@@ -18,7 +18,7 @@ public class Dados {
 		u.setSenha("admin");
 		u.setNome("Mr. Admin");
 		u.setData_cadastro(new Date());
-		u.setTentativasAcesso(new ArrayList<Date>());
+		u.setTentativasAcesso(new HashSet<Date>());
 
 		usuarios.add(u);
 
