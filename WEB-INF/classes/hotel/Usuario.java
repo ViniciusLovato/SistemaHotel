@@ -26,18 +26,16 @@ public class Usuario {
         uma tentativa falha de acesso ao sistema, através deste usuário, 
         foi realizada.
     */
-    private ArrayList<Date> tentativasAcesso;
+    private Set<Date> tentativasAcesso;
 
 
-    public ArrayList<Date> getTentativasAcesso(){
+    public Set<Date> getTentativasAcesso(){
         return this.tentativasAcesso;
     }
 
-
-    public void setTentativasAcesso(ArrayList<Date> tentativas){
+    public void setTentativasAcesso(Set<Date> tentativas){
         this.tentativasAcesso = tentativas;
     }
-
 
 	public Usuario(){
 	}
@@ -145,7 +143,5 @@ public class Usuario {
     public void setData_cadastro(Date data_cadastro){
         this.data_cadastro = data_cadastro;
     }
-
-
 
 }

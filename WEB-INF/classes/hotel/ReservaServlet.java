@@ -6,8 +6,26 @@ import javax.servlet.http.*;
 import java.util.*; 
 import java.text.*;
 import java.lang.Integer;
+import org.hibernate.*;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 public class ReservaServlet extends HttpServlet {
+
+	private static SessionFactory sessionFactory;
+
+
+	public void init () {
+		sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+
+	}
+
+	public void destroy() {
+		sessionFactory.close();
+	}
 
 	private void iniciaDados(HttpSession session){
 		if(session.getAttribute("reservas") == null) {			
@@ -78,9 +96,9 @@ public class ReservaServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		iniciaDados(session);
 
-		try{
+		
 
-		ArrayList<Reserva> reservas = (ArrayList<Reserva>) session.getAttribute("reservas");
+		// ArrayList<Reserva> reservas = (ArrayList<Reserva>) session.getAttribute("reservas");
 
 		/* Salva uma nova reserva */
 		Reserva reserva = new Reserva();
@@ -92,26 +110,58 @@ public class ReservaServlet extends HttpServlet {
 
 		Usuario user = (Usuario) session.getAttribute("usuario");
 
-		reserva.setNome(user.getNome());
-		reserva.setCheckin(format.parse(request.getParameter("dataEntrada")));
-		reserva.setCheckout(format.parse(request.getParameter("dataSaida")));
+		try{
 
-		//Obtem os outros parametros da reserva
-		reserva.setNumeroAdultos(Integer.parseInt(request.getParameter("adultos")));
-		reserva.setNumeroBebes(Integer.parseInt(request.getParameter("criancasAte3")));
-		reserva.setNumeroCriancas(Integer.parseInt(request.getParameter("criancasAte12")));
+			reserva.setEmail(user.getEmail());
+			reserva.setCheckin(format.parse(request.getParameter("dataEntrada")));
+			reserva.setCheckout(format.parse(request.getParameter("dataSaida")));
 
+			//Obtem os outros parametros da reserva
+			reserva.setNumeroAdultos(Integer.parseInt(request.getParameter("adultos")));
+			reserva.setNumeroBebes(Integer.parseInt(request.getParameter("criancasAte3")));
+			reserva.setNumeroCriancas(Integer.parseInt(request.getParameter("criancasAte12")));
+
+		
+		
 		//Savla a reserva
-		reservas.add(reserva);
+		/*reservas.add(reserva);
 
 		session.setAttribute("reserva",reserva);
 		session.setAttribute("checkin",stringFromDate(reserva.getCheckin()));
 		session.setAttribute("checkout",stringFromDate(reserva.getCheckout()));
+		*/
 
+		
+			Session sessionBD = sessionFactory.openSession();
+			Transaction tx = sessionBD.beginTransaction();
+
+			sessionBD.save(reserva);
+			tx.commit();
+
+			sessionBD.close();
+
+			// session.setAttribute("usuarios", usuarios);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/confirma.jsp");
+
+			//RequestDispatcher dispatcher = request.getRequestDispatcher("/" + url);
 			dispatcher.forward(request, response);
 
-		}catch(Exception e){
+		// This exception is throw by the request dispatcher
+		}catch(ServletException se){
+			se.printStackTrace();
+		}
+
+		// This exception is throw by the request dispatcher
+		catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+		// Exception when there is some problem while saving the data
+		catch(javax.persistence.RollbackException cve){
+			// We have to check if the root cause of this exception
+			System.out.println("Violacao de chave primaria - Email ja cadastrado!");
+			// Deve redirecionar para uma pagina de erro ou algo do tipo			
+		}
+		catch(ParseException e){
 			e.printStackTrace();
 		}
 

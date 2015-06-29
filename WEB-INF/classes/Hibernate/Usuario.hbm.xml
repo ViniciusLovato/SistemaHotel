@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
+
     <class name="hotel.Usuario" table="usuarioTable">
         <id column="usuario_email" name="email"></id>
 
@@ -19,8 +20,40 @@
 
         <property column="usuario_data_cadastro" name="data_cadastro"/>
 
+		<set name="tentativasAcesso" table="tentativasacesso">
+	        <key column="usuario_email"/>
+	        <element column="tentativasAcesso" type="java.util.Date"/>
+	    </set>
+    </class>  
 
 
+    <class name="hotel.Mensagem" table="mensagemTable">
+    	<id  column="mensagem_id" name="id">
+    		<generator class="increment"></generator>
+    	</id>
 
-    </class>      
+    	<property column="mensagem_nome" name="nome"></property>
+    	<property column="mensagem_email" name="email"></property>
+    	<property column="mensagem_celular" name="celular"></property>
+    	<property column="mensagem_mensagem" name="mensagem"></property>
+    	<property column="mensagem_data_envio" name="dataEnvio"></property>
+    	<property column="mensagem_lida" name="lida"></property>
+    </class>
+
+    <class name="hotel.Reserva" table="reservaTable">
+        <id column="reserva_id" name="id">
+            <generator class="increment"></generator>
+        </id>
+
+        <property column="reserva_email" name="email"> </property>
+        <property column="reserva_checkin" name="checkin"></property>
+        <property column="reserva_checkout" name="checkout"></property>
+
+        <property column="reserva_numeroAdultos" name="numeroAdultos"></property>
+        <property column="reserva_numeroCriancas" name="numeroCriancas"></property>
+        <property column="reserva_numeroBebes" name="numeroBebes"></property>
+    </class>
+
 </hibernate-mapping>
+
+

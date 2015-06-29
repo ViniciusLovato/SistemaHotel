@@ -24,6 +24,10 @@ public class LoginServlet extends HttpServlet {
 		sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 	}
 
+	public void destroy(){
+		sessionFactory.close();
+	}
+
 	public void doGet (HttpServletRequest request, HttpServletResponse response){
 
 		try{
@@ -43,14 +47,6 @@ public class LoginServlet extends HttpServlet {
 
 			// Login in
 			else {
-
-				/* se nao existe lista de usuarios na sessao, entao criar uma */				
-				HttpSession session = request.getSession();
-				if(session.getAttribute("usuarios")==null){
-
-					session.setAttribute("usuarios",Dados.iniciaUsuarios());
-
-				}
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/login/index.jsp");
 				dispatcher.forward(request, response);
@@ -74,15 +70,6 @@ public class LoginServlet extends HttpServlet {
 
 			/* se nao existe lista de usuarios na sessao, entao criar uma */				
 			HttpSession session = request.getSession();
-			/*if(session.getAttribute("usuarios")==null){ 
-
-				usuarios = Dados.iniciaUsuarios();
-				session.setAttribute("usuarios",usuarios);
-
-			}else{
-				// recuperar a lista de usuarios da sessao 
-				usuarios = (ArrayList) session.getAttribute("usuarios");
-			} */
 
 			/* Verifica se os dados foram recebidos corretamente */
 			if ((request.getParameter("email") == null) || (request.getParameter("senha") == null)){
@@ -124,7 +111,7 @@ public class LoginServlet extends HttpServlet {
 				*/
 			    if (usuario.getEmail().equalsIgnoreCase(email)) {
 
-					ArrayList<Date> tentativas = usuario.getTentativasAcesso();
+					ArrayList<Date> tentativas = new ArrayList<Date> (usuario.getTentativasAcesso()); 
 
 					log += "a \n"; 
 
@@ -134,7 +121,9 @@ public class LoginServlet extends HttpServlet {
 
 						/* Insere tentativa de acesso */
 						tentativas.add(new Date());
-						usuario.setTentativasAcesso(tentativas);
+
+
+						usuario.setTentativasAcesso(new HashSet<Date>(tentativas));
 
 
 						// Atualiza o numero de tentatvias do usuario no banco de dados

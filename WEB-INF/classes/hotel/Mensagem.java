@@ -13,7 +13,7 @@ public class Mensagem implements Comparable<Mensagem>{
 
     private Date dataEnvio;
 
-	private ArrayList conheceu;
+	private Set conheceu;
 
     private boolean lida;
 
@@ -44,7 +44,7 @@ public class Mensagem implements Comparable<Mensagem>{
         return mensagem;
     }
 
-    public ArrayList getConheceu() {
+    public Set getConheceu() {
         return conheceu;
     }
 
@@ -73,7 +73,7 @@ public class Mensagem implements Comparable<Mensagem>{
         this.mensagem = mensagem;
     }
 
-    public void setConheceu(ArrayList conheceu) {
+    public void setConheceu(Set conheceu) {
         this.conheceu = conheceu;
     }
 

@@ -15,17 +15,18 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 
-
-
 public class CadastroServlet extends HttpServlet {
 
 	private static SessionFactory sessionFactory;
 
 
 	public void init () {
-
 		sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 
+	}
+
+	public void destroy() {
+		sessionFactory.close();
 	}
 
 	public void doPost (HttpServletRequest request, HttpServletResponse response){
@@ -46,7 +47,7 @@ public class CadastroServlet extends HttpServlet {
 		usuario.setCep(request.getParameter("cep"));
 		usuario.setSenha(request.getParameter("senha"));
 		usuario.setData_cadastro(new Date());
-		usuario.setTentativasAcesso(new ArrayList<Date>());
+		usuario.setTentativasAcesso(new HashSet<Date>());
 
 		try{
 
