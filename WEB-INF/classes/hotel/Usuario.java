@@ -42,7 +42,7 @@ public class Usuario {
 	public Usuario(){
 	}
 
-    public Date getDataCadastro(){
+    public Date getData_cadastro(){
         return this.data_cadastro;
 
     }
@@ -145,5 +145,7 @@ public class Usuario {
     public void setDataCadastro(Date data_cadastro){
         this.data_cadastro = data_cadastro;
     }
+
+
 
 }

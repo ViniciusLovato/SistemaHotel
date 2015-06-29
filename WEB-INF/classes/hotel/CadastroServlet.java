@@ -7,10 +7,26 @@ import java.util.*;
 import java.lang.Integer;
 import java.lang.String.*;
 import static java.util.concurrent.TimeUnit.*;
+import org.hibernate.*;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 
 
 
 public class CadastroServlet extends HttpServlet {
+
+	private static SessionFactory sessionFactory;
+
+
+	public void init () {
+
+		sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+
+	}
 
 	public void doPost (HttpServletRequest request, HttpServletResponse response){
 	
@@ -41,6 +57,26 @@ public class CadastroServlet extends HttpServlet {
 		usuario.setTentativasAcesso(new ArrayList<Date>());
 
 		usuarios.add(usuario);
+
+
+		try{
+
+			Session sessionBD = sessionFactory.openSession();
+			Transaction tx = sessionBD.beginTransaction();
+
+			sessionBD.save(usuario);
+			tx.commit();
+
+			Usuario usr = (Usuario) sessionBD.load(Usuario.class, 1);
+
+			System.out.println("Usuario: " + usr.getNome());
+
+			sessionBD.close();
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
 
 		session.setAttribute("usuarios", usuarios);
 		
