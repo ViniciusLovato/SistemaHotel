@@ -142,7 +142,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public void setDataCadastro(Date data_cadastro){
+    public void setData_cadastro(Date data_cadastro){
         this.data_cadastro = data_cadastro;
     }
 

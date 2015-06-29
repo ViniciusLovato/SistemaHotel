@@ -32,14 +32,6 @@ public class CadastroServlet extends HttpServlet {
 	
 		String url = "login/index.jsp";
 
-		/* se nao existe lista de usuarios na sessao, entao criar uma */				
-		HttpSession session = request.getSession();
-		if(session.getAttribute("usuarios") == null) {			
-			session.setAttribute("usuarios",Dados.iniciaUsuarios());
-		}
-
-		ArrayList usuarios = (ArrayList) session.getAttribute("usuarios");
-
 		Usuario usuario = new Usuario();
 
 		// Seria necessario verificar do lado do servidor, mas ja verificamos no lado do cliente
@@ -53,11 +45,8 @@ public class CadastroServlet extends HttpServlet {
 		usuario.setEstado(request.getParameter("estado"));
 		usuario.setCep(request.getParameter("cep"));
 		usuario.setSenha(request.getParameter("senha"));
-		usuario.setDataCadastro(new Date());
+		usuario.setData_cadastro(new Date());
 		usuario.setTentativasAcesso(new ArrayList<Date>());
-
-		usuarios.add(usuario);
-
 
 		try{
 
@@ -67,28 +56,34 @@ public class CadastroServlet extends HttpServlet {
 			sessionBD.save(usuario);
 			tx.commit();
 
-			Usuario usr = (Usuario) sessionBD.load(Usuario.class, 1);
+			Usuario usr = (Usuario) sessionBD.load(Usuario.class, "lovato@gmail.com");
 
 			System.out.println("Usuario: " + usr.getNome());
 
 			sessionBD.close();
-		
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 
-
-		session.setAttribute("usuarios", usuarios);
-		
-
-		try{
-
+			// session.setAttribute("usuarios", usuarios);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/" + url);
 			dispatcher.forward(request, response);
 
-		}catch(Exception e){
-			e.printStackTrace();
+		// This exception is throw by the request dispatcher
+		}catch(ServletException se){
+			se.printStackTrace();
 		}
+
+		// This exception is throw by the request dispatcher
+		catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+
+		// Exception when there is some problem while saving the data
+		catch(javax.persistence.RollbackException cve){
+			// We have to check if the root cause of this exception
+			System.out.println("Violacao de chave primaria - Email ja cadastrado!");
+			// Deve redirecionar para uma pagina de erro ou algo do tipo			
+		}
+
+
 	}
 
 	public void doGet (HttpServletRequest request, HttpServletResponse response){
