@@ -39,6 +39,16 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>ResetSenhaServlet</servlet-name>
+    <servlet-class>hotel.ResetSenhaServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ResetSenhaServlet</servlet-name>
+    <url-pattern>/esqueciSenha</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>CadastroServlet</servlet-name>
     <servlet-class>hotel.CadastroServlet</servlet-class>
   </servlet>

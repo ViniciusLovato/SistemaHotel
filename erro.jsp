@@ -13,6 +13,8 @@
 	<h3><c:out value="${sessionScope.erro}" /></h3>
 	<h3>Log: <c:out value="${sessionScope.debug}" /></h3>
 
+	<c:set var="erro" value="${}" scope="session" />
+	<c:set var="debug" value="${}" scope="session" />
 
 </body>
 </html>
