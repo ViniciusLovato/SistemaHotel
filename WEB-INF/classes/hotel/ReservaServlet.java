@@ -136,12 +136,12 @@ public class ReservaServlet extends HttpServlet {
 		
 		
 		//Savla a reserva
-		/*reservas.add(reserva);
+		/*reservas.add(reserva);*/
 
 		session.setAttribute("reserva",reserva);
 		session.setAttribute("checkin",stringFromDate(reserva.getCheckin()));
 		session.setAttribute("checkout",stringFromDate(reserva.getCheckout()));
-		*/
+		
 
 		
 			Session sessionBD = sessionFactory.openSession();
