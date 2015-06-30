@@ -35,14 +35,14 @@
 
 		<form action="/SistemaHotel/consulta" method="GET">
 			
-			<label for="name">Nome:</label>
+			<label for="name">Email:</label>
 			<input type="text" name="nameFilter">
 
 			<input type="submit" value="Filtrar">	
 			<button onclick="location.href = '/SistemaHotel/consulta?nameFilter='">Resetar Filtro</button>
 		</form>
 
-		<p>Filtrando por nome: ${filtro_r}</p>
+		<p>Filtrando por Email: ${filter}</p>
 		<form action="/SistemaHotel/consulta" method="GET">
 			<div class="tableDiv">
 
@@ -56,7 +56,7 @@
 
 	            <c:forEach items="${reservasFiltradas}" var="reserva" varStatus="status">
 	            	<tr>
-	            		<td>${reserva.nome}</td>
+	            		<td>${reserva.email}</td>
 		            	<td>${reserva.checkin}</td>
 		                <td>${reserva.checkout} </td> 
 	            		<td><input type="checkbox" name="checkbox${status.index}"></td>

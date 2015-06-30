@@ -176,9 +176,25 @@ public class ContatoServlet extends HttpServlet {
 
 				if(selected !=null && selected.equals("on")){
 					mensagens.remove(i);
+			
+					try{
+
+						sessionBD = sessionFactory.openSession();
+						tx = sessionBD.beginTransaction();
+
+						sessionBD.createQuery("delete from Mensagem where id='" + Integer.toString(mensagens.get(i).getId()) + "'").executeUpdate();
+
+						tx.commit();
+
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+
+
 				}
 			}
 
+			sessionBD.close();
 			session.setAttribute("mensagens", mensagens);
 			url = "/admin/mensagens.jsp";
 

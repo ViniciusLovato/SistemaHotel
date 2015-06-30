@@ -194,17 +194,13 @@ public class CadastroServlet extends HttpServlet {
 			usuariosFiltrados = (ArrayList<Usuario>) session.getAttribute("usuariosFiltrados");
 			System.out.println("\nNumero de usuarios filtrados: " + usuariosFiltrados.size());
 			for(int i = usuariosFiltrados.size() - 1; i >= 0; i--){
+				
 				String selected = (String) request.getParameter("checkbox" + i);
-				System.out.println(i + " " +  selected + " -> selected\n");
-				System.out.println("Fora: " + usuariosFiltrados.get(i));
-
-
+			
 				Session sessionBD = sessionFactory.openSession();
 				Transaction tx = sessionBD.beginTransaction();
 
 				if(selected !=null && selected.equals("on")){
-					System.out.println(usuariosFiltrados.get(i));
-					System.out.println("Email a ser removido!!!!!!" + usuariosFiltrados.get(i).getEmail());
 					
 					String email = usuariosFiltrados.get(i).getEmail();
 					sessionBD.createQuery("delete from Usuario where email='" + email + "'").executeUpdate();

@@ -43,25 +43,111 @@ public class ConsultaReservaServlet extends HttpServlet {
 		Session sessionBD = sessionFactory.openSession();
 		Transaction tx = sessionBD.beginTransaction();
 
+		ArrayList<Reserva> reservas = null;
+		ArrayList<Reserva> reservasFiltradas = new ArrayList<Reserva>();
+
+		String url = null;
+
 		try{
 
-			ArrayList<Reserva> reservas = (ArrayList<Reserva>) sessionBD.createQuery("from Reserva reserva where lower(reserva.email) like lower('%"+user.getEmail()+"%') ").list();
+			if(user.getEmail().equals("admin@admin.com")){
+				reservas = (ArrayList<Reserva>) sessionBD.createQuery("from Reserva").list();
+				url = "/admin/reservas.jsp";
 
-			session.setAttribute("reservas",reservas);
+			}
+			else {
+				reservas = (ArrayList<Reserva>) sessionBD.createQuery("from Reserva reserva where lower(reserva.email) like lower('%"+user.getEmail()+"%') ").list();
 
-			tx.commit();
+				session.setAttribute("reservas", reservas);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/lista.jsp");
+				dispatcher.forward(request, response);
 
-			sessionBD.close();
+				System.out.println("Usuario Comum!\n");
+			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/lista.jsp");
-			dispatcher.forward(request, response);
+			System.out.println("Numero de reservas" + reservas.size());
 
 
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+
+		if(request.getParameter("nameFilter") != null){
+
+			String filter = request.getParameter("nameFilter");
+
+			// If no filter is requried
+			if(filter.equals("")){
+				filter = "";
+
+				for(int i = 0; i < reservas.size(); i++){
+					reservasFiltradas.add(reservas.get(i));
+				}
+
+
+			}
+			else{
+
+				for(int i = 0; i < reservas.size(); i++){
+					if(reservas.get(i).getEmail().contains(filter)){
+						reservasFiltradas.add(reservas.get(i));
+						}
+				}
+			}
+
+			session.setAttribute("filter", filter);
+			session.setAttribute("reservasFiltradas", reservasFiltradas);
+
+
+			// session.setAttribute("reservas",reservas);
+			try{
+				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+				dispatcher.forward(request, response);		
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
+
+
+
+		}
+		// Removing selected reservations
+		else {
+
+			/* */
+			reservasFiltradas = (ArrayList<Reserva>) session.getAttribute("reservasFiltradas");
+			for(int i = reservasFiltradas.size() - 1; i >= 0; i--){
+				
+				String selected = (String) request.getParameter("checkbox" + i);
+			
+				if(selected !=null && selected.equals("on")){
+					
+					int id = reservasFiltradas.get(i).getId();
+					sessionBD.createQuery("delete from Reserva where id='" + Integer.toString(id) + "'").executeUpdate();
+
+				}
+				// session.setAttribute("usuarios", usuarios);
+			}
+
+			try{
+
+				reservas = (ArrayList<Reserva>) sessionBD.createQuery("from Reserva").list();
+				session.setAttribute("reservasFiltradas", reservasFiltradas);
+
+				tx.commit();
+				sessionBD.close();
+		
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
+				dispatcher.forward(request, response);
 
 			}catch(Exception e){
 				e.printStackTrace();
-			}	
-		
+			}
+		}
+
+
 		// De acordo com os  mostra cada página.
 	}
 
