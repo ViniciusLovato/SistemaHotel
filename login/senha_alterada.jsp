@@ -10,6 +10,7 @@
 
     <script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
     <script src="/SistemaHotel/js/script.js"></script>
+    <script src="/SistemaHotel/js/expire.js"></script>
     <link rel="stylesheet" href="/SistemaHotel/css/style.css">
     <link rel="stylesheet" href="/SistemaHotel/css/register.css">
     <link rel="stylesheet" href="/SistemaHotel/css/login.css">
@@ -25,45 +26,7 @@
             <img src="/SistemaHotel/static/cover.jpg" alt="">
         </section>
 
-        <nav class="mainNav">
-            <ul class="menu">
-
-                <li><a href="/SistemaHotel/index.jsp">O Hotel</a>
-
-                </li>
-                <li><a href="/SistemaHotel/suites/index.jsp">Suítes</a>
-
-                </li>
-                <li>    
-                    <c:choose>
-                        <c:when test="${not empty usuario.nome}">
-                                <a href="reserva/index.jsp">Reservas</a>                               
-                        </c:when>
-                    </c:choose>               
-                </li>
-                <li><a href="/SistemaHotel/contato/index.jsp">Contato</a>
-                </li>
-
-                <div id="formDiv">
-                    <c:choose>
-                        <c:when test="${empty usuario.nome}">
-                            <a class="aReg" href="/SistemaHotel/login?exit=false">Entrar</a>
-                        </c:when>
-                        <c:otherwise>
-                            <input type="hidden" value="true" id="autenticado"/>
-                            <a class="aReg" href="/SistemaHotel/login?exit=true">Sair</a>
-                        </c:otherwise>
-                    </c:choose>
-
-                    <a class="aReg" href="/SistemaHotel/cadastro/index.jsp">Registrar</a>
-                </div>
-
-                <li>
-                    
-                </li>
-
-            </ul>
-        </nav>
+        <jsp:include page="/menu.jsp" />
 
     </header>
 

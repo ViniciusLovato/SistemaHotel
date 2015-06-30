@@ -25,39 +25,8 @@
             <img src="static/cover.png" alt="cover">
         </section>
 
-        <nav class="mainNav">
-            <ul class="menu">
-                <li>
-                    <a href="index.jsp">O Hotel</a>
-                </li>
-                <li>
-                    <a href="suites/index.jsp">Suítes</a>
-                </li>
-                <li>    
-                    <c:choose>
-                        <c:when test="${not empty usuario.nome}">
-                                <a href="reserva/index.jsp">Reservas</a>                               
-                        </c:when>
-                    </c:choose>               
-                </li>
-                <li>
-                    <a href="contato/index.jsp">Contato</a>
-                </li>
-                <div id="formDiv">
-                    <c:choose>
-                        <c:when test="${empty usuario.nome}">
-                            <a class="aReg" href="/SistemaHotel/login?exit=false">Entrar</a>
-                        </c:when>
-                        <c:otherwise>
-                            <input type="hidden" value="true" id="autenticado"/>
-                            <a class="aReg" href="/SistemaHotel/login?exit=true">Sair</a>
-                        </c:otherwise>
-                    </c:choose>
+        <jsp:include page="/menu.jsp" />
 
-                    <a class="aReg" href="/SistemaHotel/cadastro/index.jsp">Registrar</a>
-                </div>
-            </ul>
-        </nav>
     </header>
 
     <section>
