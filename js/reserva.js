@@ -1,7 +1,7 @@
 function diaNaoOcupado(dia){
 
     //Obtem versao string da data
-    var data = dia.getDate() + "/" + ("0" + (dia.getMonth()+1)).slice(-2) + "/" + dia.getFullYear();
+    var data = ("0" + (dia.getDate()+1)).slice(-2) + "/" + ("0" + (dia.getMonth()+1)).slice(-2) + "/" + dia.getFullYear();
     var css = "";
     var ocupado = true;
 
@@ -19,7 +19,6 @@ function diaNaoOcupado(dia){
     }
 
     return [ocupado,css];
-
 }
 
 $(document).ready(function () {

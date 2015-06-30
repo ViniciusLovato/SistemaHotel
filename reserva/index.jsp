@@ -103,7 +103,6 @@
 
         <form id="reservationForm" class="mainForm" action="/SistemaHotel/reserva" method="POST">
 
-
             <div class="input_column">
 
                 <div class="input_line">

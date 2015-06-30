@@ -41,46 +41,58 @@ public class ReservaServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		iniciaDados(session);
 
+		Session sessionBD = sessionFactory.openSession();
+		Transaction tx = sessionBD.beginTransaction();
+
 		try{
 
-		/* Mostra a pagina de nova reserva com os dias disponvíveis. */
+			/* Mostra a pagina de nova reserva com os dias disponvíveis. */
+			ArrayList<Reserva> reservas = (ArrayList<Reserva>) sessionBD.createQuery("from Reserva").list();
 
-		ArrayList<Reserva> reservas = (ArrayList<Reserva>) session.getAttribute("reservas");
-		Hotel hotel = (Hotel) session.getAttribute("hotel");
+			//ArrayList<Reserva> reservas = (ArrayList<Reserva>) session.getAttribute("reservas");
+			Hotel hotel = (Hotel) session.getAttribute("hotel");
+			
+			//Hotel hotel = (Hotel) sessionBD.createQuery("from Hotel");
 
-		ArrayList<String> diasOcupados = new ArrayList<String>(); 
+			ArrayList<String> diasOcupados = new ArrayList<String>(); 
 
-		Date hoje = new Date();
-		Date max = obtemUltimaDataReserva(reservas);
-		int numQuartos = hotel.getNumeroQuartos();
+			Date hoje = new Date();
+			Date max = obtemUltimaDataReserva(reservas);
+			int numQuartos = hotel.getNumeroQuartos();
 
+			Calendar calendar = new GregorianCalendar();
+		    calendar.setTime(hoje);
 
-
-		Calendar calendar = new GregorianCalendar();
-	    calendar.setTime(hoje);
-
-	    // Percorre todos os dias entre hoje e a data máxima
-	    while (calendar.getTime().before(max) || stringFromDate(calendar.getTime()).equals(stringFromDate(max)))
-	    {
-	        Date dia = calendar.getTime();
-
-
-
-	        // Verifica quantidade de reservas nesse dia. Caso seja maior
-	        // que o numero de quartos, este dia é vermelho
-	        if (obtemNumeroReservasNoDia(reservas,dia) >= numQuartos){
-
-	        	// Insere o dia ocupado no formato dd/mm/aaaa 
-	        	diasOcupados.add(stringFromDate(dia));
-	        }
+		    // Percorre todos os dias entre hoje e a data máxima
+		    while (calendar.getTime().before(max) || stringFromDate(calendar.getTime()).equals(stringFromDate(max)))
+		    {
+		        Date dia = calendar.getTime();
 
 
-	        calendar.add(Calendar.DATE, 1);
 
-	    }
+		        // Verifica quantidade de reservas nesse dia. Caso seja maior
+		        // que o numero de quartos, este dia é vermelho
+		        if (obtemNumeroReservasNoDia(reservas,dia) >= numQuartos){
 
-	    /* Insere a lista com dias ocupados na sessão*/
-	    session.setAttribute("diasOcupados",diasOcupados);
+		        	// Insere o dia ocupado no formato dd/mm/aaaa 
+		        	diasOcupados.add(stringFromDate(dia));
+		        }
+
+
+		        calendar.add(Calendar.DATE, 1);
+
+		    }
+
+		    /* Insere a lista com dias ocupados na sessão*/
+		    session.setAttribute("diasOcupados",diasOcupados);
+
+
+		    for (int i = 0; i < diasOcupados.size(); i++){
+		    	System.out.println(diasOcupados.get(i));
+		    }
+
+		    sessionBD.close();
+
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/index.jsp");
 			dispatcher.forward(request, response);

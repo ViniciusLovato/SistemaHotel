@@ -101,9 +101,8 @@
 http://creativecommons.org/licenses/by/3.0/legalcode">Creative Common (CC BY 3.0)</a>  and modified by Paulo Moreno </p>
     </footer>
 
-    
+
     <c:set var="erro" value="${}" scope="session" />
-    <c:set var="debug" value="${}" scope="session" />
 
 </body>
 
