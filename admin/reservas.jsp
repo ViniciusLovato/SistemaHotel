@@ -54,6 +54,8 @@
 				    <th>Remover</th>
 				</tr>
 
+				<input type="hidden" name="remover" value="true"/>
+
 	            <c:forEach items="${reservasFiltradas}" var="reserva" varStatus="status">
 	            	<tr>
 	            		<td>${reserva.email}</td>

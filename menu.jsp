@@ -43,3 +43,9 @@
                 </div>
             </ul>
         </nav>
+
+        <c:if test="${not empty usuario.nome}">
+            <nav class="welcome">
+                <h3>Bem vindo, ${usuario.nome}!</h3>
+            </nav>
+        </c:if>

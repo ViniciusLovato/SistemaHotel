@@ -28,6 +28,13 @@
         
     </class>  
 
+    <class name="hotel.Hotel" table="hotelTable">
+        <id  column="hotel_id" name="id">
+            <generator class="increment"></generator>
+        </id>
+
+        <property column="hotel_num_quartos" name="numero_quartos"></property>
+    </class>
 
     <class name="hotel.Mensagem" table="mensagemTable">
     	<id  column="mensagem_id" name="id">

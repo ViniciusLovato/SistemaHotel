@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -28,12 +29,6 @@
         <jsp:include page="/menu.jsp" />
 
     </header>
-
-    <section>
-            Ola ${usuario.nome} <br/>
-            Tempo: <span id="timer"></span> <br/>
-
-    </section>
 
     <section class="intro">
         <div class="content">

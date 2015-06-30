@@ -10,6 +10,7 @@
 
     <script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
     <script src="/SistemaHotel/js/script.js"></script>
+    <script src="/SistemaHotel/js/expire.js"></script>
     <link rel="stylesheet" href="/SistemaHotel/css/style.css">
     <link rel="stylesheet" href="/SistemaHotel/css/register.css">
     <link rel="stylesheet" href="/SistemaHotel/css/login.css">

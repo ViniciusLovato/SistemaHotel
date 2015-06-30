@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,11 +58,13 @@
             <div class="input_column">
                 <div class="input_line">
                     <h2>Data de Check-In</h2>
-                    <input type="text" disabled="true" value="${reserva.checkin}">
+                    <input type="text" disabled="true" value="<fmt:formatDate pattern='dd/MM/yy' 
+            value='${reserva.checkin}' />">
                 </div>
                 <div class="input_line">
                     <h2>Data de Check-Out</h2>
-                    <input type="text" disabled="true" value="${reserva.checkout}">
+                    <input type="text" disabled="true" value="<fmt:formatDate pattern='dd/MM/yy' 
+            value='${reserva.checkout}' />">
                 </div>
             </div>
 

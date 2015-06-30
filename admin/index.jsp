@@ -18,6 +18,11 @@
 			<li>
 				<h1>Administrador do Hotel</h1>
 			</li>
+			<li>
+				<p>
+					 <a class="aReg" href="/SistemaHotel/index.jsp">Hotel</a>
+				</p>
+			</li>
 			<li>		
 				<p>
 					 <a class="aReg" href="/SistemaHotel/login?exit=true">Log out</a>
@@ -57,6 +62,10 @@
 				<tr>
 				    <td>Mensagens</td>
 				    <td><a href="/SistemaHotel/contato?list=">Listar</a></td>
+				</tr>
+				<tr>
+				    <td>Hotel</td>
+				    <td><a href="/SistemaHotel/admin/hotel">Editar</a></td>
 				</tr>
 			</table>		
 		</div>

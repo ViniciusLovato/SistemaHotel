@@ -50,15 +50,15 @@ public class ReservaServlet extends HttpServlet {
 			ArrayList<Reserva> reservas = (ArrayList<Reserva>) sessionBD.createQuery("from Reserva").list();
 
 			//ArrayList<Reserva> reservas = (ArrayList<Reserva>) session.getAttribute("reservas");
-			Hotel hotel = (Hotel) session.getAttribute("hotel");
-			
+			Hotel hotel = (Hotel) sessionBD.get(Hotel.class, 0);
+
 			//Hotel hotel = (Hotel) sessionBD.createQuery("from Hotel");
 
 			ArrayList<String> diasOcupados = new ArrayList<String>(); 
 
 			Date hoje = new Date();
 			Date max = obtemUltimaDataReserva(reservas);
-			int numQuartos = hotel.getNumeroQuartos();
+			int numQuartos = hotel.getNumero_quartos();
 
 			Calendar calendar = new GregorianCalendar();
 		    calendar.setTime(hoje);
@@ -68,8 +68,6 @@ public class ReservaServlet extends HttpServlet {
 		    {
 		        Date dia = calendar.getTime();
 
-
-
 		        // Verifica quantidade de reservas nesse dia. Caso seja maior
 		        // que o numero de quartos, este dia é vermelho
 		        if (obtemNumeroReservasNoDia(reservas,dia) >= numQuartos){
@@ -77,7 +75,6 @@ public class ReservaServlet extends HttpServlet {
 		        	// Insere o dia ocupado no formato dd/mm/aaaa 
 		        	diasOcupados.add(stringFromDate(dia));
 		        }
-
 
 		        calendar.add(Calendar.DATE, 1);
 

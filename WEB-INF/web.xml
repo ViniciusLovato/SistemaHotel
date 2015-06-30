@@ -90,6 +90,15 @@
     <url-pattern>/reserva</url-pattern>
   </servlet-mapping>
 
+   <servlet>
+    <servlet-name>HotelServlet</servlet-name>
+    <servlet-class>hotel.HotelServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>HotelServlet</servlet-name>
+    <url-pattern>/admin/hotel</url-pattern>
+  </servlet-mapping>
 
   <jsp-config>
     <jsp-property-group>

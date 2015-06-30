@@ -50,8 +50,9 @@ public class ConsultaReservaServlet extends HttpServlet {
 
 		try{
 
-			if(user.getEmail().equals("admin@admin.com")){
+			if(user.getTipo() != null && user.getTipo().equals("admin")){
 				reservas = (ArrayList<Reserva>) sessionBD.createQuery("from Reserva").list();
+				session.setAttribute("reservas", reservas);
 				url = "/admin/reservas.jsp";
 
 			}
@@ -59,8 +60,7 @@ public class ConsultaReservaServlet extends HttpServlet {
 				reservas = (ArrayList<Reserva>) sessionBD.createQuery("from Reserva reserva where lower(reserva.email) like lower('%"+user.getEmail()+"%') ").list();
 
 				session.setAttribute("reservas", reservas);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/reserva/lista.jsp");
-				dispatcher.forward(request, response);
+				url = "/reserva/lista.jsp";
 
 				System.out.println("Usuario Comum!\n");
 			}
@@ -99,21 +99,9 @@ public class ConsultaReservaServlet extends HttpServlet {
 			session.setAttribute("filter", filter);
 			session.setAttribute("reservasFiltradas", reservasFiltradas);
 
-
-			// session.setAttribute("reservas",reservas);
-			try{
-				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-				dispatcher.forward(request, response);		
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-
-
-
 		}
 		// Removing selected reservations
-		else {
+		else if(request.getParameter("remover") != null && request.getParameter("remover").equals("true")) {
 
 			/* */
 			reservasFiltradas = (ArrayList<Reserva>) session.getAttribute("reservasFiltradas");
@@ -139,14 +127,19 @@ public class ConsultaReservaServlet extends HttpServlet {
 				sessionBD.close();
 		
 
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
-				dispatcher.forward(request, response);
+				url = "/admin/index.jsp";
 
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
 
+		try{
+			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+			dispatcher.forward(request, response);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 
 		// De acordo com os  mostra cada página.
 	}
