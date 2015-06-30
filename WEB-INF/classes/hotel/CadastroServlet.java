@@ -126,6 +126,10 @@ public class CadastroServlet extends HttpServlet {
 
 			int indice = (int) Integer.parseInt(detalhe);
 
+			System.out.println(usuariosFiltrados);
+			usuariosFiltrados = (ArrayList<Usuario>) session.getAttribute("usuariosFiltrados");
+			System.out.println(usuariosFiltrados);
+
 			Usuario usuarioDetalhado = (Usuario) usuariosFiltrados.get(indice);
 
 			session.setAttribute("usuarioDetalhado", usuarioDetalhado);
@@ -187,14 +191,29 @@ public class CadastroServlet extends HttpServlet {
 		else {
 
 			/* */
-			for(int i = usuarios.size() - 1; i >= 0; i--){
+			usuariosFiltrados = (ArrayList<Usuario>) session.getAttribute("usuariosFiltrados");
+			System.out.println("\nNumero de usuarios filtrados: " + usuariosFiltrados.size());
+			for(int i = usuariosFiltrados.size() - 1; i >= 0; i--){
 				String selected = (String) request.getParameter("checkbox" + i);
 				System.out.println(i + " " +  selected + " -> selected\n");
+				System.out.println("Fora: " + usuariosFiltrados.get(i));
+
+
+				Session sessionBD = sessionFactory.openSession();
+				Transaction tx = sessionBD.beginTransaction();
 
 				if(selected !=null && selected.equals("on")){
-					usuarios.remove(i);
+					System.out.println(usuariosFiltrados.get(i));
+					System.out.println("Email a ser removido!!!!!!" + usuariosFiltrados.get(i).getEmail());
+					
+					String email = usuariosFiltrados.get(i).getEmail();
+					sessionBD.createQuery("delete from Usuario where email='" + email + "'").executeUpdate();
+
+					tx.commit();
+					sessionBD.close();
+
 				}
-				session.setAttribute("usuarios", usuarios);
+				// session.setAttribute("usuarios", usuarios);
 			}
 
 			try{

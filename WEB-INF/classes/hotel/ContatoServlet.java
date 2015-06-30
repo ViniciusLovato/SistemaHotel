@@ -99,34 +99,77 @@ public class ContatoServlet extends HttpServlet {
 
 		/* se nao existe lista de mensagens na sessao, entao criar uma */				
 		HttpSession session = request.getSession();
-		if(session.getAttribute("mensagens") == null) {
+		ArrayList<Mensagem> mensagens = null;
+		/*if(session.getAttribute("mensagens") == null) {
 			session.setAttribute("mensagens", new ArrayList());
-		}
+		}*/
 
-		ArrayList mensagens = (ArrayList) session.getAttribute("mensagens");
-		Mensagem mensagem;
+		Session sessionBD = null;
+		Transaction tx = null;
+
 
 		String detalhe = (String) request.getParameter("detalhe");
-
+		String list = (String) request.getParameter("list");
 		String url;
 
-		if(detalhe != null){
 
-			url = "admin/mensagemDetalhe.jsp";
+		if(list != null){
+
+			try{
+				sessionBD = sessionFactory.openSession();
+				tx = sessionBD.beginTransaction();
+
+				mensagens = (ArrayList<Mensagem>) sessionBD.createQuery("from Mensagem").list();
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+
+			sessionBD.close();
+
+			session.setAttribute("mensagens", mensagens);
+
+			//ArrayList mensagens = (ArrayList) session.getAttribute("mensagens");
+			url = "admin/mensagens.jsp";
+
+		}
+		else if(detalhe != null){
+
+			mensagens = (ArrayList<Mensagem>) session.getAttribute("mensagens");
+
 			int mId = Integer.parseInt(detalhe);
+			Mensagem mensagem;
 
 			mensagem = (Mensagem) mensagens.get(mId);
 			mensagem.setLida(true);
 
+			try{
+
+				sessionBD = sessionFactory.openSession();
+				tx = sessionBD.beginTransaction();
+				sessionBD.update(mensagem);
+				tx.commit();
+
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+
+			sessionBD.close();
+
+
+
 			session.setAttribute("mensagens", mensagens);
 			session.setAttribute("mensagem", mensagem);
 
+			url = "admin/mensagemDetalhe.jsp";
+
+
 
 		}
-
 		else {
 
 			/* */
+			mensagens = (ArrayList<Mensagem>) session.getAttribute("mensagens");
 			for(int i = mensagens.size() - 1; i >= 0; i--){
 				String selected = (String) request.getParameter("checkbox" + i);
 				System.out.println(i + " " +  selected + " -> selected\n");
