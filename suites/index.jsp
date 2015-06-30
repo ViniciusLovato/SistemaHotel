@@ -9,7 +9,8 @@
     <title>Hotel</title>
 
     <script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
-    <script src="SistemaHotel/js/script.js"></script>
+    <script src="/SistemaHotel/js/script.js"></script>
+    <script src="/SistemaHotel/js/expire.js"></script>
     <link rel="stylesheet" href="../css/style.css">
 
 </head>

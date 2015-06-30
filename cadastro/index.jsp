@@ -10,6 +10,7 @@
 
     <script src="../jquery/jquery-2.1.3.min.js"></script>
     <script src="../js/script.js"></script>
+    <script src="../js/expire.js"></script>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/register.css">
 

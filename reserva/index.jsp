@@ -24,6 +24,7 @@
 
     <script src="/SistemaHotel/js/script.js"></script>
     <script src="/SistemaHotel/js/reserva.js"></script>
+    <script src="/SistemaHotel/js/expire.js"></script>
 
     <link rel="stylesheet" href="/SistemaHotel/css/style.css">
     <link rel="stylesheet" href="/SistemaHotel/css/register.css">
