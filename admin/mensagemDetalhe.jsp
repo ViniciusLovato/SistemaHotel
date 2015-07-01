@@ -1,51 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-	<link rel="stylesheet" href="/SistemaHotel/css/admin.css">
+<head>
+	<meta charset="utf-8">
+	<title>Administração - Hotel</title>
+
+	<script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
+	<script src="/SistemaHotel/js/script.js"></script>
+	<script src="/SistemaHotel/js/expire.js"></script>
+	<link rel="stylesheet" href="/SistemaHotel/css/style.css">
+	<link rel="stylesheet" href="/SistemaHotel/css/register.css">
+	<link rel="stylesheet" href="/SistemaHotel/css/admin_r.css">
+
+
 </head>
+
 <body>
 
-    <jsp:useBean id="mensagem" class="hotel.Mensagem" scope="session"/>
+	<jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
+	<jsp:useBean id="mensagem" class="hotel.Mensagem" scope="session"/>
 
 	<header>
-		<ul>
-			<li>
-				<h1>Administrador do Hotel</h1>
-			</li>
-			<li>		
-				<p>
-					 <a class="aReg" href="/SistemaHotel/login?exit=true">Log out</a>
-				</p>
-			</li>
-		</ul>
+
+		<section class="cover">
+			<img src="/SistemaHotel/static/cover.png" alt="cover">
+		</section>
+
+		<jsp:include page="/menu.jsp" />
+
 	</header>
 
-	<section>
-		<h2>Bem vindo ${usuario.nome}</h2>
-		<h3><a href="/SistemaHotel/admin/mensagens.jsp">Voltar ao inicio</a></h3>
-
-		<div class="mensagensDiv">
-            <div class="mensagem">
-            	<p>Enviado por: ${mensagem.nome}</p> <br/>
-                <p>Email : ${mensagem.email} </p> <br/>
-                <p>Telefone : ${mensagem.celular} </p> <br/>
-                <p>Mensagem: ${mensagem.mensagem} </p> <br/>
-                <hr/>
-            </div>
+	<section class="intro">
+		<div class="admin_div content">
 
 
 
-		</div>
+			<h1>Administracao do site - Hotel</h1>
+			<h2>Bem vindo ${usuario.nome}</h2>
+			<a class="adReg aReg" href="/SistemaHotel/admin/mensagens.jsp">Voltar ao inicio</a>
+
+			<div class="mensagensDiv">
+				<div class="mensagem">
+					<p><b>Enviado por:</b> ${mensagem.nome}</p> <br/>
+					<p><b>Email :</b> ${mensagem.email} </p> <br/>
+					<p><b>Telefone :</b> ${mensagem.celular} </p> <br/>
+					<p><b>Mensagem:</b> ${mensagem.mensagem} </p> <br/>
+				</div>
 
 
-	</section>
 
-	<aside></aside>
+			</div>
 
-</body>
-</html>
+		</section>
+
+		<footer class="footer">
+			<p class="text-center">Desenvolvido por Paulo Moreno e Vinicius Lovato</p>
+			<p class="text-center"> Logo <a href="https://thenounproject.com/term/palm-tree/23337/">Palm-tree</a> created by Paul Stevens under the license <a href="
+				http://creativecommons.org/licenses/by/3.0/legalcode">Creative Common (CC BY 3.0)</a>  and modified by Paulo Moreno </p>
+			</footer>
+
+		</body>
+
+		</html>

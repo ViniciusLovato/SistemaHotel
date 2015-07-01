@@ -1,78 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-	<link rel="stylesheet" href="/SistemaHotel/css/admin.css">
+<head>
+    <meta charset="utf-8">
+    <title>Administração - Visão Geral</title>
+
+    <script src="/SistemaHotel/jquery/jquery-2.1.3.min.js"></script>
+    <script src="/SistemaHotel/js/script.js"></script>
+    <script src="/SistemaHotel/js/expire.js"></script>
+    <link rel="stylesheet" href="/SistemaHotel/css/style.css">
+	<link rel="stylesheet" href="/SistemaHotel/css/admin_r.css">
+
+
 </head>
+
 <body>
 
     <jsp:useBean id="usuario" class="hotel.Usuario" scope="session"/>
     <jsp:useBean id="mensagens" class="java.util.ArrayList" scope="session"/>
 
-	<header>
-		<ul>
-			<li>
-				<h1>Administrador do Hotel</h1>
-			</li>
-			<li>
-				<p>
-					 <a class="aReg" href="/SistemaHotel/index.jsp">Hotel</a>
-				</p>
-			</li>
-			<li>		
-				<p>
-					 <a class="aReg" href="/SistemaHotel/login?exit=true">Log out</a>
-				</p>
-			</li>
-		</ul>
-	</header>
+    <header>
 
-	<section>
-		
-		<h2>Administracao do site - Visao Geral</h2>
-		<h3>Bem vindo ${usuario.nome}</h3>
+        <section class="cover">
+            <img src="/SistemaHotel/static/cover.png" alt="cover">
+        </section>
 
-		<div class="tableDiv">
+        <jsp:include page="/menu.jsp" />
 
-			<table>
-				<tr>
-				    <th>Dados</th>
-				    <th>Editar</th>
-				</tr>
+    </header>
 
-				<tr>
-				    <td>Admin</td>
-				    <td><a href="">Editar</a></td>
-				</tr>
+    <section class="intro">
+        <div class="admin_div content">
 
-				<tr>
-				    <td>Usuarios</td>
-				    <td><a href="/SistemaHotel/cadastro?nameFilter=">Listar</a></td>
-				</tr>
-				
-				<tr>
-				    <td>Reservas</td>
-				    <td><a href="/SistemaHotel/consulta?nameFilter=">Listar</a></td>
-				</tr>
 
-				<tr>
-				    <td>Mensagens</td>
-				    <td><a href="/SistemaHotel/contato?list=">Listar</a></td>
-				</tr>
-				<tr>
-				    <td>Hotel</td>
-				    <td><a href="/SistemaHotel/admin/hotel">Editar</a></td>
-				</tr>
-			</table>		
-		</div>
 
-	</section>
+			<h1>Administracao do site - Visao Geral</h1>
+			<h2>Bem vindo ${usuario.nome}</h2>
 
-	<aside></aside>
+
+			<a class="adReg aReg" href="/SistemaHotel/cadastro?nameFilter=">Usuários</a>
+			<a class="adReg aReg" href="/SistemaHotel/consulta?nameFilter=">Reservas</a>
+			<a class="adReg aReg" href="/SistemaHotel/contato?list=">Mensagens</a>
+			<a class="adReg aReg" href="/SistemaHotel/admin/hotel">Hotel</a>
+
+
+        </div>
+
+
+    </section>
+
+    <footer class="footer">
+        <p class="text-center">Desenvolvido por Paulo Moreno e Vinicius Lovato</p>
+        <p class="text-center"> Logo <a href="https://thenounproject.com/term/palm-tree/23337/">Palm-tree</a> created by Paul Stevens under the license <a href="
+http://creativecommons.org/licenses/by/3.0/legalcode">Creative Common (CC BY 3.0)</a>  and modified by Paulo Moreno </p>
+    </footer>
 
 </body>
+
 </html>
